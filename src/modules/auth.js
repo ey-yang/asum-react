@@ -12,7 +12,9 @@ const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
 const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] = createRequestActionTypes(
   'auth/REGISTER'
 );
-
+const [SOCIALREGISTER, SOCIALREGISTER_SUCCESS, SOCIALREGISTER_FAILURE] = createRequestActionTypes(
+  'auth/SOCIALREGISTER'
+);
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes(
   'auth/LOGIN'
 );
@@ -27,8 +29,11 @@ export const changeField = createAction(
 );
 export const initializeForm = createAction(INITIALIZE_FORM, form => form); 
 // register / login
-export const register = createAction(REGISTER, ({ username, email, password, age, gender }) => ({
-  username, email, password, age, gender
+export const register = createAction(REGISTER, ({ email, password, username, year, month, day, gender }) => ({
+  email, password, username, year, month, day, gender
+}));
+export const socialregister = createAction(SOCIALREGISTER, ({ username, year, month, day, gender }) => ({
+  username, year, month, day, gender
 }));
 export const login = createAction(LOGIN, ({ email, password }) => ({
   email,
@@ -37,9 +42,11 @@ export const login = createAction(LOGIN, ({ email, password }) => ({
 
 // saga 생성
 const registerSaga = createRequestSaga(REGISTER, authAPI.register);
+const socialregisterSaga = createRequestSaga(SOCIALREGISTER, authAPI.socialregister);
 const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 export function* authSaga() {
   yield takeLatest(REGISTER, registerSaga);
+  yield takeLatest(SOCIALREGISTER, socialregisterSaga);
   yield takeLatest(LOGIN, loginSaga);
 }
 
@@ -48,7 +55,16 @@ const initialState = {
     email: '',
     password: '',
     username: '',
-    passwordConfirm: ''
+    passwordConfirm: '',
+    year: '', month: '', day: '', gender:''
+  },
+  socialregister: {
+    username: '',
+    passwordConfirm: '',
+    year: '', 
+    month: '',
+    day: '',
+    gender:''
   },
   login: {
     email: '',
@@ -77,6 +93,17 @@ const auth = handleActions(
     }),
     // 회원가입 실패
     [REGISTER_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      authError: error
+    }),
+    // 소셜 회원가입 성공
+    [SOCIALREGISTER_SUCCESS]: (state, { payload: auth }) => ({
+      ...state,
+      authError: null,
+      auth
+    }),
+    // 회원가입 실패
+    [SOCIALREGISTER_FAILURE]: (state, { payload: error }) => ({
       ...state,
       authError: error
     }),

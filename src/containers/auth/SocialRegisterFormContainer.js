@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, register } from '../../modules/auth';
+import { changeField, initializeForm, socialregister } from '../../modules/auth';
 import RegisterForm from '../../components/auth/RegisterForm';
 import { check } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 
 
-const RegisterFormContainer = ({ history }) => {
+const SocialRegisterFormContainer = ({ history }) => {
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
     const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
-        form: auth.register,
+        form: auth.socialregister,
         auth: auth.auth,
         authError: auth.authError,
         user: user.user
@@ -20,7 +20,7 @@ const RegisterFormContainer = ({ history }) => {
         const { value, name } = e.target;
         dispatch(
             changeField({
-                form: 'register',
+                form: 'socialregister',
                 key: name,
                 value
             })
@@ -31,26 +31,19 @@ const RegisterFormContainer = ({ history }) => {
     const onSubmit = e => {
         e.preventDefault();
         console.log('환장하네');
-        const { email, password, passwordConfirm, username, year, month, day, gender } = form;
+        const { username, year, month, day, gender } = form;
         // 해당 인풋이 비어 있다면
-        if ([email, password, passwordConfirm, username, year, month, day, gender].includes('')) {
+        if ([username, year, month, day, gender].includes('')) {
             setError('빈 칸을 모두 입력하세요.');
             return;
         }
-        // 비밀번호가 일치하지 않는다면
-        if (password !== passwordConfirm) {
-            setError('비밀번호가 일치하지 않습니다.');
-            dispatch(changeField({ form: 'register', key: 'password', value: ''}));
-            dispatch(changeField({ form: 'register', key: 'passwordConfirm', value: ''}));
-            return;
-        }
-        dispatch(register({ email, password, username, year, month, day, gender }));
-        console.log(register)
+        
+        dispatch(socialregister({ username, year, month, day, gender }));
     };
 
     // 컴포넌트가 처음 렌더링될 때 form을 초기화함
     useEffect(() => {
-        dispatch(initializeForm('register'));
+        dispatch(initializeForm('socialregister'));
     }, [dispatch]);
 
     // 회원가입 성공/실패 처리
@@ -63,7 +56,6 @@ const RegisterFormContainer = ({ history }) => {
             }
             // 기타 이유
             setError('회원가입 실패');
-            console.log(authError);
             return;
         }
         if (auth) {
@@ -87,7 +79,7 @@ const RegisterFormContainer = ({ history }) => {
 
     return (
         <RegisterForm
-            type="register"
+            type="socialregister"
             form={form}
             onChange={onChange}
             onSubmit={onSubmit}
@@ -96,4 +88,4 @@ const RegisterFormContainer = ({ history }) => {
     );
 };
 
-export default withRouter(RegisterFormContainer);
+export default withRouter(SocialRegisterFormContainer);

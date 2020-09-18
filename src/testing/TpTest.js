@@ -1,84 +1,80 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { Row, Col } from 'antd';
-import { Link } from 'react-router-dom';
-import palette from '../lib/styles/palette';
-import Button from '../components/common/Button';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputBase from '@material-ui/core/InputBase';
+import CounterContainer from '../containers/common/CounterContainer';
+import styled from 'styled-components';
 
-const FooterBlock = styled.div`
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    /* flex로 내부 내용 중앙 정렬 */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    a {
-      text-decoration: none;
-      color: ${palette.gray[7]};
-    }
-    
-    ul {
-      list-style:none;
-      padding-left: 0.25rem;
-      margin-top: 1rem;
-    }
-    li {
-      margin-top: 0.9rem;
-    }
-`;
 
-const FooterBox = styled.div`
-    width: 910px;
-    
-`;
 
-const Footer = () => {
-    return(
-        <FooterBlock>
-            <FooterBox>
-                <Row>
-                    <Col span={12}>
-                      <h2>Footer Content</h2>
-                      <p>
-                        Here you can use rows and columns here to organize your footer content.
-                      </p>
-                    </Col>
-                    <Col span={4}>
-                      <h3>소개</h3>
-                      <ul class="list-unstyled">
-                        <li><Link to="#!">회사소개</Link></li>
-                        <li><Link to="#!">서비스 소개</Link></li>
-                        <li><Link to="#!">자주묻는 질문</Link></li>
-                      </ul>
-                    </Col>
-                    <Col span={4}>
-                      <h3>파트너십</h3>
-                      <ul class="list-unstyled">
-                        <li><a href="#!">호스트 신청</a></li>
-                        <li><a href="#!">어썸 파트너십</a></li>
-                        
-                      </ul>
-                    </Col>
-                    <Col span={4}>
-                      <h3>이용약관</h3>
-                      <ul class="list-unstyled">
-                        <li><a href="#!">약관</a></li>
-                        <li><a href="#!">개인정보 취급방침</a></li>
-                        <li><a href="#!">쿠키정책</a></li>
-                        
-                      </ul>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col span={12}></Col>
-                    <Col span={12}></Col>
-                </Row>
-            </ FooterBox>
-        </FooterBlock>
-    )
+
+const InputSelect = withStyles((theme) => ({
+  root: {
+    'label + &': {
+      marginTop: theme.spacing(3),
+    },
+  },
+  input: {
+    width: '8rem;',
+    height: '1rem;',
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}))(InputBase);
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+  ddd: {
+    height: '5rem',
+  },
+  fff: {
+    marginLeft: '30rem',
+  },
+}));
+
+export default function CustomizedSelects() {
+
+  const classes = useStyles();
+  const [age, setAge] = React.useState('');
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+  return (
+    <div>
+      
+      <FormControl className={classes.margin}>
+        <Select
+          labelId="demo-customized-select-label"
+          id="demo-customized-select"
+          value={age}
+          onChange={handleChange}
+          input={<InputSelect />}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10} className={classes.ddd}>[10세~대인] 제주유기농말차 롤케이크<div className={classes.fff}><CounterContainer /></div></MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+  );
 }
 
-export default Footer;

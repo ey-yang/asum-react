@@ -81,6 +81,7 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
         </div>
       )}
     </PostListBlock>
+    
   );
 };
 
