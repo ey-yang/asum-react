@@ -22,7 +22,7 @@ const QuillWrapper = styled.div`
     left: 0px;
   }
 `;
-const HostEditor = ({onChangeField}) => {
+const HostEditor = () => {
   const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정
 
@@ -48,21 +48,21 @@ const HostEditor = ({onChangeField}) => {
     const quill = quillInstance.current;
     quill.on('text-change', (delta, oldDelta, source) => {
       if (source === 'user') {
-        onChangeField({ key: 'about', value: quill.root.innerHTML });
+        onChangeField({ key: 'body', value: quill.root.innerHTML });
       }
     });
   },[onChangeField]);
 
-  // const mounted = useRef(false);
-  // useEffect(() => {
-  //   if (mounted.current) return;
-  //   mounted.current = true;
-  //   quillInstance.current.root.innerHTML = about;
-  // }, [about]);
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+    quillInstance.current.root.innerHTML = body;
+  }, [body]);
 
-//   const onChangeTitle = e => {
-//     onChangeField({ key: 'title', value: e.target.value });
-//   };
+  // const onChangeTitle = e => {
+  //   onChangeField({ key: 'title', value: e.target.value });
+  // };
 
   return (
     <EditorBlock>

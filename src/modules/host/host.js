@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, { createRequestActionTypes } from '../../lib/createRequestSaga';
-import * as hostAPI from '../../lib/api/host';
+import * as hostAPI from '../../lib/api/host/host';
 
 const CHANGE_FIELD = 'host/CHANGE_FIELD';
 const INITIALIZE_FORM = 'host/INITIALIZE_FORM';

@@ -1,16 +1,23 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, useRef } from 'react';
 import HostToursCreateForm from '../../components/host/HostToursCreateForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeField, initializeForm } from '../../modules/host/hostToursCreate';
+import { changeField, initializeForm, create } from '../../modules/host/hostToursCreate';
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
 
 
 const HostToursCreateContainer = () => {
     const dispatch = useDispatch();
-    const { form } = useSelector(({ hostToursCreate }) => ({
+    const { form, hostToursCreate, hostToursCreateError } = useSelector(({ hostToursCreate }) => ({
         form: hostToursCreate.form,
+        hostToursCreate: hostToursCreate.hostToursCreate,
+        hostToursCreateError: hostToursCreate.hostToursCreateError,
     }));
+    const onChangeField  = useCallback(payload => dispatch(changeField(payload)), [
+        dispatch,
+    ])
 
     function getBase64(file) {
         return new Promise((resolve, reject) => {
@@ -89,6 +96,43 @@ const HostToursCreateContainer = () => {
         );
     }
 
+    const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
+    const quillInstance = useRef(null); // Quill 인스턴스를 설정
+
+  useEffect(() => {
+    quillInstance.current = new Quill(quillElement.current, {
+      theme: 'snow',
+      modules: {
+        // 더 많은 옵션
+        // https://quilljs.com/docs/modules/toolbar/ 참고
+        toolbar: [
+            [{ 'size': ['small', false, 'large', 'huge'] }],
+           ['bold', 'italic', 'underline', 'strike'],
+           [{ list: 'ordered' }, { list: 'bullet' }],
+           ['image'],
+        ],
+      },
+    });
+
+
+    // quill에 text-change 이벤트 핸들러 등록
+    // 참고: https://quilljs.com/docs/api/#events
+
+    const quill = quillInstance.current;
+    quill.on('text-change', (delta, oldDelta, source) => {
+      if (source === 'user') {
+        onChangeField({ form: 'form', key: 'about', value: quill.root.innerHTML });
+      }
+    });
+    },[onChangeField]);
+
+    const mounted = useRef(false);
+    useEffect(() => {
+        if (mounted.current) return;
+        mounted.current = true;
+        quillInstance.current.root.innerHTML = form.about;
+    }, [form.about]);
+
     
 
 
@@ -109,7 +153,9 @@ const HostToursCreateContainer = () => {
 
 
     const onSubmit = e => {
-        console.log(e)
+        console.log(e);
+        const { name, images, price, closedDays, option, tags, refund_type, about } = form;
+        dispatch(create({ name, images, price, closedDays, option, tags, refund_type, about }));
     }
 
     useEffect(() => {
@@ -118,6 +164,18 @@ const HostToursCreateContainer = () => {
             console.log(initializeForm('form'))
         };
     }, [dispatch]);
+
+    useEffect(() => {
+        if (hostToursCreateError) {
+            console.log('오류 발생');
+            console.log(hostToursCreateError);
+            return;
+        }
+        if (hostToursCreate) {
+            console.log('성공');
+            console.log(hostToursCreate);
+        }
+    }, [hostToursCreate, hostToursCreateError])
 
     return (
         <>
@@ -135,6 +193,7 @@ const HostToursCreateContainer = () => {
             dates={dates}
             children={children}
             tagsChange={tagsChange}
+            quillElement={quillElement}
             />
         </>
     )

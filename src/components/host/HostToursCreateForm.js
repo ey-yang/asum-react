@@ -5,8 +5,10 @@ import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { Box, Calendar, Grommet } from 'grommet';
 import { grommet } from 'grommet/themes';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
+import Responsive from '../common/Responsive';
 
-import HostEditor from '../common/host/HostEditor';
 
 
 const Content = styled.div`
@@ -25,10 +27,30 @@ const RowWrapper = styled(Row)`
     margin-top: 3%;
 `;
 
+const EditorBlock = styled(Responsive)`
+    padding: 0;
+    width: 100%;
+`;
+
+const QuillWrapper = styled.div`
+  /* 최소 크기 지정 및 padding 제거 */
+  border: 1px solid #d9d9d9;
+  .ql-editor {
+    padding: 1%;
+    min-height: 700px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .ql-editor.ql-blank::before {
+    left: 0px;
+  }
+`;
+
 
 // about, onChangeField, 
-const HostToursCreateForm = ({ onChangeField ,form, previewVisible, previewImage, fileList,
-    handleCancel, handlePreview, handleChange,  onChange, onSubmit, onSelect, dates, children, tagsChange }) => {
+const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
+    handleCancel, handlePreview, handleChange,  onChange, onSubmit, onSelect, dates, children, tagsChange,
+    quillElement }) => {
 
 
 
@@ -106,7 +128,7 @@ const HostToursCreateForm = ({ onChangeField ,form, previewVisible, previewImage
                     <Box align="center">
                         <Calendar
                         dates={dates}
-                        bounds={[new Date(), '2022-12-13']}
+                        bounds={['2020-09-21', '2022-12-13']}
                         animate={false}
                         size="small"
                         locale="ko"
@@ -157,10 +179,11 @@ const HostToursCreateForm = ({ onChangeField ,form, previewVisible, previewImage
                 <Col md={3}><label>소개</label></Col>
                             {/* 소개 컴포넌트 */}
                 <Col md={20} offset={1}>
-                    <HostEditor
-                    onChangeField={onChangeField}
-                    // about={about}
-                    />
+                <EditorBlock>
+                    <QuillWrapper>
+                        <div ref={quillElement} />
+                    </QuillWrapper>
+                </EditorBlock>
                 </Col>
                 </RowWrapper>
 
