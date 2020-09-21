@@ -1,17 +1,17 @@
 import React from 'react';
 import HeaderContainer from '../../containers/common/HeaderContainer';
 import HostTemplate from '../../components/common/host/HostTemplate';
-import HostInquiry from '../../components/host/HostInquiry';
+import HostToursContainer from '../../containers/host/HostToursContainer';
 
-function HostInquiryPage() {
+const HostToursPage = () => {
     return (
         <>
         <HeaderContainer />
         <HostTemplate>
-            <HostInquiry />
+            <HostToursContainer />
         </HostTemplate>
         </>
     )
 }
 
-export default HostInquiryPage;
+export default HostToursPage;

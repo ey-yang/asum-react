@@ -8,6 +8,8 @@ import post, { postSaga } from './post';
 import posts, { postsSaga } from './posts';
 import counter from './counter'
 import tour from './tour'
+import host, {hostSaga} from './host/host';
+import hostToursCreate from './host/hostToursCreate';
 
 const rootReducer = combineReducers({
   auth,
@@ -18,6 +20,8 @@ const rootReducer = combineReducers({
   posts,
   counter,
   tour,
+  host,
+  hostToursCreate,
 });
 
 export function* rootSaga() {

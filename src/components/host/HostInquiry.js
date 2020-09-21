@@ -1,17 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../common/Button';
-import { Checkbox } from 'antd';
+
+const Content = styled.div`
+    flex: 0 1 50%;
+    margin: 3% 0 3% 3%;
+    border: 1px solid black;
+    height: 100%;
+`;
 
 const HostInquiryBlock = styled.div`
-  padding: 5%
+  padding: 4%
 `;
 
 const HostInquiry = () => {
     return (
-        <HostInquiryBlock>
-            문의 관리
-        </HostInquiryBlock>
+        <>
+        <Content>
+            <HostInquiryBlock>
+                ㄴㅇ
+            </HostInquiryBlock>
+        </Content>
+        </>
     )
 }
 

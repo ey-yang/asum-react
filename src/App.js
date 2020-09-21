@@ -6,7 +6,7 @@ import RegisterPage from './pages/auth/RegisterPage';
 import RegisterSelectPage from './pages/auth/RegisterSelectPage'
 import WritePage from './pages/WritePage';
 import PostPage from './pages/PostPage';
-import HostRegisterPage from './pages/host/HostRegisterPage';
+
 import { Helmet } from 'react-helmet-async';
 import TpTestPage from './pages/TpTestPage';
 import CompoTestPage from './pages/CompoTestPage';
@@ -14,6 +14,13 @@ import UiTestPage from './pages/UiTestPage';
 import LandingListPage from './pages/LandingListPage';
 import SocialRegisterPage from './pages/auth/SocialRegisterPage';
 import TourPage from './pages/TourPage';
+
+import HostApplyPage from './pages/host/HostApplyPage';
+import HostAccountPage from './pages/host/HostAccountPage';
+import HostToursPage from './pages/host/HostToursPage';
+import HostSalesPage from './pages/host/HostSalesPage';
+import HostInquiryPage from './pages/host/HostInquiryPage';
+import HostToursCreatePage from './pages/host/HostToursCreatePage';
 
 const App = () => {
 
@@ -32,9 +39,16 @@ const App = () => {
       <Route component={TpTestPage} path="/tptest" />
       <Route component={CompoTestPage} path="/compotest" />
       <Route component={UiTestPage} path="/uitest" />
-      <Route component={HostRegisterPage} path="/hostregister" />
+
       {/* <Route component={PostPage} path="/@:username/:postId" /> */}
       <Route component={TourPage} path="/@:email/:postId" />
+
+      <Route component={HostApplyPage} path="/host/apply" />
+      <Route component={HostAccountPage} path="/host/account" />
+      <Route component={HostToursPage} path="/host/tours" exact/>
+      <Route component={HostSalesPage} path="/host/sales" />
+      <Route component={HostInquiryPage} path="/host/inquiry" />
+      <Route component={HostToursCreatePage} path="/host/tours/create" />
     </>
   );
 };

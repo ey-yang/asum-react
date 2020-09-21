@@ -75,7 +75,7 @@ const Header = ({ user, onLogout }) => {
                     </Link>
                         {user ? (
                             <div className="right">
-                                <Link to="/hostregister">
+                                <Link to="/host/apply">
                                     <HeaderMenu>호스트 신청</HeaderMenu>
                                 </Link>
                                 <UserInfo>{user.email}</UserInfo>
@@ -85,7 +85,7 @@ const Header = ({ user, onLogout }) => {
                             </div>
                         ) : (
                             <div className="right">
-                                <Link to="/hostregister">
+                                <Link to="/host/apply">
                                     <HeaderMenu>호스트 신청</HeaderMenu>
                                 </Link>
                                 <Link to="/auth/login">
