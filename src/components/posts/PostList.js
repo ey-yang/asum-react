@@ -45,10 +45,10 @@ const PostItem = ({ post }) => {
   return (
     <PostItemBlock>
       <h2>
-        <Link to={`/@${user.username}/${_id}`}>{title}</Link>
+        <Link to={`/@${user.email}/${_id}`}>{title}</Link>
       </h2>
       <SubInfo
-        username={user.username}
+        username={user.email}
         publishedDate={new Date(publishedDate)}
       />
       <Tags tags={tags} />

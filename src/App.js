@@ -16,24 +16,25 @@ import SocialRegisterPage from './pages/auth/SocialRegisterPage';
 import TourPage from './pages/TourPage';
 
 const App = () => {
+
   return (
     <>
       <Helmet>
         <title>ASUM</title>
       </Helmet>
-      <Route component={LandingListPage} path={['/@:username', '/']} exact />
+      <Route component={LandingListPage} path={['/@:email', '/']} exact />
       <Route component={LoginPage} path="/auth/login" />
       <Route component={PostListPage} path="/postlist" />
       <Route component={RegisterPage} path="/register" />
       <Route component={RegisterSelectPage} path="/registerSelect" />
       <Route component={SocialRegisterPage} path="/socialregister" />
       <Route component={WritePage} path="/write" />
-      <Route component={PostPage} path="/@:username/:postId" />
       <Route component={TpTestPage} path="/tptest" />
       <Route component={CompoTestPage} path="/compotest" />
       <Route component={UiTestPage} path="/uitest" />
       <Route component={HostRegisterPage} path="/hostregister" />
-      <Route component={TourPage} path="/tour" />
+      {/* <Route component={PostPage} path="/@:username/:postId" /> */}
+      <Route component={TourPage} path="/@:email/:postId" />
     </>
   );
 };

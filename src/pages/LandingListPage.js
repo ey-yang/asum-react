@@ -4,6 +4,7 @@ import LoginForm from '../containers/auth/LoginForm';
 import HeaderContainer from '../containers/common/HeaderContainer';
 import LandingList from '../components/tours/LandingList';
 import Footer from '../components/common/Footer';
+import TourListContainer from '../containers/tours/TourListContainer'
 
 
 
@@ -12,6 +13,7 @@ const LandingListPage = () => {
         <>
             <HeaderContainer />
             <LandingList />
+            <TourListContainer />
             <Footer />
         </>
     );

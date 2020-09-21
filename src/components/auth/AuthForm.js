@@ -112,7 +112,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                 { type === 'login' ? (
                     <div>
                         <ThemeProvider theme={theme}>
-                                <TextField 
+                                <TextField
                                     label="Email *"
                                     variant="outlined"
                                     className="styledInput"

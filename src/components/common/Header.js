@@ -78,7 +78,7 @@ const Header = ({ user, onLogout }) => {
                                 <Link to="/hostregister">
                                     <HeaderMenu>호스트 신청</HeaderMenu>
                                 </Link>
-                                <UserInfo>{user.username}</UserInfo>
+                                <UserInfo>{user.email}</UserInfo>
                                 <Button className="regimenu"onClick={onLogout}>
                                     로그아웃
                                 </Button>

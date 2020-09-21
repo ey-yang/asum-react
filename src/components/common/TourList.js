@@ -7,96 +7,134 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CardContent from '@material-ui/core/CardContent';
 import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
-import Favorite from './Favorite'
+import Favorite from './Favorite';
+import { Link } from 'react-router-dom';
+import Tags from '../common/Tags';
+import styled from 'styled-components';
+import palette from '../../lib/styles/palette';
 
+const TourListBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  `;
 
-
-const TourList = makeStyles((theme) => ({
-  cardGrid: {
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '94.5%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '80%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  tourHead: {
-    fontWeight: 'bold',
-    fontSize: '0.95rem',
-  },
-  rating: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: '-3%',
-    color: '#868e96',
-    fontSize: '0.85rem'
-  },
-  tourPrice: {
-    fontWeight: 'bold',
-    fontSize: '0.95rem',
-    color: '#495057',
-  },
-  favorite: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: '-10%',
-    justifyContent: 'space-between'
+const TourListBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 945px;
+  .cardBlock {
+    
   }
-}));
+  .card {
+    height: 320px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    margin: 0rem 0rem 1.8rem 1rem;
+  }
+  .cardMedia {
+    padding-top: 80%;
+  }
+  .cardContent {
+    flex-grow: 1;
+  }
+  .tourHead {
+    font-weight: bold;
+    font-size: 0.98rem;
+    color: ${palette.gray[7]};
+    height: 46px;
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8];
+    
+    /* flex로 내부 내용 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .rating {
+    display: flex;
+    align-items: center;
+    margin: -0.3rem 0rem -0.3rem -0.3rem;
+    color: #868e96;
+    font-size: 0.75rem;
+  }
+  .tourPrice {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #495057;
+  }
+  .favorite {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: -10%;
+    justify-content: space-between;
+  }
+`;
 
-export default function Album() {
-  const classes = TourList();
+
+
+const TourList = ({ posts, loading, error, showWriteButton }) => {
+
+
+  // 에러 발생 시
+  if (error) {
+    return <React.Fragment>에러가 발생했습니다.</React.Fragment>;
+  }
 
   return (
-    <React.Fragment>
-      <main>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={2}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={3}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
+      <TourListBlock>
+      <TourListBox>
+      <Grid container spacing={1}>
+      {!loading && posts && (
+        <>
+          {posts.map(post => (
+          <Grid item xs={3}>
+            <div className="cardBlock">
+              <Card className="card">
+              <Link to={`/@${post.user.email}/${post._id}`}>
+                <CardMedia
+                  className="cardMedia"
+                  image="https://source.unsplash.com/random"
+                  title="Image title"
                   />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="caption" style={{ color: "#868e96" }}>
-                      #태그 #태그 #태그
+                  </Link>
+                <CardContent className="cardContent">
+                    <Typography
+                      gutterBottom
+                      variant="caption"
+                    >
+                      <Tags tags={post.tags} />
                     </Typography>
-                    <Typography gutterBottom  className={classes.tourHead}>
-                      [제주/시내] 동문시장 투어+제주 전통 음식 쿠킹클래스
-                    </Typography>
-                    <div className={classes.rating}>
+                <Link to={`/@${post.user.email}/${post._id}`}>  
+                  <Typography gutterBottom  className="tourHead">
+                    <div>
+                      {post.title}
+                    </div>
+                  </Typography>
+                  <div className="rating">
                     <StarRateRoundedIcon style={{ color: "#3bc9db" }}/>
                     <div >0(0)</div>
-                    </div>
-                    <div className={classes.favorite}>
-                      <Typography className={classes.tourPrice}>
-                        58,000원
-                      </Typography>
-                      <Favorite />
-                    </div>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      
-    </React.Fragment>
+                  </div>
+              </Link>
+                  <div className="favorite">
+                    <Typography className="tourPrice">
+                      58,000원
+                    </Typography>
+                    <Favorite />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+        </Grid>
+        ))}
+        </>
+      )}
+      </Grid>
+      </TourListBox>
+      </TourListBlock>
   );
 }
+
+export default TourList;

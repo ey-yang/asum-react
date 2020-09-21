@@ -1,13 +1,11 @@
 import React from 'react';
-import UiTest from '../testing/UiTest';
+import TourList from '../testing/UiTest';
 
 const UiTestPage = () => {
     return (
         <div>
-            <UiTest />
+            <TourList />
         </div>
-        
-        
     );
 };
 

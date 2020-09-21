@@ -136,7 +136,7 @@ const LandingList = () => {
             <Title>
                 추천 푸드투어
             </Title>
-            <TourList />
+            
         </LandingListBlock>
     );
 };

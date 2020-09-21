@@ -50,7 +50,7 @@ const PostViewer = ({ post, error, loading, actionButtons, ownPost }) => {
       <PostHead>
         <h1>{title}</h1>
         <SubInfo
-          username={user.username}
+          username={user.email}
           publishedDate={publishedDate}
           hasMarginTop
         />

@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import qs from 'qs';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import PostList from '../../components/posts/PostList';
-import { listPosts } from '../../modules/posts';
+import TourList from '../../components/common/TourList';
+import { listPosts } from '../../modules/tours';
 
-const PostListContainer = ({ location, match }) => {
+const TourListContainer = ({ location, match }) => {
   const dispatch = useDispatch();
   const { posts, error, loading, user } = useSelector(
     ({ posts, loading, user }) => ({
+   
       posts: posts.posts,
       error: posts.error,
       loading: loading['posts/LIST_POSTS'],
@@ -24,13 +25,14 @@ const PostListContainer = ({ location, match }) => {
   }, [dispatch, location.search, match.params]);
 
   return (
-    <PostList
+    <TourList
       loading={loading}
       error={error}
       posts={posts}
+     
       showWriteButton={user}
     />
   );
 };
 
-export default withRouter(PostListContainer);
+export default withRouter(TourListContainer);
