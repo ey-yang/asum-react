@@ -24,19 +24,21 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   key,
   value,
 }));
-export const writePost = createAction(WRITE_POST, ({ title, body, tags }) => ({
+export const writePost = createAction(WRITE_POST, ({ title, body, tags, images }) => ({
   title,
   body,
   tags,
+  images
 }));
 export const setOriginalPost = createAction(SET_ORIGINAL_POST, post => post);
 export const updatePost = createAction(
   UPDATE_POST,
-  ({ id, title, body, tags }) => ({
+  ({ id, title, body, tags, images }) => ({
     id,
     title,
     body,
     tags,
+    images
   }),
 );
 
@@ -53,6 +55,7 @@ const initialState = {
   title: '',
   body: '',
   tags: [],
+  images: [],
   post: null,
   postError: null,
   originalPostId: null,

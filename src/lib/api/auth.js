@@ -19,3 +19,24 @@ export const check = () => client.get('/api/auth/check');
 
 // 로그아웃
 export const logout = () => client.post('/api/auth/logout');
+
+
+
+
+/* // 로그인
+export const login = ({ email, password }) =>
+    client.post('/http://localhost:3065/auth/login', { email, password });
+
+// 회원가입
+export const register = ({ email, password, username, year, month, day, gender }) =>
+    client.post('/http://localhost:3065/auth/register', { email, password, username, year, month, day, gender });
+
+// 소셜 회원가입
+    export const socialregister = ({ username, year, month, day, gender }) =>
+    client.post('/http://localhost:3065/auth/socialregister', { username, year, month, day, gender });
+
+// 로그인 상태 확인
+export const check = () => client.get('/http://localhost:3065/auth/check');
+
+// 로그아웃
+export const logout = () => client.post('/http://localhost:3065/auth/logout'); */

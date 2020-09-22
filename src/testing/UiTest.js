@@ -115,3 +115,84 @@ const TourList = () => {
 }
 
 export default TourList;
+
+/* const tourlist = makeStyles(() => ({
+ 
+  card: {
+    height: '330px',
+    width: '216px',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '80%', // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  tourHead: {
+    fontWeight: 'bold',
+    fontSize: '0.95rem',
+  },
+  rating: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: '-3%',
+    color: '#868e96',
+    fontSize: '0.85rem'
+  },
+  tourPrice: {
+    fontWeight: 'bold',
+    fontSize: '0.95rem',
+    color: '#495057',
+  },
+  favorite: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: '-10%',
+    justifyContent: 'space-between'
+  }
+}));
+
+const TourList = () => {
+
+  const classes = tourlist();
+
+  return (
+    <React.Fragment>
+      <main>
+        <Container className={classes.cardGrid} maxWidth="md">
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="https://source.unsplash.com/random"
+                    title="Image title"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="caption" style={{ color: "#868e96" }}>
+                      #태그 #태그 #태그
+                    </Typography>
+                    <Typography gutterBottom  className={classes.tourHead}>
+                      [제주/시내] 동문시장 투어+제주 전통 음식 쿠킹클래스
+                    </Typography>
+                    <div className={classes.rating}>
+                    <StarRateRoundedIcon style={{ color: "#3bc9db" }}/>
+                    <div >0(0)</div>
+                    </div>
+                    <div className={classes.favorite}>
+                      <Typography className={classes.tourPrice}>
+                        58,000원
+                      </Typography>
+                      <Favorite />
+                    </div>
+                  </CardContent>
+                  </Card>
+        </Container>
+      </main>
+    </React.Fragment>
+  );
+}
+
+export default TourList; */
