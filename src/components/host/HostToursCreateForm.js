@@ -78,9 +78,9 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
                     <Input
                     type="text"
                     required
-                    name="name"
+                    name="title"
                     onChange={onChange}
-                    value={form.name}
+                    value={form.title}
                     />
                 </Col>
                 </Row>
@@ -90,9 +90,9 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
                     <Col offset={1}>
                     <Upload
                     listType="picture-card"
-                    name= "images"//우선 네임값 잡고
+                    name= "image"//우선 네임값 잡고
                     fileList={fileList}//images로 변경 여기가 value
-                    // action= "" URL 보내는 주소
+                    // action= "" 보낼 주소
                     onPreview={handlePreview}
                     onChange={handleChange}
                     multiple
@@ -181,7 +181,8 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
                 <Col md={20} offset={1}>
                 <EditorBlock>
                     <QuillWrapper>
-                        <div ref={quillElement} />
+                        <div ref={quillElement}
+                         />
                     </QuillWrapper>
                 </EditorBlock>
                 </Col>

@@ -5,10 +5,11 @@ import { changeField, initializeForm, create } from '../../modules/host/hostTour
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
 import Quill from 'quill';
+import ImageResize from 'quill-image-resize-module';
 import 'quill/dist/quill.snow.css';
 
 
-const HostToursCreateContainer = () => {
+const HostToursCreateContainer = ({ history }) => {
     const dispatch = useDispatch();
     const { form, hostToursCreate, hostToursCreateError } = useSelector(({ hostToursCreate }) => ({
         form: hostToursCreate.form,
@@ -52,7 +53,7 @@ const HostToursCreateContainer = () => {
         dispatch(
             changeField({
                 form: 'form',
-                key: 'images',
+                key: 'image',
                 value: setFileList(fileList),
             })
         );
@@ -99,10 +100,15 @@ const HostToursCreateContainer = () => {
     const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
     const quillInstance = useRef(null); // Quill 인스턴스를 설정
 
+    Quill.register('modules/ImageResize', ImageResize);
+
   useEffect(() => {
     quillInstance.current = new Quill(quillElement.current, {
       theme: 'snow',
       modules: {
+            imageResize: {
+                displaySize: true
+            },
         // 더 많은 옵션
         // https://quilljs.com/docs/modules/toolbar/ 참고
         toolbar: [
@@ -154,8 +160,8 @@ const HostToursCreateContainer = () => {
 
     const onSubmit = e => {
         console.log(e);
-        const { name, images, price, closedDays, option, tags, refund_type, about } = form;
-        dispatch(create({ name, images, price, closedDays, option, tags, refund_type, about }));
+        const { title, image, price, closedDays, option, tags, refund_type, about } = form;
+        dispatch(create({ title, image, price, closedDays, option, tags, refund_type, about }));
     }
 
     useEffect(() => {
@@ -174,6 +180,8 @@ const HostToursCreateContainer = () => {
         if (hostToursCreate) {
             console.log('성공');
             console.log(hostToursCreate);
+            const { _id, user } = hostToursCreate;
+            history.push(`/@${user.username}/${_id}`);
         }
     }, [hostToursCreate, hostToursCreateError])
 

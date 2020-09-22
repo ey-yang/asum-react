@@ -20,9 +20,9 @@ export const changeField = createAction(CHANGE_FIELD, ({ form, key, value }) => 
 
 export const initializeForm = createAction(INITIALIZE_FORM, form => form);
 
-export const create = createAction(CREATE, ({ name, images, price, closedDays, option, tags, refund_type, about }) => ({
-    name,
-    images,
+export const create = createAction(CREATE, ({ title, image, price, closedDays, option, tags, refund_type, about }) => ({
+    title,
+    image,
     price,
     closedDays,
     option,
@@ -40,8 +40,8 @@ export function* hostToursCreateSaga() {
 
 const initialState = {
     form: {
-        name: '',
-        images: null,
+        title: '',
+        image: null,
         price: null,
         closedDays: null,
         option: '',
