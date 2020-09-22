@@ -92,7 +92,10 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
                     listType="picture-card"
                     name= "image"//우선 네임값 잡고
                     fileList={fileList}//images로 변경 여기가 value
-                    // action= "" 보낼 주소
+                    // action= "http://192.168.1.104:3065/api/tours/images"
+                    // action= "http://localhost:3000"
+                    // method="post"
+                    customRequest={()=>(console.log('ㅎㅎ'))}
                     onPreview={handlePreview}
                     onChange={handleChange}
                     multiple

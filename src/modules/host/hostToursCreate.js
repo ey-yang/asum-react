@@ -64,14 +64,18 @@ const hostToursCreate = handleActions(
             [form]: initialState[form],
             hostToursCreateError: null,
         }),
+        [CREATE]: state => ({
+            ...state,
+            hostToursCreate: null,
+            hostToursCreateError: null,
+        }),
         [CREATE_SUCCESS]: (state, { payload: hostToursCreate }) => ({
             ...state,
-            hostToursCreateError: null,
             hostToursCreate,
         }),
-        [CREATE_FAILURE]: (state, { payload: error }) => ({
+        [CREATE_FAILURE]: (state, { payload: hostToursCreateError }) => ({
             ...state,
-            hostToursCreateError: error,
+            hostToursCreateError,
         })
     },
     initialState,

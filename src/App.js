@@ -17,7 +17,7 @@ import TourPage from './pages/TourPage';
 
 import HostApplyPage from './pages/host/HostApplyPage';
 import HostAccountPage from './pages/host/HostAccountPage';
-import HostToursPage from './pages/host/HostToursPage';
+import HostToursListPage from './pages/host/HostToursListPage';
 import HostSalesPage from './pages/host/HostSalesPage';
 import HostInquiryPage from './pages/host/HostInquiryPage';
 import HostToursCreatePage from './pages/host/HostToursCreatePage';
@@ -45,7 +45,7 @@ const App = () => {
 
       <Route component={HostApplyPage} path="/host/apply" />
       <Route component={HostAccountPage} path="/host/account" />
-      <Route component={HostToursPage} path="/host/tours" exact/>
+      <Route component={HostToursListPage} path="/host/tours" exact/>
       <Route component={HostSalesPage} path="/host/sales" />
       <Route component={HostInquiryPage} path="/host/inquiry" />
       <Route component={HostToursCreatePage} path="/host/tours/create" />

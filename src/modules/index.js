@@ -8,8 +8,9 @@ import post, { postSaga } from './post';
 import posts, { postsSaga } from './posts';
 import counter from './counter'
 import tour from './tour'
-import host, {hostSaga} from './host/host';
+import host, { hostSaga } from './host/host';
 import hostToursCreate, { hostToursCreateSaga } from './host/hostToursCreate';
+import hostToursList, { hostListSaga } from './host/hostToursList'
 
 const rootReducer = combineReducers({
   auth,
@@ -22,10 +23,11 @@ const rootReducer = combineReducers({
   tour,
   host,
   hostToursCreate,
+  hostToursList,
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), userSaga(), writeSaga(), postSaga(), postsSaga(), hostSaga(), hostToursCreateSaga()]);
+  yield all([authSaga(), userSaga(), writeSaga(), postSaga(), postsSaga(), hostSaga(), hostToursCreateSaga(), hostListSaga()]);
 }
 
 export default rootReducer;
