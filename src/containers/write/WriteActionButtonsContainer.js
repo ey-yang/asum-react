@@ -6,12 +6,14 @@ import { writePost, updatePost } from '../../modules/write';
 
 const WriteActionButtonsContainer = ({ history }) => {
   const dispatch = useDispatch();
-  const { title, body, tags, post, postError, originalPostId } = useSelector(
+  const { title, about, tags, images, post, price, postError, originalPostId } = useSelector(
     ({ write }) => ({
       title: write.title,
-      body: write.body,
+      about: write.about,
       tags: write.tags,
+      images: write.images,
       post: write.post,
+      price: write.price,
       postError: write.postError,
       originalPostId: write.originalPostId,
     }),
@@ -20,14 +22,16 @@ const WriteActionButtonsContainer = ({ history }) => {
   // 포스트 등록
   const onPublish = () => {
     if (originalPostId) {
-      dispatch(updatePost({ title, body, tags, id: originalPostId }));
+      dispatch(updatePost({ title, about, tags, images, price, id: originalPostId }));
       return;
     }
     dispatch(
       writePost({
         title,
-        body,
+        about,
         tags,
+        images,
+        price,
       }),
     );
   };
@@ -41,7 +45,7 @@ const WriteActionButtonsContainer = ({ history }) => {
   useEffect(() => {
     if (post) {
       const { _id, user } = post;
-      history.push(`/@${user.username}/${_id}`);
+      history.push(`/@${user.email}/${_id}`);
     }
     if (postError) {
       console.log(postError);

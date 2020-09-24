@@ -1,5 +1,6 @@
 import React from 'react';
 import Responsive from '../components/common/Responsive';
+import InputPrice from '../components/write/InputPrice';
 import EditorContainer from '../containers/write/EditorContainer';
 import TagBoxContainer from '../containers/write/TagBoxContainer';
 import WriteActionButtonsContainer from '../containers/write/WriteActionButtonsContainer';
@@ -15,6 +16,7 @@ const WritePage = () => {
 
       <ImgUploadContainer />
       <EditorContainer />
+      <InputPrice />
       <TagBoxContainer />
       <WriteActionButtonsContainer />
     </Responsive>

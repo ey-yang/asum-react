@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
-import { Divider } from '../../../node_modules/antd/lib/index';
 import palette from '../../lib/styles/palette';
 
 const Tag = styled.div`
@@ -63,6 +62,8 @@ const ImgUpload = ({ images, onChangeImages }) => {
     },
     [input, insertImage],
   );
+
+
 
     // tags 값이 바뀔 때
     useEffect(() => {

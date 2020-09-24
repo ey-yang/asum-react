@@ -3,8 +3,6 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import CardContent from '@material-ui/core/CardContent';
 import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
 import Favorite from './Favorite';
@@ -96,7 +94,7 @@ const TourList = ({ posts, loading, error, showWriteButton }) => {
               <Link to={`/@${post.user.email}/${post._id}`}>
                 <CardMedia
                   className="cardMedia"
-                  image="https://source.unsplash.com/random"
+                  image={post.images}/* "https://source.unsplash.com/random" */
                   title="Image title"
                   />
                   </Link>
@@ -120,7 +118,7 @@ const TourList = ({ posts, loading, error, showWriteButton }) => {
               </Link>
                   <div className="favorite">
                     <Typography className="tourPrice">
-                      58,000원
+                      {post.price} 원
                     </Typography>
                     <Favorite />
                   </div>

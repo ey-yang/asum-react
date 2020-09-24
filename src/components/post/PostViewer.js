@@ -40,7 +40,7 @@ const PostViewer = ({ post, error, loading, actionButtons, ownPost }) => {
     return null;
   }
 
-  const { title, body, user, publishedDate, tags } = post;
+  const { title, about, user, publishedDate, tags } = post;
   return (
     <PostViewerBlock>
       <Helmet>
@@ -57,7 +57,7 @@ const PostViewer = ({ post, error, loading, actionButtons, ownPost }) => {
         <Tags tags={tags} />
       </PostHead>
       {actionButtons}
-      <PostContent dangerouslySetInnerHTML={{ __html: body }} />
+      <PostContent dangerouslySetInnerHTML={{ __html: about }} />
     </PostViewerBlock>
   );
 };

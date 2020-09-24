@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.bubble.css';
+import ImageResize from 'quill-image-resize-module';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
@@ -32,15 +33,24 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const Editor = ({ title, body, onChangeField }) => {
+const Editor = ({ title, about, onChangeField }) => {
   const quillElement = useRef(null); // Quill을 적용할 DivElement를 설정
   const quillInstance = useRef(null); // Quill 인스턴스를 설정
 
   useEffect(() => {
+    Quill.register('modules/ImageResize', ImageResize);
     quillInstance.current = new Quill(quillElement.current, {
-      theme: 'bubble',
+      theme: 'snow',
       placeholder: '내용을 작성하세요...',
       modules: {
+        imageResize: {
+          displayStyles: {
+            backgroundColor: 'black',
+            border: 'none',
+            color: 'white'
+          },
+          modules: [ 'Resize', 'DisplaySize', 'Toolbar' ]  
+         }, 
         // 더 많은 옵션
         // https://quilljs.com/docs/modules/toolbar/ 참고
         toolbar: [
@@ -57,7 +67,7 @@ const Editor = ({ title, body, onChangeField }) => {
     const quill = quillInstance.current;
     quill.on('text-change', (delta, oldDelta, source) => {
       if (source === 'user') {
-        onChangeField({ key: 'body', value: quill.root.innerHTML });
+        onChangeField({ key: 'about', value: quill.root.innerHTML });
       }
     });
   }, [onChangeField]);
@@ -66,8 +76,8 @@ const Editor = ({ title, body, onChangeField }) => {
   useEffect(() => {
     if (mounted.current) return;
     mounted.current = true;
-    quillInstance.current.root.innerHTML = body;
-  }, [body]);
+    quillInstance.current.root.innerHTML = about;
+  }, [about]);
 
   const onChangeTitle = e => {
     onChangeField({ key: 'title', value: e.target.value });

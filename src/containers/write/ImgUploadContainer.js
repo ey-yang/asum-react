@@ -8,12 +8,17 @@ const ImgUploadContainer = () => {
     const images = useSelector(state => state.write.images);
 
     const onChangeImages = nextImages => {
-        dispatch(
-            changeField({
-                key: 'images',
-                value: nextImages,
-            }),
-        );
+        
+        const formData = new FormData();
+        formData.append('file', nextImages);
+
+            dispatch(
+                changeField({
+                    key: 'images',
+                    value: nextImages,
+                }),
+            );
+          
     };
     
 

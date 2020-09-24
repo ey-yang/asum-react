@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Responsive from './Responsive';
+import HeaderResponsive from './HeaderResponsive';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
@@ -16,7 +17,7 @@ const HeaderBlock = styled.div`
 /**
  * Responsive 컴포넌트의 속성에 스타일을 추가해서 새로운 컴포넌트 생성
  */
-const Wrapper = styled(Responsive)`
+const Wrapper = styled(HeaderResponsive)`
     height: 5rem;
     display: flex;
     align-items: center;

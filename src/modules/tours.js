@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../lib/createRequestSaga';
-import * as postsAPI from '../lib/api/posts';
+import * as postsAPI from '../lib/api/tours';
 import { takeLatest } from 'redux-saga/effects';
 
 const [
