@@ -42,7 +42,7 @@ const TourViewerContainer = ({ match, history }) => {
     }
   };
 
-  const ownPost = (user && user._id) === (post && post.user._id);
+  const ownPost = (user && user.id) === (post && post.user.id);
 
   return (
     <TourViewer

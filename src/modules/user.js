@@ -13,10 +13,10 @@ const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] = createRequestActionTypes(
 const LOGOUT = 'user/LOGOUT';
 
 export const tempSetUser = createAction(TEMP_SET_USER, user => user);
-export const check = createAction(CHECK);
+export const fullAuthWithoutPassword = createAction(CHECK);
 export const logout = createAction(LOGOUT);
 
-const checkSaga = createRequestSaga(CHECK, authAPI.check);
+const checkSaga = createRequestSaga(CHECK, authAPI.fullAuthWithoutPassword);
 
 function checkFailureSaga() {
   try {
