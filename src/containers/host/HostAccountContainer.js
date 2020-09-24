@@ -85,7 +85,7 @@ const HostAccountContainer = () => {
     };
 
     const onSubmit = e => { //form 보내기 함수
-        const { host_image, host_name, host_phone_nubmer, business_type, business_license,
+        const { host_image, host_name, host_phone, business_type, business_license,
             bank_account, about, contract, personal_information } = form;
 
             if (contract === false || personal_information === false) {
@@ -96,7 +96,7 @@ const HostAccountContainer = () => {
                 alert('사진 업로드가 필요합니다.')
             } else {console.log(e,'전송완료')};
 
-            dispatch(account({ host_image, host_name, host_phone_nubmer, business_type, business_license,
+            dispatch(account({ host_image, host_name, host_phone, business_type, business_license,
                 bank_account, about, contract, personal_information }));
     };
 
