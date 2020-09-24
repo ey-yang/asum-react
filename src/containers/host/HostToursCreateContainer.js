@@ -192,8 +192,8 @@ const HostToursCreateContainer = ({ history }) => {
         if (hostToursCreate) {
             console.log('성공');
             console.log(hostToursCreate);
-            const { _id, user } = hostToursCreate;
-            history.push(`/@${user.username}/${_id}`);
+            const { id, user } = hostToursCreate;
+            history.push(`/@${user.username}/${id}`);
         }
     }, [history,hostToursCreate, hostToursCreateError])
 

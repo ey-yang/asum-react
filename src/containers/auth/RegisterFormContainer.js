@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, register } from '../../modules/auth';
+import { fullAuthWithoutPassword } from '../../modules/user';
 import RegisterForm from '../../components/auth/RegisterForm';
-import { check } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 
 
@@ -69,7 +69,7 @@ const RegisterFormContainer = ({ history }) => {
         if (auth) {
             console.log('회원가입 성공');
             console.log(auth);
-            dispatch(check());
+            dispatch(fullAuthWithoutPassword());
         }
     }, [auth, authError, dispatch]);
 

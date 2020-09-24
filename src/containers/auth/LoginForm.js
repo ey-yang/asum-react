@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { changeField, initializeForm, login } from '../../modules/auth';
 import AuthForm from '../../components/auth/AuthForm';
-import { check } from '../../modules/user';
+import { fullAuthWithoutPassword } from '../../modules/user';
 
 
 const LoginForm = ({ history }) => {
@@ -49,7 +49,7 @@ const LoginForm = ({ history }) => {
         }
         if (auth) {
             console.log('로그인 성공');
-            dispatch(check());
+            dispatch(fullAuthWithoutPassword());
         }
     }, [auth, authError, dispatch]);
 

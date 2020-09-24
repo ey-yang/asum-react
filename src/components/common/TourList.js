@@ -91,13 +91,13 @@ const TourList = ({ posts, loading, error, showWriteButton }) => {
           <Grid item xs={3}>
             <div className="cardBlock">
               <Card className="card">
-              <Link to={`/@${post.user.email}/${post._id}`}>
+              <Link to={`/@${post.user.email}/${post.id}`}>
                 <CardMedia
                   className="cardMedia"
                   image={post.images}/* "https://source.unsplash.com/random" */
                   title="Image title"
                   />
-                  </Link>
+              </Link>
                 <CardContent className="cardContent">
                     <Typography
                       gutterBottom
@@ -105,7 +105,7 @@ const TourList = ({ posts, loading, error, showWriteButton }) => {
                     >
                       <Tags tags={post.tags} />
                     </Typography>
-                <Link to={`/@${post.user.email}/${post._id}`}>  
+                <Link to={`/@${post.user.email}/${post.id}`}>  
                   <Typography gutterBottom  className="tourHead">
                     <div>
                       {post.title}

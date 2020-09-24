@@ -44,8 +44,8 @@ const WriteActionButtonsContainer = ({ history }) => {
   // 성공 혹은 실패시 할 작업
   useEffect(() => {
     if (post) {
-      const { _id, user } = post;
-      history.push(`/@${user.email}/${_id}`);
+      const { id, user } = post;
+      history.push(`/@${user.email}/${id}`);
     }
     if (postError) {
       console.log(postError);
