@@ -16,12 +16,10 @@ const HostSalesContainer = ({ location, match }) => {
     );
     useEffect(() => {
         const { email } = match.params;
-        const { key, salesDate, salesProduct, salesNumber, travelDay, addOne,
-          addTwo, addThree, guestName, phoneNumber, Progress } = qs.parse(location.search, {
+        const { id, title, qty, tour_date, option, price, username,total_price } = qs.parse(location.search, {
             ignoreQueryPrefix: true,
         });
-        dispatch(salesList({ key, salesDate, salesProduct, salesNumber, travelDay, addOne,
-          addTwo, addThree, guestName, phoneNumber, Progress, email }));
+        dispatch(salesList({ id, title, qty, tour_date, option, price, username,total_price, email }));
     }, [dispatch, location.search, match.params]);
 
     

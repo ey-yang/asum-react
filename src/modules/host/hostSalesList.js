@@ -7,10 +7,8 @@ const [SALES_LIST, SALES_LIST_SUCCESS, SALES_LIST_FAILURE, ] = createRequestActi
 
 export const salesList = createAction(
     SALES_LIST,
-    ({ key, salesDate, salesProduct, salesNumber, travelDay, addOne,
-        addTwo, addThree, guestName, phoneNumber, Progress }) =>
-    ({     key, salesDate, salesProduct, salesNumber, travelDay, addOne,
-        addTwo, addThree, guestName, phoneNumber, Progress }),
+    ({ id, title, qty, tour_date, option, price, username,total_price, email }) =>
+    ({     id, title, qty, tour_date, option, price, username,total_price, email }),
 );
 
 const salesListSaga = createRequestSaga(SALES_LIST, hostSalesAPI.salesList);

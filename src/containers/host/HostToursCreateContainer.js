@@ -11,7 +11,7 @@ import 'quill/dist/quill.snow.css';
 
 const HostToursCreateContainer = ({ history }) => {
     const dispatch = useDispatch();
-    const { form, hostToursCreate, hostToursCreateError } = useSelector(({ hostToursCreate }) => ({
+    const { form, hostToursCreate, hostToursCreateError } = useSelector(({ hostToursCreate, user }) => ({
         form: hostToursCreate.form,
         hostToursCreate: hostToursCreate.hostToursCreate,
         hostToursCreateError: hostToursCreate.hostToursCreateError,
@@ -192,10 +192,10 @@ const HostToursCreateContainer = ({ history }) => {
         if (hostToursCreate) {
             console.log('성공');
             console.log(hostToursCreate);
-            const { _id, user } = hostToursCreate;
-            history.push(`/@${user.username}/${_id}`);
+            const { email, id } = hostToursCreate;
+            history.push(`/@${email}/${id}`);
         }
-    }, [history,hostToursCreate, hostToursCreateError])
+    }, [history, hostToursCreate, hostToursCreateError])
 
     return (
         <>

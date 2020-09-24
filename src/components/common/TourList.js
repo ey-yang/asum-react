@@ -91,7 +91,7 @@ const TourList = ({ posts, loading, error, showWriteButton }) => {
           <Grid item xs={3}>
             <div className="cardBlock">
               <Card className="card">
-              <Link to={`/@${post.user.email}/${post._id}`}>
+              <Link to={`/@${posts.user.email}/${post._id}`}>
                 <CardMedia
                   className="cardMedia"
                   image={post.images}/* "https://source.unsplash.com/random" */

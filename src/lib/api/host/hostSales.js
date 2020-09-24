@@ -1,11 +1,9 @@
 import qs from 'qs';
 import client from '../client';
 
-export const salesList = ({ key, salesDate, salesProduct, salesNumber, travelDay, addOne,
-    addTwo, addThree, guestName, phoneNumber, Progress }) => {
+export const salesList = ({ id, title, qty, tour_date, option, price, username,total_price, email }) => {
         const queryString = qs.stringify({
-            key, salesDate, salesProduct, salesNumber, travelDay, addOne,
-            addTwo, addThree, guestName, phoneNumber, Progress,
+            id, title, qty, tour_date, option, price, username,total_price, email,
         });
         return client.get(`http://192.168.1.104:3065/api/host/sales?${queryString}`);
     }

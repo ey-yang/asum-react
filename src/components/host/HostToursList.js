@@ -37,7 +37,14 @@ const HostToursList = ({ hostToursList, hostToursListError, loading}) => {
         }
     
         if (hostToursListError) {
-            return <div>에러가 발생했습니다.</div>;
+            return <Content>
+            <HostToursListBlock>
+            <div style={{ textAlign: 'center', fontSize: '2rem'}}>
+                전산 에러가 발생했습니다. 불편드려 죄송합니다.
+            <br/>담당자에게 연락주시면 빠르게 해결해드리겠습니다.
+            </div>
+            </HostToursListBlock>
+            </Content>;
         }
 
     return (
@@ -65,7 +72,9 @@ const HostToursList = ({ hostToursList, hostToursListError, loading}) => {
             <EyeInvisibleOutlined key="가리기" />, //가리기??
             <DeleteOutlined key="삭제" />, //해당 상품 삭제하는 함수 등록하고 진짜 삭제할건지 물어보는 창 띄우기
             <Rate style={{fontSize: '0.9rem'}} allowHalf disabled defaultValue={tours.rate} />, //평점 0~5까지 별표 반씩 줄어들음
-            <span>{'후기 '+tours.reviews+'개'}</span>, //데이터 베이스에 작성된 후기 갯수 가져오기
+            <span>
+                {tours.reviews !== undefined && '후기 '+tours.reviews+'개'}
+            </span>, //데이터 베이스에 작성된 후기 갯수 가져오기
             <span style={{fontSize: '0.9rem'}}>
                 {tours.discountRate!==undefined && <b style={{color: 'red'}}> {tours.discountRate + '%'} </b>}
                 <b style={{color: 'black'}}> {tours.price+'원'} </b>부터
