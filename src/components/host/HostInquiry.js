@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Content = styled.div`
     flex: 0 1 50%;
@@ -13,11 +14,14 @@ const HostInquiryBlock = styled.div`
 `;
 
 const HostInquiry = () => {
+
+
+
     return (
         <>
         <Content>
             <HostInquiryBlock>
-                ㄴㅇ
+                구현 예정~^^
             </HostInquiryBlock>
         </Content>
         </>

@@ -28,16 +28,16 @@ export const changeField = createAction(
 export const initializeForm = createAction(INITIALIZE_FORM, form => form);
 
 export const apply = createAction(APPLY, 
-    ({ host_image, host_name, host_phone_number, business_type, business_license,
+    ({ host_image, host_name, host_phone, business_type, business_license,
         bank_account, about, contract, personal_information }) => ({
-            host_image, host_name, host_phone_number, business_type, business_license,
+            host_image, host_name, host_phone, business_type, business_license,
             bank_account, about, contract, personal_information
          }));
 
 export const account = createAction( ACCOUNT,
-    ({ host_image, host_name, host_phone_number, business_type, business_license,
+    ({ host_image, host_name, host_phone, business_type, business_license,
         bank_account, about, contract, personal_information}) => ({
-            host_image, host_name, host_phone_number, business_type, business_license,
+            host_image, host_name, host_phone, business_type, business_license,
             bank_account, about, contract, personal_information
         }));
 
@@ -55,7 +55,7 @@ const initialState = {
     apply: {
         host_image: null,
         host_name: '',
-        host_phone_number: '',
+        host_phone: '',
         business_type: '개인',
         business_license: null,
         bank_account: null,
@@ -66,7 +66,7 @@ const initialState = {
     account: {
         host_image: null,
         host_name: '',
-        host_phone_number: '',
+        host_phone: '',
         business_type: '개인',
         business_license: null,
         bank_account: null,

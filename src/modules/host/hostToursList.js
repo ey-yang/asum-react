@@ -1,4 +1,4 @@
-import { createAction, handleActions, handleAction } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 import { takeLatest }  from 'redux-saga/effects';
 import createRequestSaga, { createRequestActionTypes } from '../../lib/createRequestSaga';
 import * as hostToursCreateAPI from '../../lib/api/host/hostToursCreate';
@@ -9,7 +9,7 @@ const [
 
 export const toursList = createAction(
     TOURS_LIST,
-    ({ title, about, image, price }) => ({ title, about, image, price }),
+    ({ title, image, price }) => ({ title, image, price }),
 );
 
 const toursListSaga = createRequestSaga(TOURS_LIST, hostToursCreateAPI.toursList);

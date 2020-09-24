@@ -91,9 +91,9 @@ const HostApplyForm = ({type, form, onChange, onChangeImage, onChecked, onSubmit
                     type="tel"
                     placeholder="ex) 010-1234-5678"
                     required
-                    name="host_phone_number"
+                    name="host_phone"
                     onChange={onChange}
-                    value={form.host_phone_number}
+                    value={form.host_phone}
                     />
                 </Col>
             </RowWrapper>
