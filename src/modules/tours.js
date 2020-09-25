@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../lib/createRequestSaga';
-import * as postsAPI from '../lib/api/tours';
+import * as toursAPI from '../lib/api/tours';
 import { takeLatest } from 'redux-saga/effects';
 
 const [
@@ -13,10 +13,10 @@ const [
 
 export const listPosts = createAction(
   LIST_POSTS,
-  ({ tag, email, page }) => ({ tag, email, page }),
+  ({ tag, email, page, image, price }) => ({ tag, email, page, image, price }),
 );
 
-const listPostsSaga = createRequestSaga(LIST_POSTS, postsAPI.listPosts);
+const listPostsSaga = createRequestSaga(LIST_POSTS, toursAPI.listPosts);
 export function* postsSaga() {
   yield takeLatest(LIST_POSTS, listPostsSaga);
 }
@@ -30,9 +30,9 @@ const initialState = {
 
 const posts = handleActions(
   {
-    [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => ({
+    [LIST_POSTS_SUCCESS]: (state, { payload: tours, meta: response }) => ({
       ...state,
-      posts,
+      tours,
       lastPage: parseInt(response.headers['last-page'], 10), // 문자열을 숫자로 변환
     }),
     [LIST_POSTS_FAILURE]: (state, { payload: error }) => ({

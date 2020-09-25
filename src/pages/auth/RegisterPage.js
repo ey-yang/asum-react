@@ -1,7 +1,7 @@
 import React from 'react';
 import RegisterFormContainer from '../../containers/auth/RegisterFormContainer';
 import HeaderContainer from '../../containers/common/HeaderContainer';
-import RegisterTemplate from '../../components/auth/RegisterTemplate'
+import RegisterTemplate from '../../components/guest/auth/RegisterTemplate'
 
 const RegisterPage = () => {
     return (

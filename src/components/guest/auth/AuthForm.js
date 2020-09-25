@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
+import palette from '../../../lib/styles/palette';
 import { Link, Route } from 'react-router-dom';
-import Button from '../common/Button';
+import Button from '../../common/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import Logo from '../../image/kakao_login_medium_narrow.png'
+import Logo from '../../../image/kakao_login_medium_narrow.png'
 
 
 
@@ -62,7 +62,7 @@ const AuthFormBlock = styled.div`
 }
 `;
 
-const kakaoLogo = require('../../image/kakao_login_medium_narrow.png');
+const kakaoLogo = require('../../../image/kakao_login_medium_narrow.png');
 
 /**
  * 폼 하단에 로그인 혹은 회원가입 링크를 보여 줌

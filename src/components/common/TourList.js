@@ -7,9 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
 import Favorite from './Favorite';
 import { Link } from 'react-router-dom';
-import Tags from '../common/Tags';
+import Tags from './Tags';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
+
 
 const TourListBlock = styled.div`
   display: flex;
@@ -73,7 +74,8 @@ const TourListBox = styled.div`
 
 
 
-const TourList = ({ posts, loading, error, showWriteButton }) => {
+
+const TourList = ({ posts, loading, error, user }) => {
 
 
   // 에러 발생 시
@@ -91,7 +93,7 @@ const TourList = ({ posts, loading, error, showWriteButton }) => {
           <Grid item xs={3}>
             <div className="cardBlock">
               <Card className="card">
-              <Link to={`/@${post.user.email}/${post.id}`}>
+              <Link to={`/@${user.email}/${post.id}`}>
                 <CardMedia
                   className="cardMedia"
                   image={post.images}/* "https://source.unsplash.com/random" */
@@ -103,9 +105,9 @@ const TourList = ({ posts, loading, error, showWriteButton }) => {
                       gutterBottom
                       variant="caption"
                     >
-                      <Tags tags={post.tags} />
+                      {/* <Tags tags={post.tags} /> */}
                     </Typography>
-              <Link to={`/@${post.user.email}/${post.id}`}>  
+              <Link to={`/@${user.email}/${post.id}`}>  
                   <Typography gutterBottom  className="tourHead">
                     <div>
                       {post.title}

@@ -52,7 +52,7 @@ const Footer = () => {
                     </Col>
                     <Col span={4}>
                       <h3>소개</h3>
-                      <ul class="list-unstyled">
+                      <ul >
                         <li><Link to="#!">회사소개</Link></li>
                         <li><Link to="#!">서비스 소개</Link></li>
                         <li><Link to="#!">자주묻는 질문</Link></li>
@@ -60,7 +60,7 @@ const Footer = () => {
                     </Col>
                     <Col span={4}>
                       <h3>파트너십</h3>
-                      <ul class="list-unstyled">
+                      <ul >
                         <li><a href="#!">호스트 신청</a></li>
                         <li><a href="#!">어썸 파트너십</a></li>
                         
@@ -68,7 +68,7 @@ const Footer = () => {
                     </Col>
                     <Col span={4}>
                       <h3>이용약관</h3>
-                      <ul class="list-unstyled">
+                      <ul >
                         <li><a href="#!">약관</a></li>
                         <li><a href="#!">개인정보 취급방침</a></li>
                         <li><a href="#!">쿠키정책</a></li>

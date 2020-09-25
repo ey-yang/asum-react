@@ -18,10 +18,10 @@ const TourListContainer = ({ location, match }) => {
   );
   useEffect(() => {
     const { email } = match.params;
-    const { tag, page } = qs.parse(location.search, {
+    const { tag, page, image, price } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    dispatch(listPosts({ tag, email, page }));
+    dispatch(listPosts({ tag, email, page, image, price }));
   }, [dispatch, location.search, match.params]);
 
   return (
@@ -29,8 +29,7 @@ const TourListContainer = ({ location, match }) => {
       loading={loading}
       error={error}
       posts={posts}
-     
-      showWriteButton={user}
+      user={user}
     />
   );
 };

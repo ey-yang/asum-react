@@ -6,7 +6,6 @@ import RegisterPage from './pages/auth/RegisterPage';
 import RegisterSelectPage from './pages/auth/RegisterSelectPage'
 import WritePage from './pages/WritePage';
 import PostPage from './pages/PostPage';
-
 import { Helmet } from 'react-helmet-async';
 import TpTestPage from './pages/TpTestPage';
 import CompoTestPage from './pages/CompoTestPage';
@@ -14,7 +13,7 @@ import UiTestPage from './pages/UiTestPage';
 import LandingListPage from './pages/LandingListPage';
 import SocialRegisterPage from './pages/auth/SocialRegisterPage';
 import TourPage from './pages/TourPage';
-
+import ProfilePage from './pages/ProfilePage';
 import HostApplyPage from './pages/host/HostApplyPage';
 import HostAccountPage from './pages/host/HostAccountPage';
 import HostToursListPage from './pages/host/HostToursListPage';
@@ -39,6 +38,7 @@ const App = () => {
       <Route component={TpTestPage} path="/tptest" />
       <Route component={CompoTestPage} path="/compotest" />
       <Route component={UiTestPage} path="/uitest" />
+      <Route component={ProfilePage} path="/profile" />
 
       {/* <Route component={PostPage} path="/@:username/:postId" /> */}
       <Route component={TourPage} path="/@:email/:postId" />
