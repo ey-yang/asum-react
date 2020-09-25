@@ -15,6 +15,10 @@ const [APPLY, APPLY_SUCCESS, APPLY_FAILURE] = createRequestActionTypes(
     'host/ACCOUNT',
   );
 
+  const [HOSTIMAGE_UPLOAD, HOSTIMAGE_UPLOAD_SUCCESS, HOSTIMAGE_UPLOAD_FAILURE] = createRequestActionTypes(
+    'host/HOSTIMAGE_UPLOAD'
+  )
+
 
 export const changeField = createAction(
     CHANGE_FIELD,
@@ -53,7 +57,7 @@ export function* hostSaga() {
 
 const initialState = {
     apply: {
-        host_image: null,
+        // host_image: null,
         host_name: '',
         host_phone: '',
         business_type: '개인',
