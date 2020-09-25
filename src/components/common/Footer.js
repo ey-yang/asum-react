@@ -50,6 +50,7 @@ const Footer = () => {
                         문의하기
                       </Button>
                     </Col>
+
                     <Col span={4}>
                       <h3>소개</h3>
                       <ul >
@@ -58,28 +59,29 @@ const Footer = () => {
                         <li><Link to="#!">자주묻는 질문</Link></li>
                       </ul>
                     </Col>
+
                     <Col span={4}>
                       <h3>파트너십</h3>
                       <ul >
                         <li><a href="#!">호스트 신청</a></li>
                         <li><a href="#!">어썸 파트너십</a></li>
-                        
                       </ul>
                     </Col>
+
                     <Col span={4}>
                       <h3>이용약관</h3>
                       <ul >
                         <li><a href="#!">약관</a></li>
                         <li><a href="#!">개인정보 취급방침</a></li>
                         <li><a href="#!">쿠키정책</a></li>
-                        
                       </ul>
                     </Col>
-                </Row>
-                <Row>
-                    <Col span={12}></Col>
-                    <Col span={12}></Col>
-                </Row>
+              </Row>
+
+              <Row>
+                  <Col span={12}></Col>
+                  <Col span={12}></Col>
+              </Row>
             </ FooterBox>
         </FooterBlock>
     )

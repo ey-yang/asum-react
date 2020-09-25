@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Image, Row, Col, DatePicker, Select, InputNumber } from 'antd';
+import { Image, Row, Col, DatePicker, Select } from 'antd';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 import Button from '../common/Button';
@@ -19,12 +19,10 @@ const TourViewerBlock = styled(Responsive)`
     display: flex;
     flex-direction: column;
     margin-bottom: 5rem;
-    
 `;
 
 const tourMainBlock = styled.div`
     width: 685px;
-    
 `;
 
 const TourHead = styled.div`

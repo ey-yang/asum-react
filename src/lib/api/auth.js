@@ -19,3 +19,6 @@ export const fullAuthWithoutPassword = () => client.get('/api/');
 
 // 로그아웃
 export const logout = () => client.post('/api/auth/logout');
+
+// 프로필 사진 업로드
+export const writeImage = () => client.post('/api/user/profile')

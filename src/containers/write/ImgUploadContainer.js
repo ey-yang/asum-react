@@ -8,9 +8,9 @@ const ImgUploadContainer = () => {
     const images = useSelector(state => state.write.images);
 
     const onChangeImages = nextImages => {
-        
+        /* const { value, name } = e.target; */
         const formData = new FormData();
-        formData.append('file', nextImages);
+        formData.append('images', nextImages);
 
             dispatch(
                 changeField({

@@ -5,6 +5,8 @@ import HeaderResponsive from './HeaderResponsive';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const HeaderBlock = styled.div`
     position: fixed;
@@ -80,9 +82,10 @@ const Header = ({ user, onLogout }) => {
                                     <HeaderMenu>호스트 신청</HeaderMenu>
                                 </Link>
                                 <UserInfo>{user.email}</UserInfo>
-                                <Button className="regimenu"onClick={onLogout}>
+                                <Avatar size="large" icon={<UserOutlined />} />
+                                {/* <Button className="regimenu"onClick={onLogout}>
                                     로그아웃
-                                </Button>
+                                </Button> */}
                             </div>
                         ) : (
                             <div className="right">

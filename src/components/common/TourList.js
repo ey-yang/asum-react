@@ -90,7 +90,7 @@ const TourList = ({ posts, loading, error, user }) => {
       {!loading && posts && (
         <>
           {posts.map(post => (
-          <Grid item xs={3}>
+          <Grid item xs={3} key={post.id}>
             <div className="cardBlock">
               <Card className="card">
               <Link to={`/@${user.email}/${post.id}`}>

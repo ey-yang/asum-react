@@ -13,7 +13,7 @@ import UiTestPage from './pages/UiTestPage';
 import LandingListPage from './pages/LandingListPage';
 import SocialRegisterPage from './pages/auth/SocialRegisterPage';
 import TourPage from './pages/TourPage';
-import ProfilePage from './pages/ProfilePage';
+import AccountPage from './pages/AccountPage';
 import HostApplyPage from './pages/host/HostApplyPage';
 import HostAccountPage from './pages/host/HostAccountPage';
 import HostToursListPage from './pages/host/HostToursListPage';
@@ -38,7 +38,7 @@ const App = () => {
       <Route component={TpTestPage} path="/tptest" />
       <Route component={CompoTestPage} path="/compotest" />
       <Route component={UiTestPage} path="/uitest" />
-      <Route component={ProfilePage} path="/profile" />
+      <Route component={AccountPage} path="/account" />
 
       {/* <Route component={PostPage} path="/@:username/:postId" /> */}
       <Route component={TourPage} path="/@:email/:postId" />

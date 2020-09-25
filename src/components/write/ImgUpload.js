@@ -86,3 +86,19 @@ const ImgUpload = ({ images, onChangeImages }) => {
 }
 
 export default ImgUpload;
+
+
+
+/*     const dispatch = useDispatch();
+    const [input, setInput] = useState('');
+    const onChange = e => {
+        setInput(e.target.value)
+        const formData = new FormData();
+        formData.append("images", {images});
+        dispatch(
+            changeField({
+                key: "images",
+                value: {images}
+            }),
+        );
+    } */
