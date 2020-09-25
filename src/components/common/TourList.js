@@ -98,14 +98,14 @@ const TourList = ({ posts, loading, error, showWriteButton }) => {
                   title="Image title"
                   />
               </Link>
-                <CardContent className="cardContent">
+              <CardContent className="cardContent">
                     <Typography
                       gutterBottom
                       variant="caption"
                     >
                       <Tags tags={post.tags} />
                     </Typography>
-                <Link to={`/@${post.user.email}/${post.id}`}>  
+              <Link to={`/@${post.user.email}/${post.id}`}>  
                   <Typography gutterBottom  className="tourHead">
                     <div>
                       {post.title}
