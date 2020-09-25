@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import HostApplyForm from '../../components/host/HostApplyForm';
 import { changeField, initializeForm, apply } from '../../modules/host/host';
+import axios from 'axios';
 
 
 
 const HostRegisterContainer = () => {
-    const [businessSuccess, setBusinessSuccess] = useState(null);
-    const [bankSuccess, setBankSuccess] = useState(null);
 
     const dispatch = useDispatch();
     const { form, host, hostError } = useSelector(({ host }) => ({
@@ -28,50 +27,50 @@ const HostRegisterContainer = () => {
         )
     };
 
-    const onChangeImage = e => {
-        const value = e.target.files[0];
-        const name = e.target.name;
-        console.log(value, name);
-        dispatch(
-            changeField({
-                form: 'apply',
-                key: name,
-                value
-            })
-        )
-    };
+    // const onChangeImage = e => {
+    //     const value = e.target.files[0];
+    //     const name = e.target.name;
+    //     console.log(value, name);
+    //     dispatch(
+    //         changeField({
+    //             form: 'apply',
+    //             key: name,
+    //             value
+    //         })
+    //     )
+    // };
 
-    const uploadBusinessImage = e => {
-        if (e.target !== null) {
-            setBusinessSuccess('등록 완료');
-        }
-        const value = e.target.files[0];
-        const name = e.target.name;
-        console.log(value, name);
-        dispatch(
-            changeField({
-                form: 'apply',
-                key: name,
-                value
-            })
-        )
-    }
+    // const uploadBusinessImage = e => {
+    //     if (e.target !== null) {
+    //         setBusinessSuccess('등록 완료');
+    //     }
+    //     const value = e.target.files[0];
+    //     const name = e.target.name;
+    //     console.log(value, name);
+    //     dispatch(
+    //         changeField({
+    //             form: 'apply',
+    //             key: name,
+    //             value
+    //         })
+    //     )
+    // }
 
-    const uploadBankImage = e => {
-        if (e.target !== null) {
-            setBankSuccess('등록 완료');
-        }
-        const value = e.target.files[0];
-        const name = e.target.name;
-        console.log(value, name);
-        dispatch(
-            changeField({
-                form: 'apply',
-                key: name,
-                value
-            })
-        )
-    }
+    // const uploadBankImage = e => {
+    //     if (e.target !== null) {
+    //         setBankSuccess('등록 완료');
+    //     }
+    //     const value = e.target.files[0];
+    //     const name = e.target.name;
+    //     console.log(value, name);
+    //     dispatch(
+    //         changeField({
+    //             form: 'apply',
+    //             key: name,
+    //             value
+    //         })
+    //     )
+    // }
 
     const onChecked = e => {
         const { checked, name } = e.target;
@@ -85,21 +84,25 @@ const HostRegisterContainer = () => {
         )
     };
 
+
     const onSubmit = e => { //form 보내기 함수
         // e.preventDefault();
-        const { host_image, host_name, host_phone, business_type, business_license,
+        //host_image,
+        const {  host_name, host_phone, business_type, business_license,
             bank_account, about, contract, personal_information } = form;
-
-            if (contract === false || personal_information === false) {
-                alert('파트너 약관과 개인정보 수집 및 이용에 대한 동의가 필요합니다.');
-            } else if (business_license === null || bank_account === null) {
-                alert('사업자등록증 사본과 통장 사본이 필요합니다.');
-            } else if (host_image === null) {
-                alert('사진 업로드가 필요합니다.')
-            } else {console.log(e,'전송완료')};
-                
-            dispatch(apply({ host_image, host_name, host_phone, business_type, business_license,
+            
+            // if (contract === false || personal_information === false) {
+            //     alert('파트너 약관과 개인정보 수집 및 이용에 대한 동의가 필요합니다.');
+            // } else if (business_license === null || bank_account === null) {
+            //     alert('사업자등록증 사본과 통장 사본이 필요합니다.');
+            // } else if (host_image === null) {
+            //     alert('사진 업로드가 필요합니다.')
+            // } else {console.log(e,'전송완료')};
+            
+            //host_image,
+            dispatch(apply({  host_name, host_phone, business_type, business_license,
                 bank_account, about, contract, personal_information }));
+               
     };
 
     useEffect(() => {
@@ -119,6 +122,53 @@ const HostRegisterContainer = () => {
     }, [host, hostError]);
 
 
+    const [hostImage, setHostImage] = useState(null);
+    const onChangeImage = (e) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            if(reader.readyState === 2){
+                setHostImage(reader.result);
+                }
+            }
+            console.log(e.target.files[0])
+        reader.readAsDataURL(e.target.files[0])
+        const formData = new FormData();
+        formData.append('images', e.target.files[0]);
+        
+        return axios.post("/api/host/upload", formData).then(res => {
+            alert('성공')
+          }).catch(err => {
+            alert('실패')
+          })
+    };
+
+    
+    const [businessSuccess, setBusinessSuccess] = useState(null);
+    const uploadBusinessImage = (e) => {
+        const formData = new FormData();
+        formData.append('business_license', e.target.files[0]);
+        
+        return axios.post("/api/host/upload", formData).then(res => {
+            alert('성공')
+            setBusinessSuccess('등록 완료')
+          }).catch(err => {
+            alert('실패')
+          })
+    };
+
+    const [bankSuccess, setBankSuccess] = useState(null);
+    const uploadBankImage = (e) => {
+        const formData = new FormData();
+        formData.append('bank_account', e.target.files[0]);
+        
+        return axios.post("/api/host/upload", formData).then(res => {
+            alert('성공')
+            setBankSuccess('등록 완료');
+          }).catch(err => {
+            alert('실패')
+          })
+    };
+
 
 
     return (
@@ -127,7 +177,10 @@ const HostRegisterContainer = () => {
             type="apply"
             form={form}
             onChange={onChange}
+            
             onChangeImage={onChangeImage}
+            hostImage={hostImage}
+
             onChecked={onChecked}
             onSubmit={onSubmit}
             uploadBusinessImage={uploadBusinessImage}
