@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import HostApplyForm from '../../components/host/HostApplyForm';
 import { changeField, initializeForm, apply } from '../../modules/host/host';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -192,4 +193,4 @@ const HostRegisterContainer = () => {
     )
 }
 
-export default HostRegisterContainer;
+export default withRouter(HostRegisterContainer);

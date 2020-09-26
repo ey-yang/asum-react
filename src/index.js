@@ -9,7 +9,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from './modules';
-import { tempSetUser, fullAuthWithoutPassword } from './modules/user';
+import { tempSetUser, fullState } from './modules/user';
 import { login } from './modules/auth';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -26,7 +26,7 @@ function loadUser() {
 
     store.dispatch(tempSetUser(auth));
     console.log(tempSetUser());
-    store.dispatch(fullAuthWithoutPassword());
+    store.dispatch(fullState());
   } catch (e) {
     console.log('localStorage is not working');
   }

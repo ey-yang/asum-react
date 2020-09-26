@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import Quill from 'quill';
 import ImageResize from 'quill-image-resize-module';
 import 'quill/dist/quill.snow.css';
+import { withRouter } from 'react-router-dom';
 
 
 const HostToursCreateContainer = ({ history }) => {
@@ -219,4 +220,4 @@ const HostToursCreateContainer = ({ history }) => {
     )
 }
 
-export default HostToursCreateContainer;
+export default withRouter(HostToursCreateContainer);

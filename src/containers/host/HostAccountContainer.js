@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import HostAccountForm from '../../components/host/HostAccountForm';
 import { changeField, initializeForm, account } from '../../modules/host/host';
+import { withRouter } from 'react-router-dom';
 
 
 const HostAccountContainer = () => {
@@ -137,4 +138,4 @@ const HostAccountContainer = () => {
     )
 }
 
-export default HostAccountContainer;
+export default withRouter(HostAccountContainer);

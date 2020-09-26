@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
+import palette from '../../../lib/styles/palette';
 import { Link } from 'react-router-dom';
-import Button from '../common/Button';
+import Button from '../../common/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';

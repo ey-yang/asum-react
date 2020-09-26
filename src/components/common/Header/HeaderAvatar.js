@@ -17,10 +17,7 @@ const AvatarDiv = styled.div`
   .avatarBtn {
     &:hover {
     background: white;
-    }
   }
-  .menuName {
-    color: black;
   }
 `;
 
@@ -45,8 +42,9 @@ const StyledMenu = withStyles({
 ));
 
 
+const HeaderAvatar = ({ onLogout }) => {
 
-export default function CustomizedMenus() {
+/* export default function CustomizedMenus({ onLogout }) { */
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -70,13 +68,13 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Link to={'/account'} style={{ color: "#323232" }} className="menuName">
-          <MenuItem>
-            <ListItemIcon>
-              <AccountCircleOutlinedIcon fontSize="middle" />
-            </ListItemIcon>
-            <ListItemText primary="내 정보" />
-          </MenuItem>
+        <Link to={'/account'} style={{ color: "#323232" }}>
+        <MenuItem>
+          <ListItemIcon>
+            <AccountCircleOutlinedIcon fontSize="middle" />
+          </ListItemIcon>
+          <ListItemText primary="내 정보" />
+        </MenuItem>
         </Link>
         <MenuItem>
           <ListItemIcon>
@@ -90,10 +88,12 @@ export default function CustomizedMenus() {
           </ListItemIcon>
           <ListItemText primary="관심 여행" />
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={ onLogout }>
           로그아웃
         </MenuItem>
       </StyledMenu>
     </AvatarDiv>
   );
 }
+
+export default HeaderAvatar;

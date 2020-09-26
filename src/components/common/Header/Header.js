@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Responsive from './Responsive';
+import Responsive from '../Responsive';
 import HeaderResponsive from './HeaderResponsive';
-import Button from './Button';
+import Button from '../Button';
 import { Link } from 'react-router-dom';
-import palette from '../../lib/styles/palette';
-import { Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import palette from '../../../lib/styles/palette';
+import HeaderAvatar from './HeaderAvatar'
 
 const HeaderBlock = styled.div`
     position: fixed;
@@ -53,8 +52,10 @@ const Spacer = styled.div`
 `;
 
 const UserInfo = styled.div`
-    font-weight: 800;
+    font-weight: 700;
     margin-right: 1rem;
+    font-size: 0.99rem;
+    color: ${palette.gray[7]};
 `;
 
 const HeaderMenu = styled.div`
@@ -81,11 +82,9 @@ const Header = ({ user, onLogout }) => {
                                 <Link to="/host/apply">
                                     <HeaderMenu>호스트 신청</HeaderMenu>
                                 </Link>
-                                <UserInfo>{user.email}</UserInfo>
-                                <Avatar size="large" icon={<UserOutlined />} />
-                                {/* <Button className="regimenu"onClick={onLogout}>
-                                    로그아웃
-                                </Button> */}
+                                <HeaderAvatar onLogout={onLogout} />
+                                <UserInfo>{user.username}</UserInfo>
+                               
                             </div>
                         ) : (
                             <div className="right">

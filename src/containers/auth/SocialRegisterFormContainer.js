@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, socialregister } from '../../modules/auth';
-import RegisterForm from '../../components/auth/RegisterForm';
-import { fullAuthWithoutPassword } from '../../modules/user';
+import RegisterForm from '../../components/guest/auth/RegisterForm';
+import { fullState } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 
 
@@ -61,7 +61,7 @@ const SocialRegisterFormContainer = ({ history }) => {
         if (auth) {
             console.log('회원가입 성공');
             console.log(auth);
-            dispatch(fullAuthWithoutPassword());
+            dispatch(fullState());
         }
     }, [auth, authError, dispatch]);
 

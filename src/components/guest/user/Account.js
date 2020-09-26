@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { writeImage, changeField, initializeForm } from '../../../modules/account';
 import { useDispatch, useSelector } from 'react-redux';
-import { Image, Row, Col, DatePicker, Select } from 'antd';
+import { Image, Row, Col, DatePicker, Select, Avatar } from 'antd';
 import styled from 'styled-components';
 import Responsive from '../../common/Responsive';
 import palette from '../../../lib/styles/palette';
+import { UserOutlined } from '@ant-design/icons';
+import Button from '@material-ui/core/Button';
 
 const AccountBlock = styled(Responsive)`
     margin-top: 4rem;
@@ -21,7 +23,11 @@ const AccountBlock = styled(Responsive)`
     }
     .description {
         margin: 1rem 0rem 1rem 0rem;
-
+    }
+    .uploadBtn {
+        &:hover {
+            color: ${palette.gray[4]};
+        }
     }
     
 `;
@@ -43,13 +49,30 @@ const DescripBox = styled.div`
 
 
 
-const Account = () => {
+const Account = ({ profileImage, onChangeImage }) => {
+
+    const imageInput = useRef();//이미지 업로드를 위한 설정
+    const onClickImageUpload = useCallback((e) => { //이미지 업로드 버튼
+        e.preventDefault();
+        imageInput.current.click();
+    }, [imageInput.current]);
+
     return (
         <AccountBlock>
             <Row>
                 <Col span={8}>
                     <PicBox>
+                        {profileImage !== null ? <Avatar size={120} src={profileImage} /> : <Avatar size={120} icon={<UserOutlined />} />}
 
+                        <input type="file" hidden ref={imageInput} name="profileImage" onChange={onChangeImage} />
+
+                        <Button disableFocusRipple disableRipple aria-controls="simple-menu" aria-haspopup="true" className="uploadBtn" onClick={onClickImageUpload}>
+                            사진 업로드
+                        </Button>
+                    
+                        {/* <ButtonWrapper style={{ marginTop: '30%' }} cyan onClick={onClickImageUpload} >
+                            사진 업로드
+                        </ButtonWrapper> */}
                     </PicBox>
                 </Col>
 

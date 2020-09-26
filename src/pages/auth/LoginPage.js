@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthTemplate from '../../components/auth/AuthTemplate';
+import AuthTemplate from '../../components/guest/auth/AuthTemplate';
 import LoginForm from '../../containers/auth/LoginForm';
 import HeaderContainer from '../../containers/common/HeaderContainer';
 
