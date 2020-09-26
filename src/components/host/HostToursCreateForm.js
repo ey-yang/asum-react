@@ -5,8 +5,8 @@ import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { Box, Calendar, Grommet } from 'grommet';
 import { grommet } from 'grommet/themes';
-import Quill from 'quill';
-import 'quill/dist/quill.snow.css';
+// import Quill from 'quill';
+// import 'quill/dist/quill.snow.css';
 import Responsive from '../common/Responsive';
 
 
@@ -90,12 +90,11 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
                     <Col offset={1}>
                     <Upload
                     listType="picture-card"
-                    name= "image"//우선 네임값 잡고
-                    fileList={fileList}//images로 변경 여기가 value
-                    // action= "http://192.168.1.104:3065/api/tours/images"
-                    // action= "http://localhost:3000"
+                    name= "images"//우선 네임값 잡고
+                    fileList={fileList}
+                    action= "/api/host/upload"
                     // method="post"
-                    customRequest={()=>(console.log('ㅎㅎ'))}
+                    // customRequest={()=>(console.log('ㅎㅎ'))}
                     onPreview={handlePreview}
                     onChange={handleChange}
                     multiple

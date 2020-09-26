@@ -50,6 +50,11 @@ const HostToursList = ({ hostToursList, hostToursListError, loading}) => {
     return (
         <Content>
         <HostToursListBlock>
+
+        {!loading && hostToursList !== null && (<div style={{ textAlign: 'center' }}>
+            <Link to="/host/tours/create"><Button>새로운 상품 등록하기</Button></Link>
+        </div>)}
+
         {!loading && hostToursList && (
         <List
         itemLayout="vertical"

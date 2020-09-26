@@ -11,10 +11,11 @@ import 'quill/dist/quill.snow.css';
 
 const HostToursCreateContainer = ({ history }) => {
     const dispatch = useDispatch();
-    const { form, hostToursCreate, hostToursCreateError } = useSelector(({ hostToursCreate, user }) => ({
+    const { form, hostToursCreate, hostToursCreateError } = useSelector(({ hostToursCreate, user, loading }) => ({
         form: hostToursCreate.form,
         hostToursCreate: hostToursCreate.hostToursCreate,
         hostToursCreateError: hostToursCreate.hostToursCreateError,
+        loading:loading['hostToursCreate/CREATE'],
     }));
     const onChangeField  = useCallback(payload => dispatch(changeField(payload)), [
         dispatch,
@@ -50,14 +51,6 @@ const HostToursCreateContainer = ({ history }) => {
         
         console.log(fileList)
         setFileList(fileList);
-        // dispatch(
-        //     changeField({
-        //         form: 'form',
-        //         key: 'image',
-        //         value: setFileList(fileList),
-        //     })
-        // );
-        
     }
 
     const onSelect= date => {
@@ -172,8 +165,8 @@ const HostToursCreateContainer = ({ history }) => {
             })
         );
         console.log(e);
-        const { title, image, price, closedDays, option, tags, refund_type, about } = form;
-        dispatch(create({ title, image, price, closedDays, option, tags, refund_type, about }));
+        const { title, price, closedDays, option, tags, refund_type, about } = form;
+        dispatch(create({ title, price, closedDays, option, tags, refund_type, about }));
     }
 
     useEffect(() => {

@@ -15,7 +15,7 @@ export const register = ({ email, password, username, year, month, day, gender }
     client.post('/api/auth/socialregister', { username, year, month, day, gender });
 
 /// 로그인 상태 확인
-export const fullAuthWithoutPassword = () => client.get('/api/');
+export const fullState = () => client.get('/api/');
 
 // 로그아웃
 export const logout = () => client.post('/api/auth/logout');

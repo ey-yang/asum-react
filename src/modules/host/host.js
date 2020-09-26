@@ -32,17 +32,12 @@ export const changeField = createAction(
 export const initializeForm = createAction(INITIALIZE_FORM, form => form);
 
 export const apply = createAction(APPLY, 
-    ({ host_image, host_name, host_phone, business_type, business_license,
-        bank_account, about, contract, personal_information }) => ({
-            host_image, host_name, host_phone, business_type, business_license,
-            bank_account, about, contract, personal_information
-         }));
+    ({ host_name, host_phone, business_type, about, contract, personal_information }) => ({
+            host_name, host_phone, business_type, about, contract, personal_information}));
 
 export const account = createAction( ACCOUNT,
-    ({ host_image, host_name, host_phone, business_type, business_license,
-        bank_account, about, contract, personal_information}) => ({
-            host_image, host_name, host_phone, business_type, business_license,
-            bank_account, about, contract, personal_information
+    ({ host_name, host_phone, business_type, about, contract, personal_information}) => ({
+         host_name, host_phone, business_type, about, contract, personal_information
         }));
 
 
@@ -57,23 +52,17 @@ export function* hostSaga() {
 
 const initialState = {
     apply: {
-        // host_image: null,
         host_name: '',
         host_phone: '',
         business_type: '개인',
-        business_license: null,
-        bank_account: null,
         about: '',
         contract: false,
         personal_information: false,
     },
     account: {
-        host_image: null,
         host_name: '',
         host_phone: '',
         business_type: '개인',
-        business_license: null,
-        bank_account: null,
         about: '',
         contract: false,
         personal_information: false,
