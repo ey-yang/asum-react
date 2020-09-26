@@ -1,6 +1,7 @@
 import React, { useRef, useCallback } from 'react';
 import styled from 'styled-components';
-import { Row, Col, Input, Radio, Form, Checkbox, Typography } from 'antd';
+import { Row, Col, Input, Radio, Form, Checkbox, Typography, Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import Button from '../common/Button';
 import 'antd/dist/antd.css';
 
@@ -34,9 +35,11 @@ const textMap = {
     apply: '작성 완료',
 };
 
-const HostAccountForm = ({type, form, onChange, onChangeImage, onChecked, onSubmit ,
-    uploadBusinessImage, businessSuccess, uploadBankImage, bankSuccess}) => {
+const HostAccountForm = ({type, form, onChange, onChangeImage,  onChecked, onSubmit ,
+    uploadBusinessImage, businessSuccess, uploadBankImage, bankSuccess, hostImage}) => {
+    
     const text = textMap[type];
+
     const imageInput = useRef();//이미지 업로드를 위한 설정
     const onClickImageUpload = useCallback((e) => { //이미지 업로드 버튼
         e.preventDefault();
@@ -55,6 +58,10 @@ const HostAccountForm = ({type, form, onChange, onChangeImage, onChecked, onSubm
         bankAccountRef.current.click();
     }, [bankAccountRef.current]);
 
+
+
+
+
     return (
         
         <Content>
@@ -62,9 +69,7 @@ const HostAccountForm = ({type, form, onChange, onChangeImage, onChecked, onSubm
             <RowFirst>
                 <Col style={{ marginTop: '6%' }} md={2}><label>사진</label></Col>
                 <Col md={6} offset={2}>
-                    {form.host_image?
-                    <img style={{ width: '120px', height:'120px', borderRadius: '1000px' }} src={URL.createObjectURL(form.host_image)} alt={form.host_image} />
-                    : <img style={{ width: '120px', height:'120px', borderRadius: '1000px' }} src="https://d2yoing0loi5gh.cloudfront.net/assets/roma/common/profile_blank-6f7e02b6e140f8f71688a633df0afefc4f98128a4c79a94e0cf0abac56c882e1.gif" alt="사진" />}
+                    {hostImage !== null ? <Avatar size={120} src={hostImage} /> : <Avatar size={120} icon={<UserOutlined />} />}
                 </Col>
                 <input type="file" hidden ref={imageInput} name="host_image" onChange={onChangeImage} />
                 <Col md={4} offset={2}>
@@ -112,11 +117,10 @@ const HostAccountForm = ({type, form, onChange, onChangeImage, onChecked, onSubm
                 </Col>
                 <input type="file" hidden ref={bankAccountRef} name="bank_account" onChange={uploadBankImage} />
                 <Col md={5}>
-                    <ButtonWrapper cyan onClick={onClickBankAccount} >통장 사본</ButtonWrapper>
+                    <ButtonWrapper cyan onClick={onClickBankAccount}>통장 사본</ButtonWrapper>
                     {bankSuccess && <Typography.Text type="success" strong={true}> {bankSuccess}</Typography.Text>}
                 </Col>
             </RowWrapper>
-
             <RowWrapper>
                 <Col md={3}><label>소개</label></Col>
                 <Col md={20} offset={1}>

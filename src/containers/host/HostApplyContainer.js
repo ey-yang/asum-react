@@ -7,13 +7,14 @@ import { withRouter } from 'react-router-dom';
 
 
 
-const HostRegisterContainer = () => {
+const HostApplyContainer = ({ history }) => {
 
     const dispatch = useDispatch();
-    const { form, host, hostError } = useSelector(({ host }) => ({
+    const { form, host, hostError, user } = useSelector(({ host, user }) => ({
         form: host.apply,
         host: host.host,
-        hostError: host.hostError
+        hostError: host.hostError,
+        user: user.user,
     }));
 
     const onChange = e => {
@@ -134,7 +135,7 @@ const HostRegisterContainer = () => {
             console.log(e.target.files[0])
         reader.readAsDataURL(e.target.files[0])
         const formData = new FormData();
-        formData.append('images', e.target.files[0]);
+        formData.append('images',e.target.files[0]);
         
         return axios.post("/api/host/upload", formData).then(res => {
             alert('성공')
@@ -147,7 +148,7 @@ const HostRegisterContainer = () => {
     const [businessSuccess, setBusinessSuccess] = useState(null);
     const uploadBusinessImage = (e) => {
         const formData = new FormData();
-        formData.append('business_license', e.target.files[0]);
+        formData.append('images', e.target.files[0]);
         
         return axios.post("/api/host/upload", formData).then(res => {
             alert('성공')
@@ -160,7 +161,7 @@ const HostRegisterContainer = () => {
     const [bankSuccess, setBankSuccess] = useState(null);
     const uploadBankImage = (e) => {
         const formData = new FormData();
-        formData.append('bank_account', e.target.files[0]);
+        formData.append('images', e.target.files[0]);
         
         return axios.post("/api/host/upload", formData).then(res => {
             alert('성공')
@@ -169,6 +170,25 @@ const HostRegisterContainer = () => {
             alert('실패')
           })
     };
+
+
+    
+    // useEffect(() => {
+    //     if (user) {
+    //         history.push('/');
+    //     }
+    // }, [history, user]);
+
+    // useEffect(() => {
+    //     if (user) {
+    //         history.push('/');
+    //         try {
+    //             localStorage.setItem('user', JSON.stringify(user));
+    //         } catch (e) {
+    //             console.log('localStorage is not working');
+    //         }
+    //     }
+    // }, [history, user]);
 
 
 
@@ -188,9 +208,11 @@ const HostRegisterContainer = () => {
             businessSuccess={businessSuccess}
             uploadBankImage={uploadBankImage}
             bankSuccess={bankSuccess}
+
+            user={user}
         />
         </>
     )
 }
 
-export default withRouter(HostRegisterContainer);
+export default withRouter(HostApplyContainer);
