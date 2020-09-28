@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import palette from '../../../lib/styles/palette';
 
@@ -26,11 +27,15 @@ const SideMenuBlock = styled.div`
 `;
 
 
-const SideMenu = () => {
-    let user = 'info';
+const SideMenu = ({history}) => {
+    
+        const { user, checkError } = useSelector(({ user }) => ({
+            user: user.user,
+        }));
+
     return (
         <SideMenuBlock>
-            {user !== 'info' ? (
+            {user.host_approval !== true ? (
                     <div className="side__menu">
                         <Link to="/host/apply">호스트 등록</Link>
                     </div>

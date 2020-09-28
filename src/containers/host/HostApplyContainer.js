@@ -90,8 +90,7 @@ const HostApplyContainer = ({ history }) => {
     const onSubmit = e => { //form 보내기 함수
         // e.preventDefault();
         //host_image,
-        const {  host_name, host_phone, business_type, business_license,
-            bank_account, about, contract, personal_information } = form;
+        const {  host_name, host_phone, business_type, about, contract, personal_information } = form;
             
             // if (contract === false || personal_information === false) {
             //     alert('파트너 약관과 개인정보 수집 및 이용에 대한 동의가 필요합니다.');
@@ -102,8 +101,7 @@ const HostApplyContainer = ({ history }) => {
             // } else {console.log(e,'전송완료')};
             
             //host_image,
-            dispatch(apply({  host_name, host_phone, business_type, business_license,
-                bank_account, about, contract, personal_information }));
+            dispatch(apply({  host_name, host_phone, business_type, about, contract, personal_information }));
                
     };
 
@@ -210,6 +208,7 @@ const HostApplyContainer = ({ history }) => {
             bankSuccess={bankSuccess}
 
             user={user}
+            hostError={hostError}
         />
         </>
     )

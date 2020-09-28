@@ -19,6 +19,17 @@ const HostToursListBlock = styled.div`
 
 const HostToursList = ({ hostToursList, hostToursListError, loading}) => {
 
+    if (hostToursListError) {
+        return <Content>
+        <HostToursListBlock>
+        <div style={{ textAlign: 'center', fontSize: '2rem'}}>
+            전산 에러가 발생했습니다. 불편드려 죄송합니다.
+        <br/>담당자에게 연락주시면 빠르게 해결해드리겠습니다.
+        </div>
+        </HostToursListBlock>
+        </Content>;
+    }
+
     const listData = []; //들어오는 데이터 넣으면 됨
         for (let i = 0; i < 50; i++) {  //i 는 등록된 게시글 갯수이므로 i < 23은 게시물 올린거 length로 변경예정
         listData.push({
@@ -35,25 +46,10 @@ const HostToursList = ({ hostToursList, hostToursListError, loading}) => {
             price: 50000,
         });
         }
-    
-        if (hostToursListError) {
-            return <Content>
-            <HostToursListBlock>
-            <div style={{ textAlign: 'center', fontSize: '2rem'}}>
-                전산 에러가 발생했습니다. 불편드려 죄송합니다.
-            <br/>담당자에게 연락주시면 빠르게 해결해드리겠습니다.
-            </div>
-            </HostToursListBlock>
-            </Content>;
-        }
 
     return (
         <Content>
         <HostToursListBlock>
-
-        {!loading && hostToursList !== null && (<div style={{ textAlign: 'center' }}>
-            <Link to="/host/tours/create"><Button>새로운 상품 등록하기</Button></Link>
-        </div>)}
 
         {!loading && hostToursList && (
         <List

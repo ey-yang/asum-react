@@ -9,14 +9,16 @@ import ImageResize from 'quill-image-resize-module';
 import 'quill/dist/quill.snow.css';
 import { withRouter } from 'react-router-dom';
 
+    // checkError: user.checkError,
 
 const HostToursCreateContainer = ({ history }) => {
     const dispatch = useDispatch();
-    const { form, hostToursCreate, hostToursCreateError } = useSelector(({ hostToursCreate, user, loading }) => ({
+    const { form, hostToursCreate, hostToursCreateError, user } = useSelector(({ hostToursCreate, user, loading }) => ({
         form: hostToursCreate.form,
         hostToursCreate: hostToursCreate.hostToursCreate,
         hostToursCreateError: hostToursCreate.hostToursCreateError,
         loading:loading['hostToursCreate/CREATE'],
+        user: user.user
     }));
     const onChangeField  = useCallback(payload => dispatch(changeField(payload)), [
         dispatch,
@@ -186,10 +188,11 @@ const HostToursCreateContainer = ({ history }) => {
         if (hostToursCreate) {
             console.log('성공');
             console.log(hostToursCreate);
-            const { email, id } = hostToursCreate;
-            history.push(`/@${email}/${id}`);
+            // const { email, id } = hostToursCreate;
+            history.push(`/host/tours`);
         }
-    }, [history, hostToursCreate, hostToursCreateError])
+    }, [ hostToursCreate, hostToursCreateError])
+    // history,
 
     return (
         <>
@@ -208,6 +211,8 @@ const HostToursCreateContainer = ({ history }) => {
             children={children}
             tagsChange={tagsChange}
             quillElement={quillElement}
+
+            user={user}
             />
         </>
     )

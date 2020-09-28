@@ -36,7 +36,12 @@ const textMap = {
 };
 
 const HostApplyForm = ({type, form, onChange, onChangeImage,  onChecked, onSubmit ,
-    uploadBusinessImage, businessSuccess, uploadBankImage, bankSuccess, hostImage}) => {
+    uploadBusinessImage, businessSuccess, uploadBankImage, bankSuccess, hostImage, hostError, user}) => {
+
+
+        if(hostError) {
+        return (<div>이미 신청했잖아</div> )
+        }
     
     const text = textMap[type];
 
