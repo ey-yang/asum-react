@@ -17,7 +17,7 @@ const HostToursListBlock = styled.div`
     padding: 4%
 `;
 
-const HostToursList = ({ hostToursList, hostToursListError, loading}) => {
+const HostToursList = ({ hostToursList, hostToursListError, loading, onEdit}) => {
 
     if (hostToursListError) {
         return <Content>
@@ -69,7 +69,7 @@ const HostToursList = ({ hostToursList, hostToursListError, loading}) => {
             key={tours.title}
             actions={[  //onClick 넣어주고 이동시키기
             
-            <Link style={{color: 'rgba(0, 0, 0, 0.45)'}} to="/"><EditOutlined key="수정" /></Link>, //해당 상품 수정페이지로 이동시키기
+            <div style={{color: 'rgba(0, 0, 0, 0.45)'}} onClick={onEdit}><EditOutlined key="수정" /></div>, //해당 상품 수정페이지로 이동시키기
             <EyeInvisibleOutlined key="가리기" />, //가리기??
             <DeleteOutlined key="삭제" />, //해당 상품 삭제하는 함수 등록하고 진짜 삭제할건지 물어보는 창 띄우기
             <Rate style={{fontSize: '0.9rem'}} allowHalf disabled defaultValue={tours.rate} />, //평점 0~5까지 별표 반씩 줄어들음

@@ -4,14 +4,16 @@ import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import HostToursList from '../../components/host/HostToursList';
 import { toursList } from '../../modules/host/hostToursList';
+import { setOriginalCreate } from '../../modules/host/hostToursCreate';
 
-const HostToursListContainer = ({ location, match }) => {
+const HostToursListContainer = ({ location, match, history }) => {
     const dispatch = useDispatch();
-    const { hostToursList, hostToursListError, loading } = useSelector(
-        ({ hostToursList, loading }) => ({
+    const { hostToursList, hostToursListError, loading, user } = useSelector(
+        ({ hostToursList, loading, user }) => ({
             hostToursList: hostToursList.hostToursList,
             hostToursListError: hostToursList.hostToursListError,
             loading: loading['hostToursList/TOURS_LIST'],
+            user: user.user,
         }),
     );
     useEffect(() => {
@@ -22,6 +24,13 @@ const HostToursListContainer = ({ location, match }) => {
         dispatch(toursList({ title, image, price, email }));
     }, [dispatch, location.search, match.params]);
 
+    const onEdit = () => {
+        dispatch(setOriginalCreate(hostToursList));
+        history.push('/host/tours/create');
+    }
+
+    // const ownHostToursList = (user && user.id) === (hostToursList && hostToursList.user.id);
+
 
     return (
         <>
@@ -29,6 +38,7 @@ const HostToursListContainer = ({ location, match }) => {
         loading={loading}
         hostToursListError={hostToursListError}
         hostToursList={hostToursList}
+        onEdit={onEdit}
         />
         </>
     )

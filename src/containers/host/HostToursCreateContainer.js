@@ -18,7 +18,7 @@ const HostToursCreateContainer = ({ history }) => {
         hostToursCreate: hostToursCreate.hostToursCreate,
         hostToursCreateError: hostToursCreate.hostToursCreateError,
         loading:loading['hostToursCreate/CREATE'],
-        user: user.user
+        user: user.user,
     }));
     const onChangeField  = useCallback(payload => dispatch(changeField(payload)), [
         dispatch,
@@ -175,7 +175,7 @@ const HostToursCreateContainer = ({ history }) => {
     useEffect(() => {
         return () => {
             dispatch(initializeForm('form'));
-            console.log(initializeForm('form'))
+            // console.log(initializeForm('form'))
         };
     }, [dispatch]);
 
@@ -187,7 +187,7 @@ const HostToursCreateContainer = ({ history }) => {
         }
         if (hostToursCreate) {
             console.log('성공');
-            console.log(hostToursCreate);
+            dispatch(initializeForm('hostToursCreate'));
             // const { email, id } = hostToursCreate;
             history.push(`/host/tours`);
         }

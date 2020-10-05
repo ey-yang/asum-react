@@ -27,7 +27,7 @@ const SideMenuBlock = styled.div`
 `;
 
 
-const SideMenu = ({history}) => {
+const SideMenu = () => {
     
         const { user, checkError } = useSelector(({ user }) => ({
             user: user.user,

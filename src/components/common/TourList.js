@@ -93,13 +93,13 @@ const TourList = ({ posts, loading, error, user }) => {
           <Grid item xs={3} key={post.id}>
             <div className="cardBlock">
               <Card className="card">
-              {/* <Link to={`/@${user.email}/${post.id}`}> */}
+              <Link to={`/tour/${post.id}`}>
                 <CardMedia
                   className="cardMedia"
                   image={post.images}/* "https://source.unsplash.com/random" */
                   title="Image title"
                   />
-              {/* </Link> */}
+              </Link>
               <CardContent className="cardContent">
                     <Typography
                       gutterBottom
@@ -107,7 +107,7 @@ const TourList = ({ posts, loading, error, user }) => {
                     >
                       {/* <Tags tags={post.tags} /> */}
                     </Typography>
-              {/* <Link to={`/@${user.email}/${post.id}`}>   */}
+              <Link to={`/tour/${post.id}`}>  
                   <Typography gutterBottom  className="tourHead">
                     <div>
                       {post.title}
@@ -117,7 +117,7 @@ const TourList = ({ posts, loading, error, user }) => {
                     <StarRateRoundedIcon style={{ color: "#3bc9db" }}/>
                     <div >0(0)</div>
                   </div>
-              {/* </Link> */}
+              </Link>
                   <div className="favorite">
                     <Typography className="tourPrice">
                       {post.price} 원

@@ -5,10 +5,10 @@ import client from './client';
 
 
 export const writePost = ({ title, about, tags, images, price }) =>
-    client.post('/api/host/tours', {title, about, tags, images, price });
+    client.post('/api/user/landing', {title, about, tags, images, price });
 
 
-export const readPost = id => client.get(`/api/host/tours/${id}`);
+export const readPost = id => client.get(`/api/user/landing/${id}`);
 
 
 export const listPosts = ({ page, email, tag, image, price }) => {
@@ -19,11 +19,11 @@ export const listPosts = ({ page, email, tag, image, price }) => {
         image,
         price,
     });
-    return client.get(`/api/host/tours?${queryString}`);
+    return client.get(`/api/user/landing?${queryString}`);
 };
 
 export const updatePost = ({ id, title, about, tags, images, price }) =>
-    client.patch(`/api/host/tours/${id}`, {
+    client.patch(`/api/user/landing/${id}`, {
         title,
         about,
         tags,
@@ -31,4 +31,4 @@ export const updatePost = ({ id, title, about, tags, images, price }) =>
         price,
     });
 
-export const removePost = id => client.delete(`/api/host/tours/${id}`)
+export const removePost = id => client.delete(`/api/user/landing/${id}`)

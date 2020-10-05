@@ -21,10 +21,10 @@ const store = createStore(
 
 function loadUser() {
   try {
-    const auth = localStorage.getItem('auth');
-    if (!auth) return; // 로그인 상태가 아니라면 아무것도 안 함
+    const user = localStorage.getItem('user');
+    if (!user) return; // 로그인 상태가 아니라면 아무것도 안 함
 
-    store.dispatch(tempSetUser(auth));
+    store.dispatch(tempSetUser(user));
     console.log(tempSetUser());
     store.dispatch(fullState());
   } catch (e) {

@@ -7,6 +7,7 @@ import * as hostToursCreateAPI from '../../lib/api/host/hostToursCreate';
 
 const CHANGE_FIELD = 'hostToursCreate/CHANGE_FIELD';
 const INITIALIZE_FORM = 'hostToursCreate/INITIALIZE_FORM';
+const SET_ORIGINAL_CREATE = 'hostToursCreate/SET_ORIGINAL_CREATE';
 
 const [CREATE, CREATE_SUCCESS, CREATE_FAILURE] = createRequestActionTypes(
     'hostToursCreate/CREATE',
@@ -30,6 +31,8 @@ export const create = createAction(CREATE, ({ title, image, price, closedDays, o
     about,
 }));
 
+export const setOriginalCreate = createAction(SET_ORIGINAL_CREATE, hostToursCreate => hostToursCreate);
+
 const createSaga = createRequestSaga(CREATE, hostToursCreateAPI.create);
 export function* hostToursCreateSaga() {
     yield takeLatest(CREATE, createSaga);
@@ -49,6 +52,7 @@ const initialState = {
     },
     hostToursCreate: null,
     hostToursCreateError: null,
+    orignalCreateId: null,
 }
 
 const hostToursCreate = handleActions(
@@ -74,7 +78,12 @@ const hostToursCreate = handleActions(
         [CREATE_FAILURE]: (state, { payload: hostToursCreateError }) => ({
             ...state,
             hostToursCreateError,
-        })
+        }),
+        [SET_ORIGINAL_CREATE]: (state, { payload: hostToursCreate }) => ({
+            ...state,
+            form: hostToursCreate.form,
+            orignalCreateId: hostToursCreate.id
+        }),
     },
     initialState,
 );
