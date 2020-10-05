@@ -5,9 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
-import Favorite from './Favorite';
+import Favorite from '../common/Favorite';
 import { Link } from 'react-router-dom';
-import Tags from './Tags';
+import Tags from '../common/Tags';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -77,7 +77,6 @@ const TourListBox = styled.div`
 
 const TourList = ({ posts, loading, error, user }) => {
 
-
   // 에러 발생 시
   if (error) {
     return <React.Fragment>에러가 발생했습니다.</React.Fragment>;
@@ -107,7 +106,7 @@ const TourList = ({ posts, loading, error, user }) => {
                     >
                       {/* <Tags tags={post.tags} /> */}
                     </Typography>
-              <Link to={`/tour/${post.id}`}>  
+              <Link to={`/tour/${post.id}`}>
                   <Typography gutterBottom  className="tourHead">
                     <div>
                       {post.title}

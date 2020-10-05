@@ -7,9 +7,7 @@ import client from './client';
 export const writePost = ({ title, about, tags, images, price }) =>
     client.post('/api/user/landing', {title, about, tags, images, price });
 
-
-export const readPost = id => client.get(`/api/user/landing/${id}`);
-
+export const readPost = id => client.get(`/api/tours/${id}`);
 
 export const listPosts = ({ page, email, tag, image, price }) => {
     const queryString = qs.stringify({

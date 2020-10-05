@@ -1,5 +1,5 @@
 import React from 'react';
-import TourList from '../common/TourList';
+import TourList from './TourList';
 import styled from 'styled-components';
 import Button from '../common/Button';
 import palette from '../../lib/styles/palette';

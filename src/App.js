@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PostListPage from './pages/PostListPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
@@ -28,6 +28,7 @@ const App = () => {
       <Helmet>
         <title>ASUM</title>
       </Helmet>
+      <Switch>
       <Route component={LandingListPage} path={['/@:email', '/']} exact />
       <Route component={LoginPage} path="/auth/login" />
       <Route component={PostListPage} path="/postlist" />
@@ -41,7 +42,6 @@ const App = () => {
       <Route component={AccountPage} path="/account" />
 
       {/* <Route component={PostPage} path="/@:username/:postId" /> */}
-      <Route component={TourPage} path="/@:email/:postId" />
 
       <Route component={HostApplyPage} path="/host/apply" />
       <Route component={HostAccountPage} path="/host/account" />
@@ -49,6 +49,9 @@ const App = () => {
       <Route component={HostSalesPage} path="/host/sales" />
       <Route component={HostInquiryPage} path="/host/inquiry" />
       <Route component={HostToursCreatePage} path="/host/tours/create" />
+      
+      <Route component={TourPage} path="/tour/:postId" />
+      </Switch>
     </>
   );
 };
