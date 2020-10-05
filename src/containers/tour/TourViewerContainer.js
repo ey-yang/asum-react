@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { readPost, unloadPost } from '../../modules/tour';
-import TourViewer from '../../components/tour/TourViewer';
+import TourViewer from '../../components/guest/tour/TourViewer';
 import PostActionButtons from '../../components/post/PostActionButtons';
 import { setOriginalPost } from '../../modules/write';
 import { removePost } from '../../lib/api/posts';
@@ -11,12 +11,11 @@ const TourViewerContainer = ({ match, history }) => {
   // 처음 마운트될 때 포스트 읽기 API 요청
   const { postId } = match.params;
   const dispatch = useDispatch();
-  const { post, error, loading, user } = useSelector(
+  const { post, error, loading } = useSelector(
     ({ post, loading, user }) => ({
       post: post.post,
       error: post.error,
       loading: loading['post/READ_POST'],
-      user: user.user,
     }),
   );
 
@@ -42,16 +41,16 @@ const TourViewerContainer = ({ match, history }) => {
     }
   };
 
-  const ownPost = (user && user.id) === (post && post.user.id);
+  /* const ownPost = (user && user.id) === (post && post.user.id); */
 
   return (
     <TourViewer
       post={post}
       loading={loading}
       error={error}
-      actionButtons={
+      /* actionButtons={
         ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />
-      }
+      } */
     />
   );
 };

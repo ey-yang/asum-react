@@ -5,9 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
-import Favorite from './Favorite';
+import Favorite from '../common/Favorite';
 import { Link } from 'react-router-dom';
-import Tags from './Tags';
+import Tags from '../common/Tags';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -77,7 +77,6 @@ const TourListBox = styled.div`
 
 const TourList = ({ posts, loading, error, user }) => {
 
-
   // 에러 발생 시
   if (error) {
     return <React.Fragment>에러가 발생했습니다.</React.Fragment>;
@@ -93,13 +92,13 @@ const TourList = ({ posts, loading, error, user }) => {
           <Grid item xs={3} key={post.id}>
             <div className="cardBlock">
               <Card className="card">
-              {/* <Link to={`/@${user.email}/${post.id}`}> */}
+              <Link to={`/tour/${post.id}`}>
                 <CardMedia
                   className="cardMedia"
                   image={post.images}/* "https://source.unsplash.com/random" */
                   title="Image title"
                   />
-              {/* </Link> */}
+              </Link>
               <CardContent className="cardContent">
                     <Typography
                       gutterBottom
@@ -107,7 +106,7 @@ const TourList = ({ posts, loading, error, user }) => {
                     >
                       {/* <Tags tags={post.tags} /> */}
                     </Typography>
-              {/* <Link to={`/@${user.email}/${post.id}`}>   */}
+              <Link to={`/tour/${post.id}`}>
                   <Typography gutterBottom  className="tourHead">
                     <div>
                       {post.title}
@@ -117,7 +116,7 @@ const TourList = ({ posts, loading, error, user }) => {
                     <StarRateRoundedIcon style={{ color: "#3bc9db" }}/>
                     <div >0(0)</div>
                   </div>
-              {/* </Link> */}
+              </Link>
                   <div className="favorite">
                     <Typography className="tourPrice">
                       {post.price} 원

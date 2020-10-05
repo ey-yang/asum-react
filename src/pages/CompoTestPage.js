@@ -1,12 +1,13 @@
 import React from 'react';
 import CompoTest from '../testing/CompoTest';
+import TourViewerContainer from '../containers/tour/TourViewerContainer'
 
 
 
 const CompoTestPage = () => {
     return (
         <div>왜이럼
-            <CompoTest />
+            <TourViewerContainer />
         </div>
         
         
