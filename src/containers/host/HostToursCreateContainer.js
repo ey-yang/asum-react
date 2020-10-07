@@ -1,24 +1,25 @@
 import React, { useEffect, useCallback, useState, useRef } from 'react';
 import HostToursCreateForm from '../../components/host/HostToursCreateForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeField, initializeForm, create } from '../../modules/host/hostToursCreate';
+import { changeField, initializeForm, create, updateCreate } from '../../modules/host/hostToursCreate';
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
 import Quill from 'quill';
 import ImageResize from 'quill-image-resize-module';
 import 'quill/dist/quill.snow.css';
 import { withRouter } from 'react-router-dom';
+import hostToursList, { toursList } from '../../modules/host/hostToursList';
 
-    // checkError: user.checkError,
 
 const HostToursCreateContainer = ({ history }) => {
     const dispatch = useDispatch();
-    const { form, hostToursCreate, hostToursCreateError, user } = useSelector(({ hostToursCreate, user, loading }) => ({
+    const { form, hostToursCreate, hostToursCreateError, user, orignalCreateId } = useSelector(({ hostToursCreate, user, loading }) => ({
         form: hostToursCreate.form,
         hostToursCreate: hostToursCreate.hostToursCreate,
         hostToursCreateError: hostToursCreate.hostToursCreateError,
         loading:loading['hostToursCreate/CREATE'],
         user: user.user,
+        orignalCreateId: hostToursCreate.orignalCreateId,
     }));
     const onChangeField  = useCallback(payload => dispatch(changeField(payload)), [
         dispatch,
@@ -159,7 +160,8 @@ const HostToursCreateContainer = ({ history }) => {
 
 
 
-    const onSubmit = e => {
+    const onSubmit = async (e) => {
+
         dispatch(
             changeField({
                 form: 'form',
@@ -167,19 +169,27 @@ const HostToursCreateContainer = ({ history }) => {
                 value: fileList,
             })
         );
-        console.log(e);
-        const { title, price, closedDays, option, tags, refund_type, about } = form;
-        dispatch(create({ title, price, closedDays, option, tags, refund_type, about }));
+        const { title, price, image, closedDays, option, tags, refund_type, about } = form;        
+        if (orignalCreateId) {
+            await dispatch(updateCreate({id: orignalCreateId, title, price, closedDays, option, tags, refund_type, about}));
+            alert('수정되었습니다!');
+            // history.push(`/host/tours`);
+            return;
+        }else {
+            dispatch(create({ title, price, closedDays, option, tags, refund_type, about }));
+            return;
+        }
     }
 
+    
     useEffect(() => {
         return () => {
             dispatch(initializeForm('form'));
-            // console.log(initializeForm('form'))
         };
     }, [dispatch]);
 
     useEffect(() => {
+        console.log(hostToursCreate,'이놈놈이미어ㅏㅁ')
         if (hostToursCreateError) {
             console.log('오류 발생');
             console.log(hostToursCreateError);
@@ -188,7 +198,6 @@ const HostToursCreateContainer = ({ history }) => {
         if (hostToursCreate) {
             console.log('성공');
             dispatch(initializeForm('hostToursCreate'));
-            // const { email, id } = hostToursCreate;
             history.push(`/host/tours`);
         }
     }, [ hostToursCreate, hostToursCreateError])

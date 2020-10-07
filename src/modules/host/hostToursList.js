@@ -3,9 +3,7 @@ import { takeLatest }  from 'redux-saga/effects';
 import createRequestSaga, { createRequestActionTypes } from '../../lib/createRequestSaga';
 import * as hostToursCreateAPI from '../../lib/api/host/hostToursCreate';
 
-const [
-    TOURS_LIST
-    , TOURS_LIST_SUCCESS, TOURS_LIST_FAILURE, ] = createRequestActionTypes('hostToursList/TOURS_LIST');
+const [TOURS_LIST, TOURS_LIST_SUCCESS, TOURS_LIST_FAILURE, ] = createRequestActionTypes('hostToursList/TOURS_LIST');
 
 export const toursList = createAction(
     TOURS_LIST,
