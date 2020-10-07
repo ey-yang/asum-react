@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import 'antd/dist/antd.css';
-import { List, Button, Rate } from 'antd';
 import { CarOutlined, DeleteOutlined, EyeInvisibleOutlined, EditOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { List, Button, Rate } from 'antd';
+import 'antd/dist/antd.css';
 
 const Content = styled.div`
     flex: 0 1 50%;

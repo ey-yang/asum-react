@@ -5,11 +5,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
-import Favorite from '../common/Favorite';
+import Favorite from '../../common/Favorite';
 import { Link } from 'react-router-dom';
-import Tags from '../common/Tags';
+import Tags from '../../common/Tags';
 import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
+import palette from '../../../lib/styles/palette';
 
 
 const TourListBlock = styled.div`
@@ -75,7 +75,7 @@ const TourListBox = styled.div`
 
 
 
-const TourList = ({ posts, loading, error, user }) => {
+const TourList = ({ tours, loading, error, user }) => {
 
   // 에러 발생 시
   if (error) {
@@ -86,16 +86,16 @@ const TourList = ({ posts, loading, error, user }) => {
       <TourListBlock>
       <TourListBox>
       <Grid container spacing={1}>
-      {!loading && posts && (
+      {!loading && tours && (
         <>
-          {posts.map(post => (
-          <Grid item xs={3} key={post.id}>
+          {tours.map(tour => (
+          <Grid item xs={3} key={tour.id}>
             <div className="cardBlock">
               <Card className="card">
-              <Link to={`/tour/${post.id}`}>
+              <Link to={`/tour/${tour.id}`}>
                 <CardMedia
                   className="cardMedia"
-                  image={post.images}/* "https://source.unsplash.com/random" */
+                  image={tour.images}/* "https://source.unsplash.com/random" */
                   title="Image title"
                   />
               </Link>
@@ -104,12 +104,12 @@ const TourList = ({ posts, loading, error, user }) => {
                       gutterBottom
                       variant="caption"
                     >
-                      {/* <Tags tags={post.tags} /> */}
+                      {/* <Tags tags={tour.tags} /> */}
                     </Typography>
-              <Link to={`/tour/${post.id}`}>
+              <Link to={`/tour/${tour.id}`}>
                   <Typography gutterBottom  className="tourHead">
                     <div>
-                      {post.title}
+                      {tour.title}
                     </div>
                   </Typography>
                   <div className="rating">
@@ -119,7 +119,7 @@ const TourList = ({ posts, loading, error, user }) => {
               </Link>
                   <div className="favorite">
                     <Typography className="tourPrice">
-                      {post.price} 원
+                      {tour.price} 원
                     </Typography>
                     <Favorite />
                   </div>

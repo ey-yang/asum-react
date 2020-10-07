@@ -1,9 +1,9 @@
 import React, { useRef, useCallback } from 'react';
 import styled from 'styled-components';
-import { Row, Col, Input, Radio, Form, Checkbox, Typography, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import Button from '../common/Button';
 import 'antd/dist/antd.css';
+import { Row, Col, Input, Radio, Form, Checkbox, Typography, Avatar } from 'antd';
 
 const Content = styled.div`
     flex: 0 1 50%;

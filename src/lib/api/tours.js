@@ -1,13 +1,12 @@
 import qs from 'qs';
 import client from './client';
 
-
-export const writePost = ({ title, about, tags, images, price }) =>
+export const writeTour = ({ title, about, tags, images, price }) =>
     client.post('/api/user/landing', {title, about, tags, images, price });
 
-export const readPost = id => client.get(`/api/tours/${id}`);
+export const readTour = id => client.get(`/api/tours/${id}`);
 
-export const listPosts = ({ page, email, tag, image, price }) => {
+export const listTours = ({ page, email, tag, image, price }) => {
     const queryString = qs.stringify({
         page,
         email,
@@ -18,7 +17,7 @@ export const listPosts = ({ page, email, tag, image, price }) => {
     return client.get(`/api/user/landing?${queryString}`);
 };
 
-export const updatePost = ({ id, title, about, tags, images, price }) =>
+export const updateTour = ({ id, title, about, tags, images, price }) =>
     client.patch(`/api/user/landing/${id}`, {
         title,
         about,
@@ -27,5 +26,5 @@ export const updatePost = ({ id, title, about, tags, images, price }) =>
         price,
     });
 
-export const removePost = id => client.delete(`/api/user/landing/${id}`);
+export const removeTour = id => client.delete(`/api/user/landing/${id}`);
 

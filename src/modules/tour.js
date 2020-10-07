@@ -2,42 +2,42 @@ import { createAction, handleActions } from 'redux-actions';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../lib/createRequestSaga';
-import * as postsAPI from '../lib/api/tours';
+import * as toursAPI from '../lib/api/tours';
 import { takeLatest } from 'redux-saga/effects';
 
 const [
-  READ_POST,
-  READ_POST_SUCCESS,
-  READ_POST_FAILURE,
-] = createRequestActionTypes('post/READ_POST');
-const UNLOAD_POST = 'post/UNLOAD_POST'; // 포스트 페이지에서 벗어날 때 데이터 비우기
+  READ_TOUR,
+  READ_TOUR_SUCCESS,
+  READ_TOUR_FAILURE,
+] = createRequestActionTypes('tour/READ_TOUR');
+const UNLOAD_TOUR = 'tour/UNLOAD_TOUR'; // 포스트 페이지에서 벗어날 때 데이터 비우기
 
-export const readPost = createAction(READ_POST, id => id);
-export const unloadPost = createAction(UNLOAD_POST);
+export const readTour = createAction(READ_TOUR, id => id);
+export const unloadTour = createAction(UNLOAD_TOUR);
 
-const readPostSaga = createRequestSaga(READ_POST, postsAPI.readPost);
-export function* postSaga() {
-  yield takeLatest(READ_POST, readPostSaga);
+const readTourSaga = createRequestSaga(READ_TOUR, toursAPI.readTour);
+export function* tourSaga() {
+  yield takeLatest(READ_TOUR, readTourSaga);
 }
 
 const initialState = {
-  post: null,
+  tour: null,
   error: null,
 };
 
-const post = handleActions(
+const tour = handleActions(
   {
-    [READ_POST_SUCCESS]: (state, { payload: post }) => ({
+    [READ_TOUR_SUCCESS]: (state, { payload: tour }) => ({
       ...state,
-      post,
+      tour,
     }),
-    [READ_POST_FAILURE]: (state, { payload: error }) => ({
+    [READ_TOUR_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),
-    [UNLOAD_POST]: () => initialState,
+    [UNLOAD_TOUR]: () => initialState,
   },
   initialState,
 );
 
-export default post;
+export default tour;

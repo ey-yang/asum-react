@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Image, Row, Col, DatePicker } from 'antd';
+import { ConfigProvider } from 'antd';
+import { Affix } from 'antd';
 import palette from '../../../lib/styles/palette';
 import Responsive from '../../common/Responsive';
 import Button from '../../common/Button';
 import CounterContainer from '../../../containers/common/CounterContainer';
-import { Affix } from 'antd';
 import { Helmet } from 'react-helmet-async';
 import moment from 'moment';
 import 'moment/locale/ko';
 import locale from 'antd/es/date-picker/locale/ko_KR';
-import { ConfigProvider } from 'antd';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -150,7 +150,7 @@ const InputSelect = withStyles((theme) => ({
   }))(InputBase);
   
 
-const TourViewer = ({ post, error, loading, actionButtons, ownPost }) => {
+const TourViewer = ({ tour, error, loading, actionButtons, ownPost }) => {
 
   // 에러 발생 시
   if (error) {
@@ -161,7 +161,7 @@ const TourViewer = ({ post, error, loading, actionButtons, ownPost }) => {
   }
 
   // 로딩중이거나, 아직 포스트 데이터가 없을 시
-  if (loading || !post) {
+  if (loading || !tour) {
     return null;
   }
 
@@ -176,7 +176,7 @@ const TourViewer = ({ post, error, loading, actionButtons, ownPost }) => {
 
     
 
-    const { title, about, images, price, user, publishedDate, tags } = post;
+    const { title, about, images, price, user, publishedDate, tags } = tour;
 
 
     return (

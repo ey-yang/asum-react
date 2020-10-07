@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, register } from '../../modules/auth';
 import { fullState } from '../../modules/user';
-import RegisterForm from '../../components/guest/auth/RegisterForm';
+import RegisterForm from '../../components/client/auth/RegisterForm';
 import { withRouter } from 'react-router-dom';
 
 

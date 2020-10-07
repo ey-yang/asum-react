@@ -6,7 +6,7 @@ import * as userAPI from '../lib/api/user';
 import { takeLatest } from 'redux-saga/effects';
 import produce from 'immer';
 
-
+// 프로필 이미지 업로드 액션
 const CHANGE_FIELD = 'account/CHANGE_FIELD';
 const [
   WRITE_IMAGE,
@@ -14,22 +14,33 @@ const [
   WRITE_IMAGE_FAILURE,
 ] = createRequestActionTypes('account/WRITE_IMAGE');
 
+// 유저 정보 읽어오는 액션
+const READ_ACCOUNT = 'account/READ_ACCOUNT';
+const UNLOAD_ACCOUNT = 'account/UNLOAD_ACCOUNT';
+
+// 프로필 사진
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
     key,
     value,
   }));
   export const writeImage = createAction(WRITE_IMAGE, ({ images }) => ({ images }));
-
 const writeImageSaga = createRequestSaga(WRITE_IMAGE, userAPI.writeImage);
 
+// 계정 정보
+export const readAccount = createAction(READ_ACCOUNT, id => id);
+export const unloadAccount = createAction(UNLOAD_ACCOUNT);
+const readAccountSaga = createRequestSaga(READ_ACCOUNT, userAPI.readAccount);
+
+// saga 생성
 export function* accountSaga() {
     yield takeLatest(WRITE_IMAGE, writeImageSaga);
+    yield takeLatest(READ_ACCOUNT, readAccountSaga);
 
   }
 
-
 const initialState = {
   images: '',
+  user: null,
 };
 
 const account = handleActions(
@@ -53,6 +64,14 @@ const account = handleActions(
         ...state,
         userError: Error,
       }),
+
+      [READ_ACCOUNT]: (state, {payload: user }) => (
+        {
+          ...state,
+          user,
+        }),
+      [UNLOAD_ACCOUNT]: () => initialState,
+
     },
     initialState,
 );

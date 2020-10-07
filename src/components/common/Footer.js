@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button'
+import { Row, Col } from 'antd';
 
 
 const FooterBlock = styled.div`

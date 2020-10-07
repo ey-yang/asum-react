@@ -2,12 +2,12 @@ import React, { useEffect, useCallback, useState, useRef } from 'react';
 import HostToursCreateForm from '../../components/host/HostToursCreateForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeField, initializeForm, create } from '../../modules/host/hostToursCreate';
-import { Select } from 'antd';
-import 'antd/dist/antd.css';
 import Quill from 'quill';
 import ImageResize from 'quill-image-resize-module';
 import 'quill/dist/quill.snow.css';
 import { withRouter } from 'react-router-dom';
+import { Select } from 'antd';
+import 'antd/dist/antd.css';
 
     // checkError: user.checkError,
 

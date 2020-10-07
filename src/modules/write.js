@@ -2,38 +2,38 @@ import { createAction, handleActions } from 'redux-actions';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../lib/createRequestSaga';
-import * as postsAPI from '../lib/api/posts';
+import * as toursAPI from '../lib/api/tours';
 import { takeLatest } from 'redux-saga/effects';
 
 const INITIALIZE = 'write/INITIALIZE'; // 모든 내용 초기화
 const CHANGE_FIELD = 'write/CHANGE_FIELD'; // 특정 key 값 바꾸기
 const [
-  WRITE_POST,
-  WRITE_POST_SUCCESS,
-  WRITE_POST_FAILURE,
-] = createRequestActionTypes('write/WRITE_POST'); // 포스트 작성
-const SET_ORIGINAL_POST = 'write/SET_ORIGINAL_POST';
+  WRITE_TOUR,
+  WRITE_TOUR_SUCCESS,
+  WRITE_TOUR_FAILURE,
+] = createRequestActionTypes('write/WRITE_TOUR'); // 포스트 작성
+const SET_ORIGINAL_TOUR = 'write/SET_ORIGINAL_TOUR';
 const [
-  UPDATE_POST,
-  UPDATE_POST_SUCCESS,
-  UPDATE_POST_FAILURE,
-] = createRequestActionTypes('write/UPDATE_POST'); // 포스트 수정
+  UPDATE_TOUR,
+  UPDATE_TOUR_SUCCESS,
+  UPDATE_TOUR_FAILURE,
+] = createRequestActionTypes('write/UPDATE_TOUR'); // 포스트 수정
 
 export const initialize = createAction(INITIALIZE);
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   key,
   value,
 }));
-export const writePost = createAction(WRITE_POST, ({ title, about, tags, images, price }) => ({
+export const writeTour = createAction(WRITE_TOUR, ({ title, about, tags, images, price }) => ({
   title,
   about,
   tags,
   images,
   price,
 }));
-export const setOriginalPost = createAction(SET_ORIGINAL_POST, post => post);
-export const updatePost = createAction(
-  UPDATE_POST,
+export const setOriginalTour = createAction(SET_ORIGINAL_TOUR, tour => tour);
+export const updateTour = createAction(
+  UPDATE_TOUR,
   ({ id, title, about, tags, images, price }) => ({
     id,
     title,
@@ -45,12 +45,12 @@ export const updatePost = createAction(
 );
 
 // saga 생성
-const writePostSaga = createRequestSaga(WRITE_POST, postsAPI.writePost);
-const updatePostSaga = createRequestSaga(UPDATE_POST, postsAPI.updatePost);
+const writePostSaga = createRequestSaga(WRITE_TOUR, toursAPI.writeTour);
+const updatePostSaga = createRequestSaga(UPDATE_TOUR, toursAPI.updateTour);
 
 export function* writeSaga() {
-  yield takeLatest(WRITE_POST, writePostSaga);
-  yield takeLatest(UPDATE_POST, updatePostSaga);
+  yield takeLatest(WRITE_TOUR, writePostSaga);
+  yield takeLatest(UPDATE_TOUR, updatePostSaga);
 }
 
 const initialState = {
@@ -59,7 +59,7 @@ const initialState = {
   tags: [],
   images: [],
   price: '',
-  post: null,
+  tour: null,
   postError: null,
   originalPostId: null,
 };
@@ -71,34 +71,34 @@ const write = handleActions(
       ...state,
       [key]: value, // 특정 key 값을 업데이트
     }),
-    [WRITE_POST]: state => ({
+    [WRITE_TOUR]: state => ({
       ...state,
       // post와 postError를 초기화
-      post: null,
+      tour: null,
       postError: null,
     }),
     // 포스트 작성 성공
-    [WRITE_POST_SUCCESS]: (state, { payload: post }) => ({
+    [WRITE_TOUR_SUCCESS]: (state, { payload: tour }) => ({
       ...state,
-      post,
+      tour,
     }),
     // 포스트 작성 실패
-    [WRITE_POST_FAILURE]: (state, { payload: postError }) => ({
+    [WRITE_TOUR_FAILURE]: (state, { payload: postError }) => ({
       ...state,
       postError,
     }),
-    [SET_ORIGINAL_POST]: (state, { payload: post }) => ({
+    [SET_ORIGINAL_TOUR]: (state, { payload: tour }) => ({
       ...state,
-      title: post.title,
-      about: post.about,
-      tags: post.tags,
-      originalPostId: post.id,
+      title: tour.title,
+      about: tour.about,
+      tags: tour.tags,
+      originalPostId: tour.id,
     }),
-    [UPDATE_POST_SUCCESS]: (state, { payload: post }) => ({
+    [UPDATE_TOUR_SUCCESS]: (state, { payload: tour }) => ({
       ...state,
-      post,
+      tour,
     }),
-    [UPDATE_POST_FAILURE]: (state, { payload: postError }) => ({
+    [UPDATE_TOUR_FAILURE]: (state, { payload: postError }) => ({
       ...state,
       postError,
     }),

@@ -1,6 +1,6 @@
 import React from 'react';
 import CompoTest from '../testing/CompoTest';
-import TourViewerContainer from '../containers/tour/TourViewerContainer'
+import TourViewerContainer from '../containers/client/tour/TourViewerContainer'
 
 
 

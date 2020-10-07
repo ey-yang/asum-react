@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderContainer from '../containers/common/HeaderContainer';
-import LandingList from '../components/tours/LandingList';
+import LandingList from '../components/client/tours/LandingList';
 import Footer from '../components/common/Footer';
 import TourListContainer from '../containers/tours/TourListContainer'
 

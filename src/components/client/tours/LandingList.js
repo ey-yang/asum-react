@@ -1,12 +1,12 @@
 import React from 'react';
 import TourList from './TourList';
 import styled from 'styled-components';
-import Button from '../common/Button';
-import palette from '../../lib/styles/palette';
+import Button from '../../common/Button';
+import palette from '../../../lib/styles/palette';
 import { CgSearch } from 'react-icons/cg';
 import { DatePicker, Select } from 'antd';
 import 'antd/dist/antd.css';
-import BarResponsive from '../common/BarResponsive';
+import BarResponsive from '../../common/BarResponsive';
 
 
 const LandingListBlock = styled.div`

@@ -6,36 +6,36 @@ import * as toursAPI from '../lib/api/tours';
 import { takeLatest } from 'redux-saga/effects';
 
 const [
-  LIST_POSTS,
-  LIST_POSTS_SUCCESS,
-  LIST_POSTS_FAILURE,
-] = createRequestActionTypes('posts/LIST_POSTS');
+  LIST_TOURS,
+  LIST_TOURS_SUCCESS,
+  LIST_TOURS_FAILURE,
+] = createRequestActionTypes('tours/LIST_TOURS');
 
-export const listPosts = createAction(
-  LIST_POSTS,
+export const listTours = createAction(
+  LIST_TOURS,
   ({ tag, email, page, image, price }) => ({ tag, email, page, image, price }),
 );
 
-const listPostsSaga = createRequestSaga(LIST_POSTS, toursAPI.listPosts);
-export function* postsSaga() {
-  yield takeLatest(LIST_POSTS, listPostsSaga);
+const listToursSaga = createRequestSaga(LIST_TOURS, toursAPI.listTours);
+export function* toursSaga() {
+  yield takeLatest(LIST_TOURS, listToursSaga);
 }
 
 const initialState = {
 
-  posts: null,
+  tours: null,
   error: null,
   lastPage: 1,
 };
 
-const posts = handleActions(
+const tours = handleActions(
   {
-    [LIST_POSTS_SUCCESS]: (state, { payload: tours, meta: response }) => ({
+    [LIST_TOURS_SUCCESS]: (state, { payload: tours, meta: response }) => ({
       ...state,
       tours,
       lastPage: parseInt(response.headers['last-page'], 10), // 문자열을 숫자로 변환
     }),
-    [LIST_POSTS_FAILURE]: (state, { payload: error }) => ({
+    [LIST_TOURS_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),
@@ -43,4 +43,4 @@ const posts = handleActions(
   initialState,
 );
 
-export default posts;
+export default tours;
