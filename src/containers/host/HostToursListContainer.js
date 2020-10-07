@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import HostToursList from '../../components/host/HostToursList';
 import { toursList } from '../../modules/host/hostToursList';
 import { setOriginalCreate } from '../../modules/host/hostToursCreate';
+import { removeCreate } from '../../lib/api/host/hostToursCreate';
 
 const HostToursListContainer = ({ location, match, history }) => {
     const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const HostToursListContainer = ({ location, match, history }) => {
             user: user.user,
         }),
     );
+
+    
     useEffect(() => {
         const { email } = match.params;
         const { title, image, price } = qs.parse(location.search, {
@@ -23,14 +26,26 @@ const HostToursListContainer = ({ location, match, history }) => {
         });
         dispatch(toursList({ title, image, price, email }));
     }, [dispatch, location.search, match.params]);
+    
+    const onEdit = (e) => {
+        e.preventDefault();
+        const number = (num) => num.id == e.target.value;
 
-    const onEdit = () => {
-        dispatch(setOriginalCreate(hostToursList));
+        console.log(hostToursList.findIndex(number))
+        
+        dispatch(setOriginalCreate(hostToursList[hostToursList.findIndex(number)]));
         history.push('/host/tours/create');
     }
 
-    // const ownHostToursList = (user && user.id) === (hostToursList && hostToursList.user.id);
-
+    const onRemove = async (deleteNumber) => {
+        try {
+            await removeCreate(deleteNumber);
+            history.push('/host/tours')
+        }
+        catch (e) {
+            console.log(e);
+        }
+    };
 
     return (
         <>
@@ -39,6 +54,7 @@ const HostToursListContainer = ({ location, match, history }) => {
         hostToursListError={hostToursListError}
         hostToursList={hostToursList}
         onEdit={onEdit}
+        onRemove={onRemove}
         />
         </>
     )

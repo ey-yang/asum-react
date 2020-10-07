@@ -13,6 +13,8 @@ const [CREATE, CREATE_SUCCESS, CREATE_FAILURE] = createRequestActionTypes(
     'hostToursCreate/CREATE',
 );
 
+const [UPDATE_CREATE, UPDATE_CREATE_SUCCESS, UPDATE_CREATE_FAILURE] = createRequestActionTypes('hostToursCreate/UPDATE_CREATE');
+
 export const changeField = createAction(CHANGE_FIELD, ({ form, key, value }) => ({
     form,
     key,
@@ -33,9 +35,19 @@ export const create = createAction(CREATE, ({ title, image, price, closedDays, o
 
 export const setOriginalCreate = createAction(SET_ORIGINAL_CREATE, hostToursCreate => hostToursCreate);
 
+export const updateCreate = createAction(
+    UPDATE_CREATE,
+    ({ id, title, price, closedDays, option, tags, refund_type, about }) => ({
+        id, title, price, closedDays, option, tags, refund_type, about
+    }),
+);
+
 const createSaga = createRequestSaga(CREATE, hostToursCreateAPI.create);
+const updateCreateSaga = createRequestSaga(UPDATE_CREATE, hostToursCreateAPI.updateCreate);
+
 export function* hostToursCreateSaga() {
     yield takeLatest(CREATE, createSaga);
+    yield takeLatest(UPDATE_CREATE, updateCreateSaga);
 }
 
 
@@ -81,8 +93,16 @@ const hostToursCreate = handleActions(
         }),
         [SET_ORIGINAL_CREATE]: (state, { payload: hostToursCreate }) => ({
             ...state,
-            form: hostToursCreate.form,
+            form: hostToursCreate,
             orignalCreateId: hostToursCreate.id
+        }),
+        [UPDATE_CREATE_SUCCESS]: (state, { payload: hostToursCreate }) => ({
+            ...state,
+            hostToursCreate,
+        }),
+        [UPDATE_CREATE_FAILURE]: (state, { payload: hostToursCreateError }) => ({
+            ...state,
+            hostToursCreateError,
         }),
     },
     initialState,

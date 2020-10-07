@@ -170,7 +170,7 @@ const Account = ({ profileImage, onChangeImage, user }) => {
                                     <div>
                                         카카오 연동
                                     </div>
-                                    <Switch defaultChecked /* onChange={} */ />
+                                    <Switch /* onChange={} */ />
                                 </div>
                             </Col>
                         </Row>
