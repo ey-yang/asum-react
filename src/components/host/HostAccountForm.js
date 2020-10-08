@@ -35,8 +35,7 @@ const textMap = {
     apply: '작성 완료',
 };
 
-const HostAccountForm = ({type, form, onChange, onChangeImage,  onChecked, onSubmit ,
-    uploadBusinessImage, businessSuccess, uploadBankImage, bankSuccess, hostImage}) => {
+const HostAccountForm = ({type, form, onChange, onChangeImage, onSubmit , hostImage}) => {
     
     const text = textMap[type];
 
@@ -89,6 +88,7 @@ const HostAccountForm = ({type, form, onChange, onChangeImage,  onChecked, onSub
                     />
                 </Col>
             </RowWrapper>
+            
             <RowWrapper>
                 <Col md={3}><label>연락처</label></Col>
                 <Col md={17} offset={1}>
@@ -102,25 +102,7 @@ const HostAccountForm = ({type, form, onChange, onChangeImage,  onChecked, onSub
                     />
                 </Col>
             </RowWrapper>
-            <RowWrapper>
-                <Col md={3}><label>사업 유형</label></Col>
-                <Col md={5} offset={1}>
-                <Radio.Group name="business_type" onChange={onChange} value={form.business_type}>
-                    <Radio value={'개인'}>개인</Radio>
-                    <Radio value={'기업'}>기업</Radio>
-                </Radio.Group>
-                </Col>
-                <input type="file" hidden ref={businesslicenseRef} name="business_license" onChange={uploadBusinessImage} />
-                <Col md={7} offset={1}>
-                    <ButtonWrapper cyan onClick={onClickBusinessLicense} >사업자등록증 사본</ButtonWrapper>
-                    {businessSuccess && <Typography.Text type="success" strong={true}> {businessSuccess}</Typography.Text>}
-                </Col>
-                <input type="file" hidden ref={bankAccountRef} name="bank_account" onChange={uploadBankImage} />
-                <Col md={5}>
-                    <ButtonWrapper cyan onClick={onClickBankAccount}>통장 사본</ButtonWrapper>
-                    {bankSuccess && <Typography.Text type="success" strong={true}> {bankSuccess}</Typography.Text>}
-                </Col>
-            </RowWrapper>
+
             <RowWrapper>
                 <Col md={3}><label>소개</label></Col>
                 <Col md={20} offset={1}>
@@ -128,25 +110,6 @@ const HostAccountForm = ({type, form, onChange, onChangeImage,  onChecked, onSub
                 </Col>
             </RowWrapper>
 
-            <RowWrapper>
-                <Col md={3}><label>파트너 약관</label></Col>
-                <Col md={20} offset={1}><Input.TextArea style={{ resize: 'none' }} rows={7} /></Col>
-            </RowWrapper>
-            <Row>
-                <Col md={10} offset={4}>
-                    <Checkbox name="contract" onChange={onChecked} checked={form.contract}>파트너 약관에 동의합니다.</Checkbox>
-                    </Col>
-            </Row>
-
-            <RowWrapper>
-                <Col md={3} style={{ textAlign: 'center' }}><label>개인정보<br/>수집 및 이용</label></Col>
-                <Col md={20} offset={1}><Input.TextArea style={{ resize: 'none' }} rows={7} /></Col>
-            </RowWrapper>
-            <Row>
-                <Col md={10} offset={4}>
-                    <Checkbox name="personal_information" onChange={onChecked} checked={form.personal_information}>개인정보 수집 및 이용에 동의합니다.</Checkbox>
-                </Col>
-            </Row>
             <RowWrapper>
             <Col md={4} offset={10}>
             <ButtonWrapper cyan htmlType="submit">{text}</ButtonWrapper>

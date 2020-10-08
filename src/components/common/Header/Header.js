@@ -95,7 +95,7 @@ const Header = ({ user, onLogout }) => {
                                 <UserInfo>{user.username}</UserInfo>
                             </div>)
                             : ( <div className="right">
-                            <Link to="/host/account">
+                            <Link to="/host/tours">
                                 <HeaderMenu>호스트 페이지</HeaderMenu>
                                 {/* 이쪽이 호스트인 사람이면 바꿔야 할 부분 */}
                             </Link>

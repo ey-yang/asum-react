@@ -1,6 +1,5 @@
 import React, { useRef, useCallback } from 'react';
 import styled from 'styled-components';
-import { UserOutlined } from '@ant-design/icons';
 import Button from '../common/Button';
 import 'antd/dist/antd.css';
 import { Row, Col, Input, Radio, Form, Checkbox, Typography, Avatar } from 'antd';
@@ -71,16 +70,6 @@ const HostApplyForm = ({type, form, onChange, onChangeImage,  onChecked, onSubmi
         
         <Content>
         <HostApllyBlock encType="multipart/form-data" onFinish={onSubmit} >
-            <RowFirst>
-                <Col style={{ marginTop: '6%' }} md={2}><label>사진</label></Col>
-                <Col md={6} offset={2}>
-                    {hostImage !== null ? <Avatar size={120} src={hostImage} /> : <Avatar size={120} icon={<UserOutlined />} />}
-                </Col>
-                <input type="file" hidden ref={imageInput} name="host_image" onChange={onChangeImage} />
-                <Col md={4} offset={2}>
-                    <ButtonWrapper style={{ marginTop: '30%' }} cyan onClick={onClickImageUpload} >사진 업로드</ButtonWrapper>
-                </Col>
-            </RowFirst>
             
             <RowWrapper>
                 <Col md={3}><label>업체명</label></Col>
