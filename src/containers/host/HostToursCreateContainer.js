@@ -173,6 +173,7 @@ const HostToursCreateContainer = ({ history }) => {
         if (orignalCreateId) {
             await dispatch(updateCreate({id: orignalCreateId, title, price, closedDays, option, tags, refund_type, about}));
             alert('수정되었습니다!');
+            dispatch(initializeForm('orignalCreateId'));
             // history.push(`/host/tours`);
             return;
         }else {

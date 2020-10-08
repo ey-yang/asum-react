@@ -1,6 +1,6 @@
 import client from '../client';
 import qs from 'qs';
-import hostToursList from '../../../modules/host/hostToursList';
+// import hostToursList from '../../../modules/host/hostToursList';
 
 // 호스트 상품등록
 export const create = ({ title, price, closedDays, option, tags, refund_type, about }) =>

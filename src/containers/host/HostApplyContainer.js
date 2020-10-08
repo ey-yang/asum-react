@@ -117,6 +117,8 @@ const HostApplyContainer = ({ history }) => {
         }
         if (host) {
             console.log('성공');
+            alert('신청되었습니다. 입력해주신 번호로 연락드리겠습니다.')
+            history.push('/');
             console.log(host);
         }
     }, [host, hostError]);

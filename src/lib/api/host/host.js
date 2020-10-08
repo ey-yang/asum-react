@@ -4,10 +4,6 @@ import client from '../client';
 export const apply = ({  host_name, host_phone, business_type, about, contract, personal_information }) =>
     client.post('/api/host/apply', { host_name, host_phone, business_type, about, contract, personal_information });
 
-//호스트 이미지 업로드
-
-// export const applyHostImage = ({applyHostImage})
-
 // 호스트 계정관리
 export const account = ({ host_name, host_phone, business_type, about, contract, personal_information }) =>
     client.post('/api/host/account', { host_name, host_phone, business_type, about, contract, personal_information });

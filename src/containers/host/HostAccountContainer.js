@@ -28,67 +28,8 @@ const HostAccountContainer = () => {
         )
     };
 
-    // const onChangeImage = e => {
-    //     const value = e.target.files[0];
-    //     const name = e.target.name;
-    //     console.log(value, name);
-    //     dispatch(
-    //         changeField({
-    //             form: 'account',
-    //             key: name,
-    //             value
-    //         })
-    //     )
-    // };
-
-    // const uploadBusinessImage = e => {
-    //     if (e.target !== null) {
-    //         setBusinessSuccess('등록 완료');
-    //     }
-    //     const value = e.target.files[0];
-    //     const name = e.target.name;
-    //     console.log(value, name);
-    //     dispatch(
-    //         changeField({
-    //             form: 'account',
-    //             key: name,
-    //             value
-    //         })
-    //     )
-    // }
-
-    // const uploadBankImage = e => {
-    //     if (e.target !== null) {
-    //         setBankSuccess('등록 완료');
-    //     }
-    //     const value = e.target.files[0];
-    //     const name = e.target.name;
-    //     console.log(value, name);
-    //     dispatch(
-    //         changeField({
-    //             form: 'account',
-    //             key: name,
-    //             value
-    //         })
-    //     )
-    // }
-
-    const onChecked = e => {
-        const { checked, name } = e.target;
-        console.log(checked, name);
-        dispatch(
-            changeField({
-                form: 'account',
-                key: name,
-                value: checked
-            })
-        )
-    };
-
 
     const onSubmit = e => { //form 보내기 함수
-        // e.preventDefault();
-        //host_image,
         const {  host_name, host_phone, business_type, business_license,
             bank_account, about, contract, personal_information } = form;
             
@@ -122,7 +63,6 @@ const HostAccountContainer = () => {
         }
     }, [host, hostError]);
 
-
     const [hostImage, setHostImage] = useState(null);
     const onChangeImage = (e) => {
         const reader = new FileReader();
@@ -143,33 +83,6 @@ const HostAccountContainer = () => {
           })
     };
 
-    
-    const [businessSuccess, setBusinessSuccess] = useState(null);
-    const uploadBusinessImage = (e) => {
-        const formData = new FormData();
-        formData.append('images', e.target.files[0]);
-        
-        return axios.post("/api/host/upload", formData).then(res => {
-            alert('성공')
-            setBusinessSuccess('등록 완료')
-          }).catch(err => {
-            alert('실패')
-          })
-    };
-
-    const [bankSuccess, setBankSuccess] = useState(null);
-    const uploadBankImage = (e) => {
-        const formData = new FormData();
-        formData.append('images', e.target.files[0]);
-        
-        return axios.post("/api/host/upload", formData).then(res => {
-            alert('성공')
-            setBankSuccess('등록 완료');
-          }).catch(err => {
-            alert('실패')
-          })
-    };
-
 
 
     return (
@@ -178,16 +91,9 @@ const HostAccountContainer = () => {
             type="account"
             form={form}
             onChange={onChange}
-            
             onChangeImage={onChangeImage}
             hostImage={hostImage}
-
-            onChecked={onChecked}
             onSubmit={onSubmit}
-            uploadBusinessImage={uploadBusinessImage}
-            businessSuccess={businessSuccess}
-            uploadBankImage={uploadBankImage}
-            bankSuccess={bankSuccess}
         />
         </>
     )

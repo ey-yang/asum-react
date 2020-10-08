@@ -11,14 +11,9 @@ const [APPLY, APPLY_SUCCESS, APPLY_FAILURE] = createRequestActionTypes(
     'host/APPLY',
   );
 
-  const [ACCOUNT, ACCOUNT_SUCCESS, ACCOUNT_FAILURE] = createRequestActionTypes(
+const [ACCOUNT, ACCOUNT_SUCCESS, ACCOUNT_FAILURE] = createRequestActionTypes(
     'host/ACCOUNT',
-  );
-
-  const [HOSTIMAGE_UPLOAD, HOSTIMAGE_UPLOAD_SUCCESS, HOSTIMAGE_UPLOAD_FAILURE] = createRequestActionTypes(
-    'host/HOSTIMAGE_UPLOAD'
-  )
-
+);
 
 export const changeField = createAction(
     CHANGE_FIELD,
@@ -39,6 +34,8 @@ export const account = createAction( ACCOUNT,
     ({ host_name, host_phone, business_type, about, contract, personal_information}) => ({
          host_name, host_phone, business_type, about, contract, personal_information
         }));
+
+
 
 
         //사가생성
