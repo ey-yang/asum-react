@@ -36,7 +36,7 @@ const App = () => {
       <Route component={TpTestPage} path="/tptest" />
       <Route component={CompoTestPage} path="/compotest" />
       <Route component={UiTestPage} path="/uitest" />
-      <Route component={AccountPage} path="/account" />
+      <Route component={AccountPage} path="/account" exact/>
       <Route component={ModifyProfilePage} path="/account/modify" />
 
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Account from '../../../components/client/user/Account';
-import { readAccount, unloadAccount } from '../../../modules/account';
+import { readAccount, unloadAccount, setOriginalAccount } from '../../../modules/account';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
-const AccountContainer = ({ match }) => {
+const AccountContainer = ({ match, history }) => {
 
     // 프로필 사진 등록
     const [profileImage, setProfileImage] = useState(null);
@@ -45,6 +45,11 @@ const AccountContainer = ({ match }) => {
           dispatch(unloadAccount());
         };
       }, [dispatch, userId]);
+    
+    const onEdit = () => {
+        dispatch(setOriginalAccount(user));
+        history.push('/account/modify');
+    };
 
 
     return (
@@ -53,6 +58,7 @@ const AccountContainer = ({ match }) => {
             onChangeImage={onChangeImage}
             profileImage={profileImage}
             user={user}
+            onEdit={onEdit}
         />
         </>
     )

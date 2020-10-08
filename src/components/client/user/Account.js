@@ -10,6 +10,11 @@ import { Link } from 'react-router-dom';
 import { Image, Row, Col, DatePicker, Select, Avatar } from 'antd';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
+import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import { Switch } from 'antd';
 
 const AccountBlock = styled(Responsive)`
@@ -20,17 +25,19 @@ const AccountBlock = styled(Responsive)`
     margin-bottom: 5rem;
     .namebox {
         margin: 1.5rem 0rem 1.5rem 0rem;
-        font-size: 0.95rem;
+        font-size: 0.96rem;
         font-weight: 500;
     }
     .description {
         margin: 1.5rem 0rem 1.5rem 0rem;
-        font-size: 0.98rem;
+        font-size: 0.99rem;
         font-weight: 500;
         /* border-left: 1px groove ${palette.gray[3]}; */
     }
     .uploadBtn {
-        margin-top: 0.1rem;
+        margin: 0.1rem 0rem 0.8rem 0rem;
+        font-size: 0.8rem;
+        text-decoration: underline ${palette.gray[6]};
         &:hover {
             color: ${palette.gray[5]};
             background: none;
@@ -50,6 +57,33 @@ const PicBox = styled.div`
     /* margin: 4.46rem 0rem 0rem 1rem; */
    /*  justify-content: center; */
     align-items: center;
+`;
+
+const PointCoupon = styled.div`
+    margin: 0.5rem 0rem;
+    justify-content: space-between;
+    display: flex;
+    width: 80%;
+    font-size: 0.98rem;
+    font-weight: 450;
+    .pointCoupon {
+        display: flex;
+    }
+    .pocouTitle {
+        margin-left: -0.7rem;
+    }
+`;
+
+const PersonalMenu = styled.div`
+    margin: 0.7rem 0rem;
+    display: flex;
+    width: 80%;
+    font-size: 0.98rem;
+    font-weight: 450;
+    align-items: center;
+    .menuTitle {
+        margin-left: -0.7rem;
+    }
 `;
 
 const DescripBox = styled.div`
@@ -83,11 +117,8 @@ const DescripBox = styled.div`
     }
 `;
 
-const PointCoupon = styled.div`
-    margin: 0.5rem 0rem;
-`;
 
-const Account = ({ profileImage, onChangeImage, user }) => {
+const Account = ({ profileImage, onChangeImage, user, onEdit }) => {
 
     const imageInput = useRef();//이미지 업로드를 위한 설정
     const onClickImageUpload = useCallback((e) => { //이미지 업로드 버튼
@@ -111,24 +142,54 @@ const Account = ({ profileImage, onChangeImage, user }) => {
                         </Button>
                         <hr width="100%" color="#DEE2E6" size="1"/>
                         <PointCoupon>
-                            <span>포인트</span> <span>0P</span> 
+                            <div className="pointCoupon">
+                                <ListItemIcon>
+                                    <MonetizationOnOutlinedIcon />
+                                </ListItemIcon>
+                                <div className="pocouTitle">
+                                    포인트
+                                </div>
+                            </div> 
+                            <div>0P</div> 
                         </PointCoupon>
                         <PointCoupon>
-                            <span>쿠폰</span> <span>0장</span> 
+                            <div className="pointCoupon">
+                                <ListItemIcon>
+                                    <ConfirmationNumberOutlinedIcon />
+                                </ListItemIcon>
+                                <div className="pocouTitle">
+                                    쿠폰
+                                </div>
+                            </div>
+                            <div>0장</div> 
                         </PointCoupon>
                         <hr width="100%" color="#DEE2E6" size="1"/>
-                        <div>
-                        <ListItemIcon>
-                            <AssignmentOutlinedIcon fontSize="small" />
-                        </ListItemIcon>
-                            예약내역
-                        </div>
-                        <div>
-                            여행후기
-                        </div>
-                        <div>
-                            관심여행
-                        </div>
+                        <PersonalMenu>
+                            <ListItemIcon>
+                                <AssignmentOutlinedIcon />
+                            </ListItemIcon>
+                            <div className="menuTitle">
+                                예약 내역
+                            </div>
+                        </PersonalMenu>
+                        <PersonalMenu>
+                            <ListItemIcon>
+                                <ChatOutlinedIcon />
+                            </ListItemIcon>
+                            <div className="menuTitle">
+                                여행 후기
+                            </div>
+                            
+                        </PersonalMenu>
+                        <PersonalMenu>
+                            <ListItemIcon>
+                                <FavoriteBorderOutlinedIcon />
+                            </ListItemIcon>
+                            <div className="menuTitle">
+                                관심 여행
+                            </div>
+                            
+                        </PersonalMenu>
 
                     </PicBox>
                 </Col>
@@ -140,7 +201,7 @@ const Account = ({ profileImage, onChangeImage, user }) => {
                             프로필 관리
                         </div>
                         <div>
-                        <Button className="modifyBtn" /* onClick={} */>
+                        <Button className="modifyBtn" onClick={onEdit}>
                             수정
                         </Button>
                         </div>
