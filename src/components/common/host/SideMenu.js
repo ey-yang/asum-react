@@ -5,11 +5,12 @@ import styled from 'styled-components';
 import palette from '../../../lib/styles/palette';
 
 const SideMenuBlock = styled.div`
-    flex: 0 1 10%;
+    /* flex: 0 1 10%; */
     min-height: 93.7vh;
     text-align: center;
     padding: 0;
     background-color: ${palette.cyan[2]};
+    width: 200px;
 
     .side__menu {
         font-size: 1.5rem;

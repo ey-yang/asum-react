@@ -7,7 +7,7 @@ import palette from '../../../lib/styles/palette';
 import { UserOutlined } from '@ant-design/icons';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import { Image, Row, Col, DatePicker, Input, Avatar, Checkbox, Switch } from 'antd';
+import { Image, Row, Col, DatePicker, Select, Avatar } from 'antd';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
@@ -15,19 +15,9 @@ import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineO
 import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { Switch } from 'antd';
 
-/* material-ui 테마 색상 설정 */
-const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: '#66D9E8',
-      },
-    },
-  });
-
-const DescripBox = styled.div`
+const ProfileBox = styled.div`
     /* margin-left: 5rem; */
     padding-left: 2rem;
     .profileTitleBox {
@@ -56,39 +46,6 @@ const DescripBox = styled.div`
     .marketing {
         margin-bottom: 0.7rem;
     }
-    .saveBtn {
-        color: white;
-        font-weight: 800;
-        font-size: 0.95rem;
-        width: 48%;
-        margin-left: 1rem;
-        outline: 0;
-        box-shadow: none;
-        &:hover {
-            background-color: ${palette.cyan[3]};
-            outline: 0;
-            box-shadow: none;
-        }
-    }
-    .cancelBtn {
-        width: 48%;
-        outline: 0;
-        box-shadow: none;
-        &:hover {
-            background-color: ${palette.gray[3]};
-            outline: 0;
-            box-shadow: none;
-        }
-    }
-    .delete {
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        margin-top: 3.5rem;
-        text-decoration: underline ${palette.gray[5]};
-        font-size: 0.75rem;
-        color: ${palette.gray[6]};
-    }
     .namebox {
         margin: 1.5rem 0rem 1.5rem 0rem;
         font-size: 0.96rem;
@@ -100,19 +57,19 @@ const DescripBox = styled.div`
         font-weight: 500;
         /* border-left: 1px groove ${palette.gray[3]}; */
     }
-    .uploadBtn {
-        margin: 0.1rem 0rem 0.8rem 0rem;
-        font-size: 0.8rem;
-        text-decoration: underline ${palette.gray[6]};
-        &:hover {
-            color: ${palette.gray[5]};
-            background: none;
-        }
-    }
 `;
 
 
-const ModifyProfile = ({ profileImage, onChangeImage, username, email, onChangeField, onPublish, user, onCancel }) => {
+const Account = ({ profileImage, onChangeImage, user, onEdit, error }) => {
+
+    // 에러 발생 시
+    if (error) {
+    if (error.response && error.response.status === 404) {
+      return <ProfileBox>존재하지 않는 포스트입니다.</ProfileBox>;
+    }
+    return <ProfileBox>오류 발생!</ProfileBox>;
+  }
+
 
     const imageInput = useRef();//이미지 업로드를 위한 설정
     const onClickImageUpload = useCallback((e) => { //이미지 업로드 버튼
@@ -120,19 +77,16 @@ const ModifyProfile = ({ profileImage, onChangeImage, username, email, onChangeF
         imageInput.current.click();
     }, [imageInput.current]);
 
-
-    const onChangeName = e => {
-        onChangeField({ key: 'username', value: e.target.value });
-    };
-
-
-
     return (
-        
-        <DescripBox>
+        <ProfileBox>
             <div className="profileTitleBox">
                 <div className="profileTitle">
                     프로필 관리
+                </div>
+                <div>
+                    <Button className="modifyBtn" onClick={onEdit}>
+                        수정
+                    </Button>
                 </div>
             </div>
             <Row>
@@ -140,10 +94,7 @@ const ModifyProfile = ({ profileImage, onChangeImage, username, email, onChangeF
                     이름
                 </Col>
                 <Col span={15} className="description">
-                    <Input 
-                        value={username}
-                        onChange={onChangeName} 
-                    />
+                    {user.username}
                 </Col>
             </Row>
             <Row>
@@ -151,7 +102,7 @@ const ModifyProfile = ({ profileImage, onChangeImage, username, email, onChangeF
                     이메일
                 </Col>
                 <Col span={15} className="description">
-                    {email}
+                    {user.email}
                 </Col>
             </Row>
             <Row>
@@ -181,38 +132,17 @@ const ModifyProfile = ({ profileImage, onChangeImage, username, email, onChangeF
                 </Col>
                 <Col span={15} className="description">
                     <div className="marketing">
-                        e-mail
-                        <Checkbox style={{ marginLeft: "1rem"}} /* onChange={onChange} */ />
+                        e-mail: 수신 거부
                     </div>
                     <div className="marketing">
-                        sms <Checkbox style={{ marginLeft: "2rem"}} /* onChange={onChange} */ />
+                        sms: 수신 중
                     </div>
                 </Col>
             </Row>
-            <hr width="100%" color="#DEE2E6" size="1" style={{ marginBottom: "2.3rem"}}/> 
-            <Row>
-                <ThemeProvider theme={theme}>
-                <Button variant="contained" className="cancelBtn" onClick={onCancel}>
-                    취소하기
-                </Button>
-                <Button 
-                    variant="contained"
-                    color="primary"
-                    className="saveBtn"
-                    onClick={onPublish}
-                >
-                    저장하기
-                </Button>
-                </ThemeProvider>    
-            </Row>
-            <Row>
-                <div className="delete">
-                    <div>계정 삭제</div>
-                </div>
-            </Row>
-        </DescripBox>
+        </ProfileBox>
+                
     )
 
 };
 
-export default ModifyProfile;
+export default Account;

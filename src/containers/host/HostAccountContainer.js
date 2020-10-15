@@ -74,9 +74,9 @@ const HostAccountContainer = () => {
             console.log(e.target.files[0])
         reader.readAsDataURL(e.target.files[0])
         const formData = new FormData();
-        formData.append('images',e.target.files[0]);
+        formData.append('host_image',e.target.files[0]);
         
-        return axios.post("/api/host/upload", formData).then(res => {
+        return axios.post("/api/host/profile", formData).then(res => {
             alert('성공')
           }).catch(err => {
             alert('실패')

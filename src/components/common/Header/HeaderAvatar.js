@@ -42,7 +42,7 @@ const StyledMenu = withStyles({
 ));
 
 
-const HeaderAvatar = ({ onLogout }) => {
+const HeaderAvatar = ({ onLogout, user }) => {
 
 /* export default function CustomizedMenus({ onLogout }) { */
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -55,11 +55,14 @@ const HeaderAvatar = ({ onLogout }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const { image, username } = user;
 
+  
   return (
     <AvatarDiv>
       <Button disableFocusRipple disableRipple aria-controls="simple-menu" aria-haspopup="true" className="avatarBtn" onClick={handleClick}>
-        <Avatar size="large" icon={<UserOutlined />} />
+        <Avatar size="large" src={image} icon={<UserOutlined />} />
       </Button>
       <StyledMenu
         id="customized-menu"
@@ -71,7 +74,7 @@ const HeaderAvatar = ({ onLogout }) => {
         <Link to={'/account'} style={{ color: "#323232" }}>
         <MenuItem>
           <ListItemIcon>
-            <AccountCircleOutlinedIcon fontSize="middle" />
+            <AccountCircleOutlinedIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="내 정보" />
         </MenuItem>

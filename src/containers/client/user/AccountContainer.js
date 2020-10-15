@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Account from '../../../components/client/user/Account';
-import { readAccount, unloadAccount, setOriginalAccount } from '../../../modules/account';
+import { setOriginalAccount } from '../../../modules/client/modify'
+import { readAccount, unloadAccount } from '../../../modules/account';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import AccountTemplate from '../../../components/client/user/AccountTemplate';
+import Profile from '../../../components/client/user/Profile';
 
 
 const AccountContainer = ({ match, history }) => {
@@ -20,31 +23,33 @@ const AccountContainer = ({ match, history }) => {
             console.log(e.target.files[0])
         reader.readAsDataURL(e.target.files[0])
         const formData = new FormData();
-        formData.append('images', e.target.files[0]);
+        formData.append('image', e.target.files[0]);
         
-        return axios.post("/api/user/image", formData).then(res => {
-            alert('성공')
+        return axios.post("/api/user/profile", formData).then(res => {
+            window.location.reload();
           }).catch(err => {
             alert('실패')
           })
     };
 
     // user 계정 읽기 API 요청
-    const { userId } = match.params;
+    /* const { userId } = match.params; */
     const dispatch = useDispatch();
-    const { user } = useSelector(
-        ({ user }) => ({
-            user: user.user
+    const { user, error, loading } = useSelector(
+        ({ user, loading }) => ({
+            user: user.user,
+            error: user.error,
+            loading: loading['account/READ_ACCOUNT'],
         }),
     );
 
     useEffect(() => {
-        dispatch(readAccount(userId));
+        dispatch(readAccount(user));
         // 언마운트될 때 리덕스에서 포스트 데이터 없애기
         return () => {
           dispatch(unloadAccount());
-        };
-      }, [dispatch, userId]);
+        }; 
+      }, [dispatch, user]);
     
     const onEdit = () => {
         dispatch(setOriginalAccount(user));
@@ -54,12 +59,15 @@ const AccountContainer = ({ match, history }) => {
 
     return (
         <>
-        <Account 
-            onChangeImage={onChangeImage}
-            profileImage={profileImage}
-            user={user}
-            onEdit={onEdit}
-        />
+            <AccountTemplate
+                onChangeImage={onChangeImage}
+                profileImage={profileImage}
+                user={user}
+                loading={loading}
+                error={error}
+            >
+                <Profile user={user} onEdit={onEdit} />
+            </AccountTemplate>
         </>
     )
 }

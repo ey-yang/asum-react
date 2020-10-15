@@ -16,11 +16,13 @@ const Content = styled.div`
     margin: 3% 0 3% 3%;
     border: 1px solid black;
     height: 100%;
+    
 `;
 
 const HostToursCreateBlock = styled(Form)`
     font-size: 1rem;
     padding: 4%;
+    width: 800px;
 `;
 
 const RowWrapper = styled(Row)`

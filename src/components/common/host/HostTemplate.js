@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Responsive from '../Responsive';
 import SideMenu from './SideMenu';
 
-const HostViewerBlock = styled(Responsive)`
+const HostViewerBlock = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%

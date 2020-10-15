@@ -69,7 +69,7 @@ const HeaderMenu = styled.div`
     }
 `;
 
-const Header = ({ user, onLogout }) => {
+const Header = ({ user, onLogout, image }) => {
     return (
         <>
             <HeaderBlock>
@@ -89,18 +89,18 @@ const Header = ({ user, onLogout }) => {
                         {user ? ( user && user.host_approval !== true ?
                             (<div className="right">
                                 <Link to="/host/apply">
-                                    <HeaderMenu>호스트 신청</HeaderMenu>
+                                     <HeaderMenu>호스트 신청</HeaderMenu>
                                 </Link>
-                                <HeaderAvatar onLogout={onLogout} />
-                                <UserInfo>{user.username}</UserInfo>
+                                <HeaderAvatar onLogout={onLogout} user={user} image={image} />
+                                {/* <UserInfo>{user.username}</UserInfo> */}
                             </div>)
                             : ( <div className="right">
                             <Link to="/host/tours">
                                 <HeaderMenu>호스트 페이지</HeaderMenu>
                                 {/* 이쪽이 호스트인 사람이면 바꿔야 할 부분 */}
                             </Link>
-                            <HeaderAvatar onLogout={onLogout} />
-                            <UserInfo>{user.username}</UserInfo>
+                            <HeaderAvatar onLogout={onLogout} user={user} image={image} />
+                            {/* <UserInfo>{user.username}</UserInfo> */}
                             </div>)
                         ) : (
                             <div className="right">

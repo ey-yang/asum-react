@@ -118,7 +118,7 @@ const DescripBox = styled.div`
 `;
 
 
-const Account = ({ profileImage, onChangeImage, user, onEdit, error }) => {
+const AccountTemplate = ({ profileImage, onChangeImage, user, onEdit, error, children }) => {
 
     // 에러 발생 시
     if (error) {
@@ -205,67 +205,7 @@ const Account = ({ profileImage, onChangeImage, user, onEdit, error }) => {
 
                 <Col span={15}>
                     <DescripBox>
-                        <div className="profileTitleBox">
-                        <div className="profileTitle">
-                            프로필 관리
-                        </div>
-                        <div>
-                        <Button className="modifyBtn" onClick={onEdit}>
-                            수정
-                        </Button>
-                        </div>
-                        </div>
-                        <Row>
-                            <Col span={9} className="namebox">
-                                이름
-                            </Col>
-                            <Col span={15} className="description">
-                                {user.username}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col span={9} className="namebox">
-                                이메일
-                            </Col>
-                            <Col span={15} className="description">
-                                {user.email}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col span={9} className="namebox">
-                                SNS 연동
-                            </Col>
-                            <Col span={15} className="description">
-                                <div className="kakao">
-                                    <div>
-                                        카카오 연동
-                                    </div>
-                                    <Switch /* onChange={} */ />
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col span={9} className="namebox">
-                                비밀번호
-                            </Col>
-                            <Col span={15} className="description">
-                                *********
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col span={9} className="namebox">
-                                마케팅 수신동의
-                            </Col>
-                            <Col span={15} className="description">
-                                <div className="marketing">
-                                    e-mail: 수신 거부
-                                </div>
-                                <div className="marketing">
-                                    sms: 수신 중
-                                </div>
-                            </Col>
-                        </Row>
-                        
+                        {children}
                     </DescripBox>
                 </Col>
             </Row>
@@ -274,4 +214,4 @@ const Account = ({ profileImage, onChangeImage, user, onEdit, error }) => {
 
 };
 
-export default Account;
+export default AccountTemplate;
