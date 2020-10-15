@@ -10,8 +10,8 @@ import UiTestPage from './pages/UiTestPage';
 import LandingListPage from './pages/LandingListPage';
 import SocialRegisterPage from './pages/auth/SocialRegisterPage';
 import TourPage from './pages/TourPage';
-import AccountPage from './pages/AccountPage';
-import AccountTemPage from './pages/client/AccountTemPage';
+import AccountPage from './pages/client/AccountPage';
+
 import ModifyProfilePage from './pages/client/ModifyProfilePage';
 
 import HostApplyPage from './pages/host/HostApplyPage';
@@ -39,7 +39,6 @@ const App = () => {
       <Route component={UiTestPage} path="/uitest" />
       <Route component={AccountPage} path="/account/" exact/>
       <Route component={ModifyProfilePage} path="/account/modify" />
-      <Route component={AccountTemPage} path="/accounttem/" />
 
 
       <Route component={HostApplyPage} path="/host/apply" />

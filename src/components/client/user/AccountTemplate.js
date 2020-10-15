@@ -1,21 +1,17 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { writeImage, changeField, initializeForm } from '../../../modules/account';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import Responsive from '../../common/Responsive';
 import palette from '../../../lib/styles/palette';
 import { UserOutlined } from '@ant-design/icons';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
 import { Image, Row, Col, DatePicker, Select, Avatar } from 'antd';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
-import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import { Switch } from 'antd';
+
 
 const AccountBlock = styled(Responsive)`
     margin-top: 4rem;

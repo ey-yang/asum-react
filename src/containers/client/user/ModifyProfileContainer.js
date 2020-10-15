@@ -10,27 +10,6 @@ import AccountTemplate from '../../../components/client/user/AccountTemplate';
 
 const ModifyProfileContainer = ({ match, history }) => {
 
-    // 프로필 사진 등록
-    const [profileImage, setProfileImage] = useState(null);
-    const onChangeImage = (e) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-            if(reader.readyState === 2){
-                setProfileImage(reader.result);
-                }
-            }
-            console.log(e.target.files[0])
-        reader.readAsDataURL(e.target.files[0])
-        const formData = new FormData();
-        formData.append('images', e.target.files[0]);
-        
-        return axios.post("/api/user/image", formData).then(res => {
-            alert('성공')
-          }).catch(err => {
-            alert('실패')
-          })
-    };
-
 
 
     const dispatch = useDispatch();
@@ -85,25 +64,19 @@ const ModifyProfileContainer = ({ match, history }) => {
 
 console.log(username)
     return (
-        <>
-            <AccountTemplate
-                onChangeImage={onChangeImage}
-                profileImage={profileImage}
-                user={user}
-                /* loading={loading}
-                error={error} */
-            >
-                <ModifyProfile 
-                    user={user}
-                    onChangeField={onChangeField}
-                    username={username}
-                    email={email}
-                    originalUserId={originalUserId}
-                    onPublish={onPublish}
-                    onCancel={onCancel}
-                />
-            </AccountTemplate>
-        </>
+  
+            
+        <ModifyProfile 
+            user={user}
+            onChangeField={onChangeField}
+            username={username}
+            email={email}
+            originalUserId={originalUserId}
+            onPublish={onPublish}
+            onCancel={onCancel}
+        />
+    
+    
     )
 }
 

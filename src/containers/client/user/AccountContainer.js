@@ -9,7 +9,9 @@ import AccountTemplate from '../../../components/client/user/AccountTemplate';
 import Profile from '../../../components/client/user/Profile';
 
 
-const AccountContainer = ({ match, history }) => {
+const AccountContainer = ({ match, history, children }) => {
+
+    
 
     // 프로필 사진 등록
     const [profileImage, setProfileImage] = useState(null);
@@ -32,14 +34,10 @@ const AccountContainer = ({ match, history }) => {
           })
     };
 
-    // user 계정 읽기 API 요청
-    /* const { userId } = match.params; */
     const dispatch = useDispatch();
-    const { user, error, loading } = useSelector(
-        ({ user, loading }) => ({
+    const { user } = useSelector(
+        ({ user }) => ({
             user: user.user,
-            error: user.error,
-            loading: loading['account/READ_ACCOUNT'],
         }),
     );
 
@@ -50,24 +48,16 @@ const AccountContainer = ({ match, history }) => {
           dispatch(unloadAccount());
         }; 
       }, [dispatch, user]);
-    
-    const onEdit = () => {
-        dispatch(setOriginalAccount(user));
-        history.push('/account/modify');
-    };
-
+      
 
     return (
         <>
             <AccountTemplate
                 onChangeImage={onChangeImage}
                 profileImage={profileImage}
+                children={children}
                 user={user}
-                loading={loading}
-                error={error}
-            >
-                <Profile user={user} onEdit={onEdit} />
-            </AccountTemplate>
+            />
         </>
     )
 }

@@ -1,198 +1,96 @@
-import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import CardContent from '@material-ui/core/CardContent';
-import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
-import Favorite from '../components/common/Favorite'
+import React, { useRef, useCallback } from 'react';
+import styled from 'styled-components';
+import Responsive from '../../common/Responsive';
+import palette from '../../../lib/styles/palette';
+import { UserOutlined } from '@ant-design/icons';
+import Button from '@material-ui/core/Button';
+import { Image, Row, Col, DatePicker, Select, Avatar } from 'antd';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
+import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+
+
+const AccountBlock = styled(Responsive)`
+    margin-top: 4rem;
+    padding: 0rem 8.5rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    .namebox {
+        margin: 1.5rem 0rem 1.5rem 0rem;
+        font-size: 0.96rem;
+        font-weight: 500;
+    }
+    .description {
+        margin: 1.5rem 0rem 1.5rem 0rem;
+        font-size: 0.99rem;
+        font-weight: 500;
+        /* border-left: 1px groove ${palette.gray[3]}; */
+    }
+    .uploadBtn {
+        margin: 0.1rem 0rem 0.8rem 0rem;
+        font-size: 0.8rem;
+        text-decoration: underline ${palette.gray[6]};
+        &:hover {
+            color: ${palette.gray[5]};
+            background: none;
+        }
+    }
+    
+`;
+
+const PicBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: 1px solid ${palette.gray[4]};
+    padding: 2rem;
+    width: 270px;
+    background: white;
+    border-radius: 8px;
+    /* margin: 4.46rem 0rem 0rem 1rem; */
+   /*  justify-content: center; */
+    align-items: center;
+    .uploadBtn {
+        margin: 0.1rem 0rem 0.8rem 0rem;
+        font-size: 0.8rem;
+        text-decoration: underline ${palette.gray[6]};
+        &:hover {
+            color: ${palette.gray[5]};
+            background: none;
+        }
+    }
+`;
 
 
 
+const UiTest = ({ profileImage, onChangeImage, user, onEdit, error, children }) => {
 
 
-const tourlist = makeStyles((theme) => ({
-  cardGrid: {
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(8),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '94.5%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '80%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  tourHead: {
-    fontWeight: 'bold',
-    fontSize: '0.95rem',
-  },
-  rating: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: '-3%',
-    color: '#868e96',
-    fontSize: '0.85rem'
-  },
-  tourPrice: {
-    fontWeight: 'bold',
-    fontSize: '0.95rem',
-    color: '#495057',
-  },
-  favorite: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: '-10%',
-    justifyContent: 'space-between'
-  }
-}));
+    const imageInput = useRef();//이미지 업로드를 위한 설정
+    const onClickImageUpload = useCallback((e) => { //이미지 업로드 버튼
+        e.preventDefault();
+        imageInput.current.click();
+    }, [imageInput.current]);
 
+    return (
+    <PicBox>
+                        
+      <Avatar size={120} src={user.image} icon={<UserOutlined />} />
+                        
 
+                        <input type="file" hidden ref={imageInput} name="profileImage" onChange={onChangeImage} />
 
+                        <Button disableFocusRipple disableRipple aria-controls="simple-menu" aria-haspopup="true"  className="uploadBtn" onClick={onClickImageUpload}>
+                            사진 업로드
+                        </Button>
+    </PicBox>                    
 
- 
- 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8];
+              
+    )
 
-const TourList = () => {
+};
 
-  const classes = tourlist();
-
-  return (
-    <React.Fragment>
-      <main>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={2}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={3}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="caption" style={{ color: "#868e96" }}>
-                      #태그 #태그 #태그
-                    </Typography>
-                    <Typography gutterBottom  className={classes.tourHead}>
-                      [제주/시내] 동문시장 투어+제주 전통 음식 쿠킹클래스
-                    </Typography>
-                    <div className={classes.rating}>
-                    <StarRateRoundedIcon style={{ color: "#3bc9db" }}/>
-                    <div >0(0)</div>
-                    </div>
-                    <div className={classes.favorite}>
-                      <Typography className={classes.tourPrice}>
-                        58,000원
-                      </Typography>
-                      <Favorite />
-                    </div>
-                  </CardContent>
-                  </Card>
-                
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      
-    </React.Fragment>
-  );
-}
-
-export default TourList;
-
-/* const tourlist = makeStyles(() => ({
- 
-  card: {
-    height: '330px',
-    width: '216px',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '80%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  tourHead: {
-    fontWeight: 'bold',
-    fontSize: '0.95rem',
-  },
-  rating: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: '-3%',
-    color: '#868e96',
-    fontSize: '0.85rem'
-  },
-  tourPrice: {
-    fontWeight: 'bold',
-    fontSize: '0.95rem',
-    color: '#495057',
-  },
-  favorite: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: '-10%',
-    justifyContent: 'space-between'
-  }
-}));
-
-const TourList = () => {
-
-  const classes = tourlist();
-
-  return (
-    <React.Fragment>
-      <main>
-        <Container className={classes.cardGrid} maxWidth="md">
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="caption" style={{ color: "#868e96" }}>
-                      #태그 #태그 #태그
-                    </Typography>
-                    <Typography gutterBottom  className={classes.tourHead}>
-                      [제주/시내] 동문시장 투어+제주 전통 음식 쿠킹클래스
-                    </Typography>
-                    <div className={classes.rating}>
-                    <StarRateRoundedIcon style={{ color: "#3bc9db" }}/>
-                    <div >0(0)</div>
-                    </div>
-                    <div className={classes.favorite}>
-                      <Typography className={classes.tourPrice}>
-                        58,000원
-                      </Typography>
-                      <Favorite />
-                    </div>
-                  </CardContent>
-                  </Card>
-        </Container>
-      </main>
-    </React.Fragment>
-  );
-}
-
-export default TourList; */
+export default UiTest;

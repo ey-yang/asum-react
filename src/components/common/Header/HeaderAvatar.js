@@ -59,10 +59,11 @@ const HeaderAvatar = ({ onLogout, user }) => {
   const { image, username } = user;
 
   
+  
   return (
     <AvatarDiv>
       <Button disableFocusRipple disableRipple aria-controls="simple-menu" aria-haspopup="true" className="avatarBtn" onClick={handleClick}>
-        <Avatar size="large" src={image} icon={<UserOutlined />} />
+        <Avatar size="large" src={`http://localhost:3000/${user.image}`}/* src={user.image} */ icon={<UserOutlined />} />
       </Button>
       <StyledMenu
         id="customized-menu"

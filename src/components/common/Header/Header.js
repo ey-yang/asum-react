@@ -6,6 +6,7 @@ import Button from '../Button';
 import { Link } from 'react-router-dom';
 import palette from '../../../lib/styles/palette';
 import HeaderAvatar from './HeaderAvatar'
+import { withRouter } from 'react-router-dom';
 
 const HeaderBlock = styled.div`
     position: fixed;
@@ -69,7 +70,8 @@ const HeaderMenu = styled.div`
     }
 `;
 
-const Header = ({ user, onLogout, image }) => {
+const Header = ({ user, onLogout }) => {
+    /* console.log(user); */
     return (
         <>
             <HeaderBlock>
@@ -77,29 +79,20 @@ const Header = ({ user, onLogout, image }) => {
                     <Link to="/" className="logo">
                         ASUM
                     </Link>
-                        {/* {user.host_approval === true &&
-                            <div className="right">
-                                <Link to="/host/accont">
-                                    <HeaderMenu>호스트</HeaderMenu>
-                                </Link>
-                                <HeaderAvatar onLogout={onLogout} />
-                                <UserInfo>{user.username}</UserInfo>
-                               
-                            </div>} */}
+                        
                         {user ? ( user && user.host_approval !== true ?
                             (<div className="right">
                                 <Link to="/host/apply">
                                      <HeaderMenu>호스트 신청</HeaderMenu>
                                 </Link>
-                                <HeaderAvatar onLogout={onLogout} user={user} image={image} />
+                                <HeaderAvatar onLogout={onLogout} user={user} /* image={image} */ />
                                 {/* <UserInfo>{user.username}</UserInfo> */}
                             </div>)
                             : ( <div className="right">
                             <Link to="/host/tours">
                                 <HeaderMenu>호스트 페이지</HeaderMenu>
-                                {/* 이쪽이 호스트인 사람이면 바꿔야 할 부분 */}
                             </Link>
-                            <HeaderAvatar onLogout={onLogout} user={user} image={image} />
+                            <HeaderAvatar onLogout={onLogout} user={user} /* image={image} */ />
                             {/* <UserInfo>{user.username}</UserInfo> */}
                             </div>)
                         ) : (
@@ -122,4 +115,4 @@ const Header = ({ user, onLogout, image }) => {
     );
 };
 
-export default Header;
+export default withRouter(Header);
