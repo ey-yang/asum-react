@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Account from '../../../components/client/user/Account';
 import { setOriginalAccount } from '../../../modules/client/modify'
 import { readAccount, unloadAccount } from '../../../modules/account';
 import { withRouter } from 'react-router-dom';

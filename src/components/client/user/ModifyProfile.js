@@ -1,6 +1,4 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { writeImage, changeField, initializeForm } from '../../../modules/account';
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Responsive from '../../common/Responsive';
 import palette from '../../../lib/styles/palette';
@@ -109,6 +107,12 @@ const DescripBox = styled.div`
             background: none;
         }
     }
+    .nameRow {
+        height: 72px;
+    }
+    .inputName {
+        margin-top: -2rem;
+    }
 `;
 
 
@@ -135,14 +139,15 @@ const ModifyProfile = ({ profileImage, onChangeImage, username, email, onChangeF
                     프로필 관리
                 </div>
             </div>
-            <Row>
+            <Row className="nameRow">
                 <Col span={9} className="namebox">
                     이름
                 </Col>
                 <Col span={15} className="description">
                     <Input 
                         value={username}
-                        onChange={onChangeName} 
+                        onChange={onChangeName}
+                        className="inputName"
                     />
                 </Col>
             </Row>
@@ -185,7 +190,7 @@ const ModifyProfile = ({ profileImage, onChangeImage, username, email, onChangeF
                         <Checkbox style={{ marginLeft: "1rem"}} /* onChange={onChange} */ />
                     </div>
                     <div className="marketing">
-                        sms <Checkbox style={{ marginLeft: "2rem"}} /* onChange={onChange} */ />
+                        sms <Checkbox style={{ marginLeft: "1.8rem"}} /* onChange={onChange} */ />
                     </div>
                 </Col>
             </Row>

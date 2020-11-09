@@ -55,6 +55,7 @@ const HostToursCreateContainer = ({ history }) => {
         
         console.log(fileList)
         setFileList(fileList);
+
     }
 
     const onSelect= date => {

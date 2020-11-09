@@ -61,7 +61,7 @@
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
-    "react-dropzone": "^11.1.0",
+    "react-dropzone": "^11.2.2",
     "react-helmet-async": "^1.0.6",
     "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",
@@ -105,14 +105,7 @@
       "last 1 safari version"
     ]
   },
-
-
-  "proxy": "http://192.168.0.14:3065/",
-
-  
-
-
-
+  "proxy": "http://221.151.216.89:3065/",
   "jest": {
     "roots": [
       "<rootDir>/src"

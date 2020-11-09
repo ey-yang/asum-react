@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet-async';
 import TpTestPage from './pages/TpTestPage';
 import CompoTestPage from './pages/CompoTestPage';
 import UiTestPage from './pages/UiTestPage';
+import ImgTestPage from './pages/ImgTestPage';
+import AntdTestPage from './pages/AntdTestPage';
 import LandingListPage from './pages/LandingListPage';
 import SocialRegisterPage from './pages/auth/SocialRegisterPage';
 import TourPage from './pages/TourPage';
@@ -20,6 +22,7 @@ import HostToursListPage from './pages/host/HostToursListPage';
 import HostSalesPage from './pages/host/HostSalesPage';
 import HostInquiryPage from './pages/host/HostInquiryPage';
 import HostToursCreatePage from './pages/host/HostToursCreatePage';
+import HostUploadImgPage from './pages/host/HostUploadImgPage';
 
 const App = () => {
 
@@ -37,6 +40,8 @@ const App = () => {
       <Route component={TpTestPage} path="/tptest" />
       <Route component={CompoTestPage} path="/compotest" />
       <Route component={UiTestPage} path="/uitest" />
+      <Route component={ImgTestPage} path="/imgtest" />
+      <Route component={AntdTestPage} path="/antdtest" />
       <Route component={AccountPage} path="/account/" exact/>
       <Route component={ModifyProfilePage} path="/account/modify" />
 
@@ -46,7 +51,8 @@ const App = () => {
       <Route component={HostToursListPage} path="/host/tours" exact/>
       <Route component={HostSalesPage} path="/host/sales" />
       <Route component={HostInquiryPage} path="/host/inquiry" />
-      <Route component={HostToursCreatePage} path="/host/tours/create" />
+      <Route component={HostToursCreatePage} path="/host/tours/create" exact/>
+      <Route component={HostUploadImgPage} path="/host/tours/create/img" />
       
       <Route component={TourPage} path="/tour/:tourId" />
       </Switch>

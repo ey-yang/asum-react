@@ -1,13 +1,13 @@
 import React from 'react';
-import TpTest from '../testing/TpTest';
+import ImgTest from '../testing/ImgTest';
 import CounterContainer from '../containers/common/CounterContainer';
 import Counter from '../components/common/Counter';
 
 
-const TpTestPage = () => {
+const ImgTestPage = () => {
     return (
         <div>
-            <TpTest />
+            <ImgTest />
             
         </div>
         
@@ -15,4 +15,4 @@ const TpTestPage = () => {
     );
 };
 
-export default TpTestPage;
+export default ImgTestPage;

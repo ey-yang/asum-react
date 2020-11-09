@@ -137,7 +137,7 @@ const AccountTemplate = ({ profileImage, onChangeImage, user, onEdit, error, chi
                 <Col span={9}>
                     <PicBox>
                         
-                        <Avatar size={120} src={user.image} icon={<UserOutlined />} />
+                        <Avatar size={120} src={`http://localhost:3000/${user.image}`} icon={<UserOutlined />} />
                         
 
                         <input type="file" hidden ref={imageInput} name="profileImage" onChange={onChangeImage} />
