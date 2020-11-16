@@ -11,11 +11,14 @@ import { Helmet } from 'react-helmet-async';
 import moment from 'moment';
 import 'moment/locale/ko';
 import locale from 'antd/es/date-picker/locale/ko_KR';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputBase from '@material-ui/core/InputBase';
 import Favorite from '../../common/Favorite';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+
 
 
 
@@ -55,13 +58,13 @@ const SideMenuBlock = styled.div`
 const BookingBox = styled.div`
     display: flex;
     flex-direction: column;
-    border: 1px solid ${palette.gray[3]};
+    border: 1px solid ${palette.gray[4]};
     padding: 2rem;
     width: 320px;
     
     background: white;
     border-radius: 2px;
-    margin: 4.46rem 0rem 0rem 1rem;
+    margin: 0rem 0rem 0rem 1rem;
     
     .counterBox {
         justify-content: space-between;
@@ -98,12 +101,18 @@ const OptionSelectBox = styled.div`
         margin-top: 3px;
         font-size: 0.85rem;
     }
+    .placeHolder{
+        margin-top: 3px;
+        font-size: 0.85rem;
+        color: ${palette.gray[5]};
+    }
 `;
 
 const SearchBar = styled.div`
     .datepicker {
         height: 49px;
         width: 100%
+        
         /* margin-bottom: 1rem; */
     }
 `;
@@ -128,6 +137,7 @@ const InputSelect = withStyles((theme) => ({
     root: {
       'label + &': {
         marginTop: theme.spacing(3),
+        
       },
     },
     input: {
@@ -143,12 +153,16 @@ const InputSelect = withStyles((theme) => ({
       transition: theme.transitions.create(['border-color', 'box-shadow']),
       '&:focus': {
         borderRadius: 3,
-        borderColor: '#80bdff',
-        boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+        border: '1px solid #80bdff',
+        boxShadow: '0 0 0 0.1rem rgba(0,123,255,.25)',
       },
     },
   }))(InputBase);
   
+
+
+
+
 
 const TourViewer = ({ tour, error, loading, actionButtons, ownPost }) => {
 
@@ -174,9 +188,16 @@ const TourViewer = ({ tour, error, loading, actionButtons, ownPost }) => {
         console.log(`selected ${value}`);
       }
 
+    const Styles = makeStyles((theme) => ({
     
+        selectEmpty: {
+          marginTop: theme.spacing(2),
+        },
+    }));
 
-    const { title, about, images, price, user, publishedDate, tags } = tour;
+    const classes = Styles();
+
+    const { title, about, Images, price, option, user, publishedDate, tags } = tour;
 
 
     return (
@@ -193,7 +214,7 @@ const TourViewer = ({ tour, error, loading, actionButtons, ownPost }) => {
                         <Image
                             width={680}
                             height={450}
-                            src={images}
+                            src={`http://localhost:3000/${Images[0].src}`}
                         />
                         
                         <TourContent dangerouslySetInnerHTML={{ __html: about }} />
@@ -201,10 +222,10 @@ const TourViewer = ({ tour, error, loading, actionButtons, ownPost }) => {
                 </Col>
                 <Col span={8}>
                     <SideMenuBlock>
-                    <Affix offsetTop={70} >
+                    <Affix offsetTop={100} >
                         <BookingBox>
                             <TourPrice>
-                                <div className="tour-price">{price} 원</div>
+                                <div className="tour-price">{Number(price).toLocaleString()} 원</div>
                                 <div className="favorite"><Favorite /></div>
                             </TourPrice>
                             <SearchBar>
@@ -218,29 +239,36 @@ const TourViewer = ({ tour, error, loading, actionButtons, ownPost }) => {
                                 />
                             </SearchBar>
                             <OptionSelectBox>
+                                
                                 <Select
-                                    /* value={} */
+                                    /* value="age" */
+                                    /* className={classes.selectEmpty} */
+                                    defaultValue={0}
+                                    /* displayEmpty */
                                     onChange={handleChange}
                                     input={<InputSelect />}
                                 >
+                                    
+                                    <MenuItem value={0}>
+                                        <div className="placeHolder">
+                                            옵션 선택
+                                        </div>
+                                    </MenuItem>
                                     <MenuItem 
                                         value={10} 
                                     >
                                         <div className="menuItem">
-                                        [10세~대인] 제주유기농말차 롤케이크
+                                        {option}
                                         </div>
                                     </MenuItem>
-                                    <MenuItem value={20}>
-                                        <div className="menuItem">
-                                        [10세~대인] 제주당근파운드케이크
-                                        </div>
-                                    </MenuItem>
+                                    
                                 </Select>
+                                
                             </OptionSelectBox>
                             <div className="counterBox">
                                 인원 <CounterContainer />
                             </div>
-                            <ButtonWidthMarginTop fullWidth cyan >예약하기</ButtonWidthMarginTop>
+                            <ButtonWidthMarginTop fullWidth cyan >결제하기</ButtonWidthMarginTop>
                             
                         </BookingBox>
                     </Affix>

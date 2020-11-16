@@ -4,14 +4,14 @@ import styled from 'styled-components';
 const ResponsiveBlock = styled.div`
     padding-left: 1rem;
     padding-right: 1rem;
-    width: 1450px;
+    width: 1480px;
     margin: 0 auto; /* 중앙 정렬 */
 
     /* 브라우저 크기에 따라 가로 크기 변경 */
-    @media (max-width: 1450px) {
-        width: 1060px;
+    @media (max-width: 1480px) {
+        width: 1085px;
     }
-    @media (max-width: 1060px) {
+    @media (max-width: 1085px) {
         width: 768px;
     }
     @media (max-width: 768px) {

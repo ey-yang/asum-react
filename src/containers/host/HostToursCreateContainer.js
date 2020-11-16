@@ -200,7 +200,7 @@ const HostToursCreateContainer = ({ history }) => {
         if (hostToursCreate) {
             console.log('성공');
             dispatch(initializeForm('hostToursCreate'));
-            history.push(`/host/tours`);
+            history.push(`/host/tours/create/img`);
         }
     }, [ hostToursCreate, hostToursCreateError])
     // history,

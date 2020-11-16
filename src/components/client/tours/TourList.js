@@ -95,7 +95,7 @@ const TourList = ({ tours, loading, error, user }) => {
               <Link to={`/tour/${tour.id}`}>
                 <CardMedia
                   className="cardMedia"
-                  image={tour.images}/* "https://source.unsplash.com/random" */
+                  image={`http://localhost:3000/${tour.Images[0].src}`}/* "https://source.unsplash.com/random" */
                   title="Image title"
                   />
               </Link>
@@ -119,7 +119,7 @@ const TourList = ({ tours, loading, error, user }) => {
               </Link>
                   <div className="favorite">
                     <Typography className="tourPrice">
-                      {tour.price} 원
+                      {Number(tour.price).toLocaleString()} 원
                     </Typography>
                     <Favorite />
                   </div>

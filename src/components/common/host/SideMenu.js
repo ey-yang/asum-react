@@ -9,8 +9,8 @@ const SideMenuBlock = styled.div`
     min-height: 93.7vh;
     text-align: center;
     padding: 0;
-    background-color: ${palette.cyan[2]};
-    width: 200px;
+    background-color: ${palette.cyan[3]};
+    width: 210px;
 
     .side__menu {
         font-size: 1.5rem;

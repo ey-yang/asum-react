@@ -1,80 +1,108 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import { DatePicker } from 'antd';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import InputBase from '@material-ui/core/InputBase';
+import CounterContainer from '../containers/common/CounterContainer';
+import 'moment/locale/ko';
+import locale from 'antd/es/date-picker/locale/ko_KR';
+import { withStyles } from '@material-ui/core/styles';
 
-const MultipleImageUploadBlock = styled.div`
-    img {
-        max-width: 100px;
-        padding: 5px;
+const CompoTestBlock = styled.div`
+`;
+
+const SearchBar = styled.div`
+    .datepicker {
+        height: 49px;
+        width: 100%
+        /* margin-bottom: 1rem; */
     }
 `;
 
+const OptionSelectBox = styled.div`
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
-export default class MultipleImageUploadComponent extends Component {
-
-    fileObj = [];
-    fileArray = [];
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            file: [null]
-        }
-        this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this)
-        this.uploadFiles = this.uploadFiles.bind(this)
+    .menuItem {
+        margin-top: 3px;
+        font-size: 0.85rem;
     }
+`;
 
-    uploadMultipleFiles(e) {
-        this.fileObj.push(e.target.files)
-        for (let i = 0; i < this.fileObj[0].length; i++) {
-            this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]))
-        }
-        this.setState({ file: this.fileArray })
-    }
+const InputSelect = withStyles((theme) => ({
+    root: {
+      'label + &': {
+        marginTop: theme.spacing(3),
+      },
+    },
+    input: {
+      width: '13.5rem;',
+      height: '1.5rem;',
+      /* marginTop: '1rem;', */
+      borderRadius: 3,
+      position: 'relative',
+      backgroundColor: theme.palette.background.paper,
+      border: '1px solid #ced4da',
+      fontSize: 16,
+      padding: '11px 26px 10px 12px',
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
+      '&:focus': {
+        borderRadius: 3,
+        borderColor: '#80bdff',
+        boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      },
+    },
+  }))(InputBase);
 
-    uploadFiles(e) {
-        e.preventDefault()
-        console.log(this.state.file)
-        const formData = new FormData();
-        const config = {
-            header: { 'content-type': 'multipart/form-data' }
-        }
-        formData.append('images', this.state.file);
-        return axios.post("/api/tours/create/images", formData, config).then(res => {
-            alert('성공')
-        }).catch(err => {
-            alert('실패')
-        })
-    }
 
-    
+const CompoTest = () => {
 
-    render() {
+    function onChange(date, dateString) {
+        console.log(date, dateString);
+    } 
 
-        /* const renderPhotos = (e) => {
-            return e.target.files.map((photo) => {
-              return <img src={photo} key={photo} />
-            })
-          } */
+    function handleChange(value) {
+        console.log(`selected ${value}`);
+      }
 
-        return (
-            <MultipleImageUploadBlock>
-                <form>
-                    <div className="form-group multi-preview">
-                        {(this.fileArray || []).map(url => (
-                            <img src={url} alt="..." />
-                        ))}
-                    </div>
-                    {/* <div className="result">
-                        {renderPhotos(this.state)}
-                    </div> */}
-
-                    <div className="form-group">
-                        <input type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
-                    </div>
-                    <button type="button" className="btn btn-danger btn-block" onClick={this.uploadFiles}>Upload</button>
-                </form >
-            </MultipleImageUploadBlock>
-        )
-    }
+    return (
+    <CompoTestBlock>
+<SearchBar>
+                                <DatePicker
+                                    autoFocus={false}
+                                    className="datePickBar"
+                                    onChange={onChange} 
+                                    placeholder="날짜 선택"
+                                    locale={locale}
+                                    className="datepicker"
+                                />
+                            </SearchBar>
+                            <OptionSelectBox>
+                                <Select
+                                    /* value={} */
+                                    onChange={handleChange}
+                                    input={<InputSelect />}
+                                >
+                                    <MenuItem 
+                                        value={10} 
+                                    >
+                                        <div className="menuItem">
+                                        [10세~대인] 제주유기농말차 롤케이크
+                                        </div>
+                                    </MenuItem>
+                                    <MenuItem value={20}>
+                                        <div className="menuItem">
+                                        [10세~대인] 제주당근파운드케이크
+                                        </div>
+                                    </MenuItem>
+                                </Select>
+                            </OptionSelectBox>
+                            <div className="counterBox">
+                                인원 <CounterContainer />
+                            </div>
+                            </CompoTestBlock>
+    )
 }
+
+export default CompoTest;

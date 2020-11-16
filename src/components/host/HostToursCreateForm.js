@@ -9,16 +9,39 @@ import Responsive from '../common/Responsive';
 import { Upload, Modal, Form, Row, Col, Input, Button, Radio, Select, Space } from 'antd';
 import 'antd/dist/antd.css';
 import palette from '../../lib/styles/palette';
+import { deepMerge } from 'grommet/utils';
 
 const AllBlock = styled.div`
     .optionInput {
-    width: 30rem;
+    width: 35.6rem;
     height: 2rem;
+  }
+  .priceInput {
+      width: 8.6rem;
+  }
+  .button {
+    margin: 1rem 1.7rem 0 0;
+    width: 100px;
+    height: 2.3rem;
+    border-radius: 5px;
+    color: white;
+    font-weight: 800;
+    font-size: 0.9rem;
+    border: none;
+    outline: 0;
+    box-shadow: none;
+    background-color: ${palette.cyan[3]};
+    cursor: pointer;
+    &:hover {
+      background-color: ${palette.cyan[2]};
+      outline: 0;
+      box-shadow: none;
+    }
   }
 `;
 
 const Title = styled.div`
-    margin: 0.2rem 0 1rem 3rem;
+    margin: 1.2rem 0 1.5rem 3rem;
     font-size: 1.5rem;
     font-weight: 900;
     color: ${palette.gray[7]};
@@ -49,7 +72,7 @@ const QuillWrapper = styled.div`
   border: 1px solid #d9d9d9;
   .ql-editor {
     padding: 1%;
-    min-height: 700px;
+    min-height: 450px;
     font-size: 1rem;
     line-height: 1.5;
   }
@@ -57,6 +80,18 @@ const QuillWrapper = styled.div`
     left: 0px;
   }
 `;
+
+const customHeading = deepMerge(grommet, {
+    calendar: {
+      heading: {
+        level: '6',
+      },
+      day: {
+        extend: ({ isSelected }) => `
+          background-color: ${isSelected ? '#3BC9DB' : undefined}`,
+      },
+    },
+  });
 
 
 // about, onChangeField, 
@@ -83,6 +118,13 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
         console.log('Received values of form:', values);
       };
     
+      
+    function numberWithCommas(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  
+    
+
     return (
     <AllBlock>
         <Title>
@@ -114,17 +156,21 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
                         name="price"
                         onChange={onChange}
                         value= {form.price}
+                        className="priceInput"
+                        /* onKeyUp={numberWithCommas} */
                     />
                 </Col>
-                <Col md={1} style={{paddingTop:'10%'}}><label style={{ verticalAlign: 'middle' }}>원</label></Col>
+                <Col md={1} style={{paddingTop:'10%'}}><label style={{ verticalAlign: 'middle', marginLeft:'4rem' }}>원</label></Col>
                 <Col md={3} offset={5} style={{paddingTop:'10%'}}><label>휴무일 선택</label></Col>
                 <Col md={3} offset={2}>
-                    <Grommet theme={grommet}>
-                    <Box align="center">
+                    <Grommet theme={customHeading}>
+                    <Box align="center" pad="small">
                         <Calendar
                         dates={dates}
-                        bounds={['2020-09-21', '2022-12-13']}
+                        bounds={[new Date(), '2022-12-13']}
                         animate={false}
+                        daysOfWeek
+                        showAdjacentDays = {false}
                         size="small"
                         locale="ko"
                         onSelect={onSelect}
@@ -154,44 +200,41 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
                             <>
                                 {fields.map(field => (
                                 <Space key={field.key} style={{ display: 'flex', marginBottom: 0}} align="baseline">
-                                    {/* <Form.Item
-                                    {...field}
-                                    name={[field.name, 'first']}
-                                    fieldKey={[field.fieldKey, 'first']}
-                                    rules={[{ required: true, message: 'Missing first name' }]}
-                                    > */}
-                                    {/* <Input placeholder="First Name" /> */}
-                                    {/* </Form.Item> */}
                                     <Form.Item
-                                    {...field}
-                                    name={[field.name, 'last']}
-                                    fieldKey={[field.fieldKey, 'last']}
-                                    rules={[{ required: true, message: 'Missing last name' }]}
+                                        {...field}
+                                        name={[field.name, 'last']}
+                                        fieldKey={[field.fieldKey, 'last']}
+                                        rules={[{ required: true, message: 'Missing last name' }]}
                                     >
-                                    <Input className="optionInput"/>
+                                    <Input 
+                                        className="optionInput"
+                                        name= "option"
+                                        onChange={onChange}
+                                        value={form.option}
+                                    />
                                     </Form.Item>
                                     <MinusCircleOutlined onClick={() => remove(field.name)} />
                                 </Space>
                                 ))}
                                 <Form.Item>
                                 <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                                    Add field
+                                    옵션 추가
                                 </Button>
                                 </Form.Item>
                             </>
                             )}
                         </Form.List>
-                        <Form.Item>
+                        {/* <Form.Item>
                             <Button type="primary" htmlType="submit">
                             Submit
                             </Button>
-                        </Form.Item>
+                        </Form.Item> */}
                         </Form>
                         
                     </Col>
                 </RowWrapper>
 
-                <RowWrapper>
+                {/* <RowWrapper>
                     <Col md={3}><label>태그</label></Col>
                     <Col md={20} >
                     <div>
@@ -207,7 +250,7 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
                     </Select>
                     </div>
                     </Col>    
-                </RowWrapper>
+                </RowWrapper> */}
 
 
                 <RowWrapper>
@@ -234,8 +277,8 @@ const HostToursCreateForm = ({ form, previewVisible, previewImage, fileList,
                 </RowWrapper>
 
 
-                <Row style={{marginTop: '3%',justifyContent: 'center'}}>
-                <Col><Button htmlType="submit">상품 등록</Button></Col>
+                <Row style={{marginTop: '3%',justifyContent: 'flex-end'}}>
+                    <Button htmlType="submit" className="button">다 음</Button>
                 </Row>
             </HostToursCreateBlock> 
         </Content>
