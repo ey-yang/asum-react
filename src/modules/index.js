@@ -9,6 +9,7 @@ import tour, { tourSaga } from './tour'
 import tours, { toursSaga } from './tours'
 import account, { accountSaga } from './account'
 import modify, { modifySaga } from './client/modify'
+import favorites, { favoritesSaga } from './client/favorites'
 
 import host, { hostSaga } from './host/host';
 import hostToursCreate, { hostToursCreateSaga } from './host/hostToursCreate';
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   tours,
   account,
   modify,
+  favorites,
 
   host,
   hostToursCreate,
@@ -33,7 +35,7 @@ const rootReducer = combineReducers({
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), userSaga(), writeSaga(), toursSaga(), tourSaga(), accountSaga(), modifySaga(),
+  yield all([authSaga(), userSaga(), writeSaga(), toursSaga(), tourSaga(), accountSaga(), modifySaga(), favoritesSaga(),
     hostSaga(), hostToursCreateSaga(), hostListSaga(), hostSalesListSaga()]);
 }
 

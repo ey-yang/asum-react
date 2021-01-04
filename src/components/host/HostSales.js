@@ -2,21 +2,50 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Table, DatePicker, Space, Input } from 'antd';
 import 'antd/dist/antd.css';
+import palette from '../../lib/styles/palette';
 
 // const HostViewerBlock = styled(Responsive)`
 //     display: flex;
 //     flex-direction: row;
 // `;
 
+const AllBlock = styled.div`
+    
+`;
+
+const Title = styled.div`
+    margin: 1.2rem 0 1.5rem 3rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: ${palette.gray[8]};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
 const Content = styled.div`
     flex: 0 1 80%;
-    margin: 3% 0 3% 3%;
-    border: 1px solid black;
-    height: 100%;
+    margin: 1rem 0 3% 2.5rem;
+    border: 1px solid ${palette.gray[3]};
+    width: 1000px;
 `;
 
 const HostSalesBlock = styled.div`
   padding: 4%;
+  .btn {
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    font-weight: 650;
+    color: ${palette.cyan[5]};
+    width: 3.6rem;
+    height: 2rem;
+    outline: 0;
+    box-shadow: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: white;
+    border: 1.5px solid ${palette.cyan[5]};
+  }
 `;
 
 const HostSales = ({ hostSalesList, hostSalesListError, loading }) => {
@@ -56,7 +85,7 @@ const HostSales = ({ hostSalesList, hostSalesListError, loading }) => {
 
   //컬럼 이름 정하는 곳
 const columns = [
-    {
+    /* {
       title: 'No.',
       dataIndex: 'id',
       key: 'id',
@@ -64,23 +93,42 @@ const columns = [
         compare: (a, b) => a.id - b.id,
         multiple: 2,
       },
-    },
-    // {
-    //   title: '판매일',
-    //   dataIndex: 'salesDate',
-    //   sorter: {
-    //     compare: (a, b) => a.salesDate - b.salesDate,
-    //     multiple: 3,
-    //   },
-    // },
+    }, */
+    /* {
+       title: '결제일',
+       dataIndex: 'salesDate',
+       sorter: {
+         compare: (a, b) => a.salesDate - b.salesDate,
+         multiple: 3,
+       },
+     }, */
+     {
+         title: '여행일',
+         dataIndex: 'tour_date',
+         key: 'tour_date',
+         /* sorter: {
+             compare: (a, b) => a.travelDay - b.travelDay,
+             multiple: 1,
+           }, */
+     },
     {
-      title: '판매상품',
+      title: '상품명',
       dataIndex: 'title',
       key: 'title',
-      sorter: {
+      /* sorter: {
         compare: (a, b) => a.salesProduct - b.salesProduct,
         multiple: 2,
-      },
+      }, */
+    },
+    /* {
+        title: '옵션',
+        dataIndex: 'option',
+        key: 'option',
+    }, */
+    {
+        title: '고객명',
+        dataIndex: 'username',
+        key: 'username',
     },
     {
       title: '수량',
@@ -88,57 +136,34 @@ const columns = [
       key: 'qty',
     },
     {
-        title: '여행일',
-        dataIndex: 'tour_date',
-        key: 'tour_date',
-        sorter: {
-            compare: (a, b) => a.travelDay - b.travelDay,
-            multiple: 1,
-          },
-    },
-    {
-        title: '옵션',
-        dataIndex: 'option',
-        key: 'option',
-        sorter: {
-            compare: (a, b) => a.addOne - b.addOne,
-            multiple: 1,
-          },
-    },
-    // {
-    //     title: '추가2',
-    //     dataIndex: 'addTwo',
-    //     sorter: {
-    //         compare: (a, b) => a.addTwo - b.addTwo,
-    //         multiple: 1,
-    //       },
-    // },
-    // {
-    //     title: '추가3',
-    //     dataIndex: 'addThree',
-    //     sorter: {
-    //         compare: (a, b) => a.addThree - b.addThree,
-    //         multiple: 1,
-    //     },
-    // },
-    {
-        title: '고객명',
-        dataIndex: 'username',
-        key: 'username',
-    },
-    // {
-    //     title: '연락처',
-    //     dataIndex: 'phoneNumber',
-    // },
-    {
-        title: '합계',
+        title: '결제 금액',
         dataIndex: 'total_price',
         key: 'total_price',
-        sorter: {
+        /* sorter: {
             compare: (a, b) => a.Progress - b.Progress,
             multiple: 1,
-        },
+        }, */
     },
+    {
+         title: '수수료',
+         dataIndex: 'addTwo',
+         /* sorter: {
+             compare: (a, b) => a.addTwo - b.addTwo,
+             multiple: 1,
+           }, */
+     },
+    {
+         title: '정산 금액',
+         dataIndex: 'addThree',
+         /* sorter: {
+             compare: (a, b) => a.addThree - b.addThree,
+             multiple: 1,
+         }, */
+     },
+    {
+         title: '정산일',
+         dataIndex: 'phoneNumber',
+     },
   ];
 
 
@@ -178,59 +203,66 @@ if (hostSalesListError) {
 }
 
     return (
-        <>
+        <AllBlock>
+          <Title>
+            판매 관리
+          </Title>
                 <Content>
                 <HostSalesBlock>                  
                   
                 <div style={{ marginBottom: '1%' }}>
-                <b>판매일: </b>
-                <Space direction="vertical" size={12}>
-                {/* 판매일 함수 구현해야함 */}
-                  <DatePicker.RangePicker style={{ width: '100%' }} 
-                  // onChange={onChanges}
+                  {/* <b>판매일: </b> */}
+                  <Space direction="vertical" size={12}>
+                  {/* 판매일 함수 구현해야함 */}
+                    <DatePicker.RangePicker style={{ width: '100%' }} 
+                    // onChange={onChanges}
+                    />
+                  </Space> 
+                  <button className="btn">
+                    조회
+                  </button>
+
+
+                  {/* <b> 판매상품: </b>
+                  
+                  <Input.Search
+                    placeholder="검색"
+                    style={{ width: '10%' }}
+                    // onSearch={onSeachProduct}
                   />
-                </Space>
 
 
-                <b> 판매상품: </b>
-                {/* 검색함수 구현해야함 */}
-                <Input.Search
-                  placeholder="검색"
-                  style={{ width: '10%' }}
-                  // onSearch={onSeachProduct}
-                />
+                  <b> 여행일: </b>
+                  <Space direction="vertical" size={12}>
+                  
+                    <DatePicker.RangePicker style={{ width: '100%' }}
+                    // onChange={onChanges}
+                    />
+                  </Space>
 
-
-                <b> 여행일: </b>
-                <Space direction="vertical" size={12}>
-                  {/* 여행일 함수 구현해야함 */}
-                  <DatePicker.RangePicker style={{ width: '100%' }}
-                  // onChange={onChanges}
+                  <b> 옵션: </b>
+                  <Input.Search
+                    placeholder="검색"
+                    onSearch={value => console.log(value)}
+                    style={{ width: '7%' }}
                   />
-                </Space>
-
-                <b> 옵션: </b>
-                <Input.Search
-                  placeholder="검색"
-                  onSearch={value => console.log(value)}
-                  style={{ width: '7%' }}
-                />
 
 
-                <b> 고객명: </b>
-                <Input.Search
-                  placeholder="검색"
-                  onSearch={value => console.log(value)}
-                  style={{ width: '7%' }}
-                />
+                  <b> 고객명: </b>
+                  <Input.Search
+                    placeholder="검색"
+                    onSearch={value => console.log(value)}
+                    style={{ width: '7%' }}
+                  />
 
-                <b> 연락처: </b>
-                <Input.Search
-                  placeholder="검색"
-                  onSearch={value => console.log(value)}
-                  style={{ width: '17%' }}
-                />
-                </div>
+                  <b> 연락처: </b>
+                  <Input.Search
+                    placeholder="검색"
+                    onSearch={value => console.log(value)}
+                    style={{ width: '17%' }}
+                  /> */}
+                </div> 
+
                 {!loading && hostSalesList && (
                 <Table columns={columns} dataSource={hostSalesList} rowKey={row=>row.id} onChange={onColumnsChange} />
                 )}
@@ -239,7 +271,7 @@ if (hostSalesListError) {
 
                 </HostSalesBlock>
                 </Content>
-        </>
+        </AllBlock>
     )
 }
 

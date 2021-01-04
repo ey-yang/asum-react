@@ -13,8 +13,13 @@ import LandingListPage from './pages/LandingListPage';
 import SocialRegisterPage from './pages/auth/SocialRegisterPage';
 import TourPage from './pages/TourPage';
 import AccountPage from './pages/client/AccountPage';
-
+import FavoriteListPage from './pages/client/FavoriteListPage';
 import ModifyProfilePage from './pages/client/ModifyProfilePage';
+import PaymentPage from './pages/client/PaymentPage';
+import TourManagementPage from './pages/client/TourManagementPage';
+import PastTourPage from './pages/client/PastTourPage';
+import TourReviewPage from './pages/client/TourReviewPage';
+import InquiryPage from './pages/client/InquiryPage';
 
 import HostApplyPage from './pages/host/HostApplyPage';
 import HostAccountPage from './pages/host/HostAccountPage';
@@ -44,6 +49,12 @@ const App = () => {
       <Route component={AntdTestPage} path="/antdtest" />
       <Route component={AccountPage} path="/account/" exact/>
       <Route component={ModifyProfilePage} path="/account/modify" />
+      <Route component={FavoriteListPage} path="/account/favorite" />
+      <Route component={PaymentPage} path="/tour/payment" />
+      <Route component={TourManagementPage} path="/tour/management" exact/>
+      <Route component={PastTourPage} path="/tour/management/past" />
+      <Route component={TourReviewPage} path="/tour/review" />
+      <Route component={InquiryPage} path="/tour/inquiry" />
 
 
       <Route component={HostApplyPage} path="/host/apply" />

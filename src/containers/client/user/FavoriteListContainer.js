@@ -2,18 +2,18 @@ import React, { useEffect } from 'react';
 import qs from 'qs';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import TourList from '../../components/client/tours/TourList';
-import { listTours } from '../../modules/tours';
+import FavoriteList from '../../../components/client/user/FavoriteList';
+import { listFavorites } from '../../../modules/client/favorites';
 
-const TourListContainer = ({ location, match }) => {
-
+const FavoriteListContainer = ({ location, match }) => {
+  /* console.log(match); */
   const dispatch = useDispatch();
   const { tours, error, loading, user } = useSelector(
-    ({ tours, loading, user }) => ({
+    ({ favorites, tours, loading, user }) => ({
    
-      tours: tours.tours,
+      tours: favorites.tours,
       error: tours.error,
-      loading: loading['tours/LIST_TOURS'],
+      loading: loading['favorites/LIST_FAVORITES'],
       user: user.user,
     }),
   );
@@ -22,11 +22,11 @@ const TourListContainer = ({ location, match }) => {
     const { tag, page, image, price } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    dispatch(listTours({ tag, email, page, image, price }));
+    dispatch(listFavorites({ tag, email, page, image, price }));
   }, [dispatch, location.search, match.params]);
 
   return (
-    <TourList
+    <FavoriteList
       loading={loading}
       error={error}
       tours={tours}
@@ -36,4 +36,4 @@ const TourListContainer = ({ location, match }) => {
   );
 };
 
-export default withRouter(TourListContainer);
+export default withRouter(FavoriteListContainer);

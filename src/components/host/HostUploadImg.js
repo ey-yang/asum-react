@@ -4,6 +4,7 @@ import axios from 'axios';
 import palette from '../../lib/styles/palette';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import Button from '../../components/common/Button';
+import { Link, withRouter } from 'react-router-dom';
 
   const AllBlock = styled.div`
     .imgTitle {
@@ -127,7 +128,7 @@ import Button from '../../components/common/Button';
   }
 `;
 
-const UploadMultipleImage = () => {
+const UploadMultipleImage = ({ history }) => {
 
   const [selectedImages, setselectedImages] = useState([])
 
@@ -144,9 +145,9 @@ const UploadMultipleImage = () => {
       } */
       formData.append('images', e.target.files[0]);
       axios.post("/api/tours/create/images", formData, /* config */).then(res => {
-        alert('성공')
+        console.log('사진등록성공')
       }).catch(err => {
-        alert('실패') 
+        alert('사진등록실패') 
       })
       /* console.log(Array); */
       /* console.log(selectedImages); */
@@ -176,7 +177,7 @@ const UploadMultipleImage = () => {
   const onPublish = (e) => {
     e.preventDefault()
     console.log(TourImages)
-
+    history.push(`/host/tours`)
   }
 
   return (
@@ -215,9 +216,11 @@ const UploadMultipleImage = () => {
         </div>
         <div className="btnBlock">
         <div className="button-holder">
+        {/* <Link to='/register'> */}
         <button type="button" className="button" onClick={onPublish}>
           등 록
         </button>
+        {/* </Link> */}
         </div>
         </div>
       </div>
@@ -227,4 +230,4 @@ const UploadMultipleImage = () => {
   )
 };
 
-export default UploadMultipleImage;
+export default withRouter(UploadMultipleImage);

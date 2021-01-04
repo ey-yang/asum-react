@@ -6,7 +6,7 @@ import Button from '../../common/Button';
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import Logo from '../../../image/kakao_login_medium_narrow.png'
+
 
 
 
@@ -140,9 +140,9 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
                             로그인
                         </ButtonWidthMarginTop>
                         <div className="kakaoBtn">
-                        <a href= "https://kauth.kakao.com/oauth/authorize?client_id={b29cbd1c84933c11dd0ea256ce5c56f1}&response_type=code&redirect_uri=https://localhost.com" className="kakao">
-                            <img src={kakaoLogo} />
-                        </a>
+                            <a href= "https://kauth.kakao.com/oauth/authorize?client_id={b29cbd1c84933c11dd0ea256ce5c56f1}&response_type=code&redirect_uri=https://localhost.com" className="kakao">
+                                <img src={kakaoLogo} />
+                            </a>
                         </div>
                         
                     </div>

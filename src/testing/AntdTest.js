@@ -1,63 +1,70 @@
 import React from 'react';
-import { Form, Input, Button, Space } from 'antd';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
+import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 
-const OptionBlock = styled.div`
-  .optionInput {
-    width: 60rem;
-    height: 2.4rem;
-  }
+const Block = styled.div`
+.logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+.site-layout-sub-header-background {
+  background: #fff;
+}
+
+.site-layout-background {
+  background: #fff;
+}
 `;
 
-const Demo = () => {
-  const onFinish = values => {
-    console.log('Received values of form:', values);
-  };
+const { Header, Content, Footer, Sider } = Layout;
 
-  return (
-    <OptionBlock>
-    <Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
-      <Form.List name="users">
-        {(fields, { add, remove }) => (
-          <>
-            {fields.map(field => (
-              <Space key={field.key} style={{ display: 'flex', marginBottom: -1}} align="baseline">
-                {/* <Form.Item
-                  {...field}
-                  name={[field.name, 'first']}
-                  fieldKey={[field.fieldKey, 'first']}
-                  rules={[{ required: true, message: 'Missing first name' }]}
-                > */}
-                  {/* <Input placeholder="First Name" /> */}
-                {/* </Form.Item> */}
-                <Form.Item
-                  {...field}
-                  name={[field.name, 'last']}
-                  fieldKey={[field.fieldKey, 'last']}
-                  rules={[{ required: true, message: 'Missing last name' }]}
-                >
-                  <Input className="optionInput"/>
-                </Form.Item>
-                <MinusCircleOutlined onClick={() => remove(field.name)} />
-              </Space>
-            ))}
-            <Form.Item>
-              <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                Add field
-              </Button>
-            </Form.Item>
-          </>
-        )}
-      </Form.List>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
-    </OptionBlock>
-  );
-};
+const AntdTest = ({children}) =>{
+return(
+  <Block>
+  <Layout>
+    <Sider
+      breakpoint="lg"
+      collapsedWidth="0"
+      onBreakpoint={broken => {
+        console.log(broken);
+      }}
+      onCollapse={(collapsed, type) => {
+        console.log(collapsed, type);
+      }}
+    >
+      <div className="logo" />
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+        <Menu.Item key="1" icon={<UserOutlined />}>
+          nav 1
+        </Menu.Item>
+        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+          nav 2
+        </Menu.Item>
+        <Menu.Item key="3" icon={<UploadOutlined />}>
+          nav 3
+        </Menu.Item>
+        <Menu.Item key="4" icon={<UserOutlined />}>
+          nav 4
+        </Menu.Item>
+      </Menu>
+    </Sider>
+    <Layout>
+      <Header className="site-layout-sub-header-background" style={{ padding: 0 }} >
+        안녕
+      </ Header>
+      <Content style={{ margin: '24px 16px 0' }}>
+        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+          {children}
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+    </Layout>
+  </Layout>
+  </Block>
+);
+}
 
-export default Demo;
+export default AntdTest;

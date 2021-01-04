@@ -4,13 +4,14 @@ import Responsive from '../../common/Responsive';
 import palette from '../../../lib/styles/palette';
 import { UserOutlined } from '@ant-design/icons';
 import Button from '@material-ui/core/Button';
-import { Image, Row, Col, DatePicker, Select, Avatar } from 'antd';
+import { Row, Col, Avatar } from 'antd';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
 import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import { Link } from 'react-router-dom';
 
 
 const AccountBlock = styled(Responsive)`
@@ -28,7 +29,6 @@ const AccountBlock = styled(Responsive)`
         margin: 1.5rem 0rem 1.5rem 0rem;
         font-size: 0.99rem;
         font-weight: 500;
-        /* border-left: 1px groove ${palette.gray[3]}; */
     }
     .uploadBtn {
         margin: 0.1rem 0rem 0.8rem 0rem;
@@ -50,8 +50,6 @@ const PicBox = styled.div`
     width: 270px;
     background: white;
     border-radius: 8px;
-    /* margin: 4.46rem 0rem 0rem 1rem; */
-   /*  justify-content: center; */
     align-items: center;
 `;
 
@@ -73,17 +71,17 @@ const PointCoupon = styled.div`
 const PersonalMenu = styled.div`
     margin: 0.7rem 0rem;
     display: flex;
-    width: 80%;
+    flex-direction: row;
+    width: 163.19px;
     font-size: 0.98rem;
     font-weight: 450;
     align-items: center;
     .menuTitle {
-        margin-left: -0.7rem;
+        margin-left: 1.4rem;
     }
 `;
 
 const DescripBox = styled.div`
-    /* margin-left: 5rem; */
     padding-left: 2rem;
     .profileTitleBox {
         display: flex;
@@ -114,7 +112,7 @@ const DescripBox = styled.div`
 `;
 
 
-const AccountTemplate = ({ profileImage, onChangeImage, user, onEdit, error, children }) => {
+const AccountTemplate = ({ onChangeImage, user, error, children }) => {
 
     // 에러 발생 시
     if (error) {
@@ -169,33 +167,31 @@ const AccountTemplate = ({ profileImage, onChangeImage, user, onEdit, error, chi
                             <div>0장</div> 
                         </PointCoupon>
                         <hr width="100%" color="#DEE2E6" size="1"/>
+                        
+                        <Link to={'/tour/management/'} style={{ color: "#323232" }}>
+                            <PersonalMenu>
+                                <AssignmentOutlinedIcon style={{color: "#757575"}}/>    
+                                <div className="menuTitle">
+                                    예약 내역
+                                </div>
+                            </PersonalMenu>
+                        </Link>
+                        <Link to={'/tour/management/past'} style={{ color: "#323232" }}>
+                            <PersonalMenu>
+                                <ChatOutlinedIcon style={{color: "#757575"}} />
+                                <div className="menuTitle">
+                                    여행 후기
+                                </div>
+                            </PersonalMenu>
+                        </Link>
+                        <Link to={'/account/favorite'} style={{ color: "#323232" }}>
                         <PersonalMenu>
-                            <ListItemIcon>
-                                <AssignmentOutlinedIcon />
-                            </ListItemIcon>
-                            <div className="menuTitle">
-                                예약 내역
-                            </div>
-                        </PersonalMenu>
-                        <PersonalMenu>
-                            <ListItemIcon>
-                                <ChatOutlinedIcon />
-                            </ListItemIcon>
-                            <div className="menuTitle">
-                                여행 후기
-                            </div>
-                            
-                        </PersonalMenu>
-                        <PersonalMenu>
-                            <ListItemIcon>
-                                <FavoriteBorderOutlinedIcon />
-                            </ListItemIcon>
+                            <FavoriteBorderOutlinedIcon style={{color: "#757575"}} />
                             <div className="menuTitle">
                                 관심 여행
                             </div>
-                            
                         </PersonalMenu>
-
+                        </Link>
                     </PicBox>
                 </Col>
 

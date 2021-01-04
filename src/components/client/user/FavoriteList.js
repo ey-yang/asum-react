@@ -11,6 +11,18 @@ import Tags from '../../common/Tags';
 import styled from 'styled-components';
 import palette from '../../../lib/styles/palette';
 
+const FavoriteListBlock = styled.div`
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    /* flex로 내부 내용 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding-top: 4rem;   */  
+`;
 
 const TourListBlock = styled.div`
   display: flex;
@@ -18,6 +30,14 @@ const TourListBlock = styled.div`
   align-items: center;
   margin-bottom: 2rem;
   `;
+
+const Tilte = styled.div`
+  width: 920px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: ${palette.gray[8]};
+  margin: 2rem;
+`;
 
 const TourListBox = styled.div`
   display: flex;
@@ -31,7 +51,7 @@ const TourListBox = styled.div`
     width: 220px;
     display: flex;
     flex-direction: column;
-    margin: 0rem 0rem 1.8rem 0.5rem;
+    margin: 0rem 0rem 1.8rem 1rem;
   }
   .cardMedia {
     padding-top: 80%;
@@ -73,15 +93,20 @@ const TourListBox = styled.div`
 `;
 
 
-
-
-const TourList = ({ tours, loading, error, user, tourId }) => {
+const FavoriteList = ({ favorites, tours, loading, error, user, tourId }) => {
+  console.log(tours);
   // 에러 발생 시
   if (error) {
     return <React.Fragment>에러가 발생했습니다.</React.Fragment>;
   }
 
+  /* const tourId = {tours.id} */
+
   return (
+    <FavoriteListBlock>
+      <Tilte>
+        나의 관심 여행
+      </Tilte>
       <TourListBlock>
       <TourListBox>
       <Grid container spacing={1}>
@@ -132,7 +157,8 @@ const TourList = ({ tours, loading, error, user, tourId }) => {
       </Grid>
       </TourListBox>
       </TourListBlock>
+    </FavoriteListBlock>
   );
 }
 
-export default TourList;
+export default FavoriteList;

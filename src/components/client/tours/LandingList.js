@@ -1,10 +1,9 @@
 import React from 'react';
-import TourList from './TourList';
 import styled from 'styled-components';
 import Button from '../../common/Button';
 import palette from '../../../lib/styles/palette';
 import { CgSearch } from 'react-icons/cg';
-import { DatePicker, Select } from 'antd';
+import { DatePicker, Select, Image } from 'antd';
 import 'antd/dist/antd.css';
 import BarResponsive from '../../common/BarResponsive';
 
@@ -19,27 +18,14 @@ const LandingListBlock = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 4rem;
-
-    .mainImage {
-        width: 960px;
-        height: 280px;
-        
-    }
+    padding-top: 4rem;    
 `;
 
 const ImageBox = styled.div`
-    width: 920px;
+    /* width: 920px;
     height: 280px;
-    border: 1px solid ${palette.cyan[3]};
+    border: 1px solid ${palette.cyan[3]}; */
     margin-bottom: 3rem;
-`;
-
-const TitleBox = styled.div`
-    
-    margin-bottom: 3rem;
-    font-size: 2rem;
-    font-weight: 500;
 `;
 
 const SearchBar = styled(BarResponsive)`
@@ -49,7 +35,7 @@ const SearchBar = styled(BarResponsive)`
     border-radius: 60px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     .selectBar {
         width: 46.5%;
         border-radius: 60px;
@@ -83,12 +69,16 @@ const SearchBar = styled(BarResponsive)`
 `;
 
 const Title = styled.div`
-    font-weight: 700;
-    width: 910px;
-    font-size: 1.2rem;
+    font-weight: 710;
+    width: 930px;
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+
 `;
 
 const { Option } = Select;
+
+const landingimg = require('../../../image/landimg.jpg');
 
 const LandingList = () => {
 
@@ -98,15 +88,7 @@ const LandingList = () => {
     } 
 
     return (
-        /**
-         * <ImageBox>
-                <img src="" />
-            </ImageBox>
-
-            <TitleBox>
-                제주도로 떠나요
-            </TitleBox>
-         */
+        <>
         
         <LandingListBlock>
             
@@ -133,11 +115,18 @@ const LandingList = () => {
                     <CgSearch className="searchIcon" />
                 </Button>
             </SearchBar>
+            <ImageBox>
+                    <Image
+                        width={950}
+                        height={410}
+                        src={landingimg} />
+            </ImageBox>
             <Title>
                 추천 푸드투어
             </Title>
             
         </LandingListBlock>
+        </>
     );
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Responsive from '../Responsive';
 import HeaderResponsive from './HeaderResponsive';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
@@ -12,7 +11,6 @@ const HeaderBlock = styled.div`
     position: fixed;
     width: 100%;
     background: white;
-    /*box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.88);*/
     z-index: 10;
 `;
 
@@ -71,7 +69,7 @@ const HeaderMenu = styled.div`
 `;
 
 const Header = ({ user, onLogout }) => {
-    /* console.log(user); */
+
     return (
         <>
             <HeaderBlock>

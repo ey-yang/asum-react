@@ -34,12 +34,13 @@ const tours = handleActions(
       ...state,
       tours,
       lastPage: parseInt(response.headers['last-page'], 10), // 문자열을 숫자로 변환
-    }),
+    }), 
+    
     [LIST_TOURS_FAILURE]: (state, { payload: error }) => ({
       ...state,
       error,
     }),
-  },
+  }, 
   initialState,
 );
 

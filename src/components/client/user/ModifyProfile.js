@@ -1,18 +1,8 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import styled from 'styled-components';
-import Responsive from '../../common/Responsive';
 import palette from '../../../lib/styles/palette';
-import { UserOutlined } from '@ant-design/icons';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-import { Image, Row, Col, DatePicker, Input, Avatar, Checkbox, Switch } from 'antd';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
-import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
-import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
-import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import { Row, Col, Input, Checkbox, Switch } from 'antd';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 

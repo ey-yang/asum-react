@@ -34,7 +34,7 @@ const FooterBlock = styled.div`
 `;
 
 const FooterBox = styled.div`
-    width: 910px;
+    width: 980px;
     margin: 3.5rem;
 `;
 

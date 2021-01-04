@@ -30,7 +30,7 @@ const RegisterFormContainer = ({ history }) => {
     // 폼 등록 이벤트 핸들러
     const onSubmit = e => {
         e.preventDefault();
-        console.log('환장하네');
+        console.log(form);
         const { email, password, passwordConfirm, username, year, month, day, gender } = form;
         // 해당 인풋이 비어 있다면
         if ([email, password, passwordConfirm, username, year, month, day, gender].includes('')) {
@@ -46,6 +46,7 @@ const RegisterFormContainer = ({ history }) => {
         }
         dispatch(register({ email, password, username, year, month, day, gender }));
         console.log(register)
+        
     };
 
     // 컴포넌트가 처음 렌더링될 때 form을 초기화함

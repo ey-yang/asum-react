@@ -5,6 +5,7 @@ import { readTour, unloadTour } from '../../../modules/tour';
 import TourViewer from '../../../components/client/tour/TourViewer';
 
 const TourViewerContainer = ({ match }) => {
+  /* console.log(match); */
   // 처음 마운트될 때 포스트 읽기 API 요청
   const { tourId } = match.params;
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const TourViewerContainer = ({ match }) => {
     };
   }, [dispatch, tourId]);
 
-  return <TourViewer tour={tour} loading={loading} error={error} />;
+  return <TourViewer tour={tour} tourId={tourId} loading={loading} error={error} />;
 };
 
 export default withRouter(TourViewerContainer);

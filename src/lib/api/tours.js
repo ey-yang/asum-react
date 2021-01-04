@@ -28,3 +28,15 @@ export const updateTour = ({ id, title, about, tags, images, price }) =>
 
 export const removeTour = id => client.delete(`/api/user/landing/${id}`);
 
+
+export const listFavorites = ({ favorites, page, email, tag, image, price }) => {
+    const queryString = qs.stringify({
+        favorites,
+        page,
+        email,
+        tag,
+        image,
+        price,
+    });
+    return client.post(`/api/favorites/list`);
+};
