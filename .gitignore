@@ -21,6 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pem
+asum-react.pem
+asum-react-aws.pem
 .env
 .next
