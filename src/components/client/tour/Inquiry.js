@@ -158,7 +158,7 @@ const InquiryListBox = styled.div`
 `;
 
 
-const tourphoto = require('../../../image/스크린샷 2020-11-17 오후 2.25.07.png');
+/* const tourphoto = require('../../../image/스크린샷 2020-11-17 오후 2.25.07.png'); */
 
 
 
@@ -178,7 +178,7 @@ const Inquiry = () => {
                 <div className="hostbox">
                     <Avatar
                         size={30}
-                        src={tourphoto}
+                        /* src={tourphoto} */
                         className="avatarimg"
                     />
                     <div className="tourtitle">
