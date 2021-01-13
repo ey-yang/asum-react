@@ -4,11 +4,12 @@ import { UserOutlined } from '@ant-design/icons';
 import Button from '../common/Button';
 import 'antd/dist/antd.css';
 import { Row, Col, Input, Radio, Form, Checkbox, Typography, Avatar } from 'antd';
+import palette from '../../lib/styles/palette';
 
 const Content = styled.div`
     flex: 0 1 50%;
     margin: 3% 0 3% 3%;
-    border: 1px solid black;
+    border: 1px solid ${palette.gray[4]};
     height: 100%;
 `;
 
