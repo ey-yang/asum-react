@@ -186,7 +186,7 @@ const PaymentTitleBox = styled.div`
     padding: 1rem;
 `;
 
-const tourphoto = require('../../../image/스크린샷 2020-11-17 오후 2.25.07.png');
+const tourphoto = require('../../../image/foodtour.png');
 const naverPay = require('../../../image/naverpay_logo.png');
 const payco = require('../../../image/payco.png');
 
